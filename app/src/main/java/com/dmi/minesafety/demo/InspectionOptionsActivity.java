@@ -30,6 +30,8 @@ public class InspectionOptionsActivity extends Activity {
 
     private String[] mLocationsTitles;
 
+    private int a;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
