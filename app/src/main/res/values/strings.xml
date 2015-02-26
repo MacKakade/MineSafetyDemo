@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MineSafetyDemo</string>
+    <string name="title_activity_inspection_options">InspectionOptionsActivity</string>
+    <string name="title_activity_capture_photo">CapturePhotoActivity></string>
+    <string name="action_settings">Settings</string>
+    <string name="action_bar_title">US Department of Labour</string>
+    <string name="action_bar_sub_title">Mine Safety and Health Administrator</string>
+    <string name="action_bar_search_box_hint">Search...</string>
+    <string name="name_mine_organisation">American Manganese Inc.</string>
+    <string name="name_cave">Mohave Cave County, Arizona</string>
+    <string name="button_record_location">Record Location</string>
+    <string name="text_geo_location">Geo Location: 35°0.5\'N 115°28.5\'W</string>
+    <string name="text_hint_capture_note">Enter Description</string>
+    <string name="text_map_view">Map View</string>
+
+    <string-array name="spinner_data">
+        <item>Location 1</item>
+        <item>Location 2</item>
+        <item>Location 3</item>
+        <item>Location 4</item>
+    </string-array>
+
+    <string name="marker_item_previous_reports">Previous Inspection Reports</string>
+    <string name="marker_item_goto_mine_map">Go to Mine Map</string>
+    <string name="title_activity_mine_map">MineMapActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string-array name="dots_array">
+        <item>Abrasive Materials</item>
+        <item>Fall from height</item>
+        <item>Fire and Explosion</item>
+        <item>Surface Coating</item>
+        <item>Manual Handling</item>
+        <item>Ground Vibrations</item>
+        <item>Unathorized actions</item>
+        <item>Noise Level</item>
+        <item>Unguarded Area</item>
+        <item>Overcrowding</item>
+        <item>Water Spilage</item>
+        <item>Insufficient Lighting</item>
+    </string-array>
+
+
+    <string-array name="spinner_array">
+        <item>Past 6 Months</item>
+        <item>Past 12 Months</item>
+        <item>Past 18 Months</item>
+        <item>Past 24 Months</item>
+        <item>Past 30 Months</item>
+        <item>Past 36 Months</item>
+        <item>Past 42 Months</item>
+        <item>Past 48 Months</item>
+        <item>Past 54 Months</item>
+        <item>Past 60 Months</item>
+    </string-array>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="title_activity_make_note">MakeNoteActivity</string>
+
+</resources>

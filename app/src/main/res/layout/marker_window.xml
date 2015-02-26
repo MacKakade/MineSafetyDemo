@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:text="@string/name_mine_organisation"
+        android:textSize="22sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:drawableLeft="@drawable/ic_blue_dot"
+        android:drawablePadding="6dp"
+        android:text="@string/marker_item_previous_reports"
+        android:textColor="@color/blue_link"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/txv_goto_mine_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:drawableLeft="@drawable/ic_blue_dot"
+        android:drawablePadding="6dp"
+        android:onClick="onClickMarker"
+        android:text="@string/marker_item_goto_mine_map"
+        android:textColor="@color/blue_link"
+        android:textSize="16sp" />
+
+</LinearLayout>

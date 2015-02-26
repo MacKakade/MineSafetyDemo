@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/container_capture_photo_bg"
+    android:layout_height="match_parent"
+    android:layout_margin="12dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/rel_controls"
+        android:layout_centerHorizontal="true"
+
+        android:padding="12dp">
+
+
+        <EditText
+            android:id="@+id/edt_note"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btn_cancel"
+            android:layout_alignLeft="@+id/imv_camera_capture"
+            android:layout_alignRight="@+id/imv_camera_capture"
+            android:layout_marginTop="12dp"
+            android:background="@color/white"
+            android:gravity="start"
+            android:hint="@string/text_hint_capture_note"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/edt_note"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/icon_button_cancel" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/edt_note"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="12dp"
+            android:layout_toLeftOf="@+id/btn_cancel"
+            android:background="@drawable/icon_button_save" />
+    </RelativeLayout>
+
+</RelativeLayout>

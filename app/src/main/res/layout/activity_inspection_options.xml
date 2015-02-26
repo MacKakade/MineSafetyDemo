@@ -1,0 +1,233 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              >
+
+    <RelativeLayout
+            android:id="@+id/rel_controls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#dce6ef"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp">
+
+        <TextView
+                android:id="@+id/title_org"
+                style="?android:textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/name_mine_organisation"/>
+
+        <TextView
+                android:id="@+id/title_mine"
+                style="?android:textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_below="@+id/title_org"
+                android:layout_marginBottom="10dp"
+                android:text="@string/name_cave"/>
+
+        <Spinner
+                android:id="@+id/spinner_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@+id/txv_geo_location"
+               />
+
+        <Button
+                android:id="@+id/btn_record_location"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:background="@color/inspection_button_blue"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:padding="12dp"
+                android:layout_margin="12dp"
+                android:text="@string/button_record_location"
+                android:textColor="@color/white"
+                android:textSize="14sp"/>
+
+        <TextView
+                android:id="@+id/txv_geo_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                android:layout_toLeftOf="@+id/btn_record_location"
+                android:text="@string/text_geo_location"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"/>
+    </RelativeLayout>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rel_controls">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+        <Button
+                android:id="@+id/button_scan_container"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@color/inspection_button_blue"
+                android:drawableTop="@drawable/ic_barcode"
+                android:text="Scan Barcode of Container"
+                android:textColor="@color/white"
+                android:textSize="24sp">
+        </Button>
+
+        <Button
+                android:id="@+id/button_take_picture"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@color/inspection_button_blue"
+                android:drawableTop="@drawable/ic_camera"
+                android:text="Take Picture"
+                android:textColor="@color/white"
+                android:textSize="24sp">
+        </Button>
+
+        <Button
+                android:id="@+id/button_make_notes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@color/inspection_button_blue"
+                android:drawableTop="@drawable/ic_notes"
+                android:text="Make Notes"
+                android:textColor="@color/white"
+                android:textSize="24sp">
+        </Button>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+        <Button
+                android:id="@+id/button_take_video"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@color/inspection_button_blue"
+                android:drawableTop="@drawable/ic_videorecord"
+                android:text="Take Video"
+                android:textColor="@color/white"
+                android:textSize="24sp">
+        </Button>
+
+        <Button
+                android:id="@+id/button_record_audio"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@color/inspection_button_blue"
+                android:drawableTop="@drawable/ic_audiorecord"
+                android:text="Record Audio"
+                android:textColor="@color/white"
+                android:textSize="24sp">
+        </Button>
+
+        <Button
+                android:id="@+id/button_record_noise"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@color/inspection_button_blue"
+                android:drawableTop="@drawable/ic_noise"
+                android:text="Record Noise"
+                android:textColor="@color/white"
+                android:textSize="24sp">
+        </Button>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+        <Button
+                android:id="@+id/button_take_video2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:background="@color/inspection_button_blue"
+                android:drawableTop="@drawable/ic_videorecord"
+                android:text="Take Video"
+                android:textColor="@color/white"
+                android:textSize="24sp">
+        </Button>
+
+
+        <Button
+                android:id="@+id/button_my_artifacts"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@color/inspection_button_blue"
+                android:drawableTop="@drawable/ic_my_artifacts"
+                android:text="My Artifacts"
+                android:textColor="@color/white"
+                android:textSize="24sp">
+        </Button>
+
+        <Button
+                android:id="@+id/button_record_audio2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_margin="8dp"
+                android:visibility="invisible"
+                android:layout_weight="1"
+                android:background="@color/inspection_button_blue"
+                android:drawableTop="@drawable/ic_audiorecord"
+                android:text="My Artifacts"
+                android:textColor="@color/white"
+                android:textSize="24sp">
+        </Button>
+
+    </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

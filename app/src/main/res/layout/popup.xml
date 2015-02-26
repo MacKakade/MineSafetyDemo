@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:padding="15dp"
+              android:background="@color/white"
+              android:layout_width="100dp"
+              android:layout_height="100dp">
+
+    <TextView
+            android:padding="4dp"
+            android:drawablePadding="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/lighgreen"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/btn_record_location"
+            android:text="Picture of damaged crank shaft"
+            android:textColor="@color/blue_link"
+            android:textSize="14sp"/>
+
+    <TextView
+            android:padding="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawablePadding="4dp"
+            android:layout_marginRight="8dp"
+            android:drawableLeft="@drawable/lighgreen"
+            android:layout_toLeftOf="@+id/btn_record_location"
+            android:text="Voice Recording of crank shaft"
+            android:textColor="@color/blue_link"
+            android:textSize="14sp"/>
+
+    <TextView
+            android:padding="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/lighgreen"
+            android:layout_marginRight="8dp"
+            android:drawablePadding="4dp"
+            android:layout_toLeftOf="@+id/btn_record_location"
+            android:text="Shaft Design Documents"
+            android:textColor="@color/blue_link"
+            android:textSize="14sp"/>
+
+
+    <TextView
+            android:padding="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawablePadding="4dp"
+            android:drawableLeft="@drawable/lighgreen"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/btn_record_location"
+            android:text="Equipment Life Documents"
+            android:textColor="@color/blue_link"
+            android:textSize="14sp"/>
+
+    <TextView
+            android:padding="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/lighgreen"
+            android:layout_marginRight="8dp"
+            android:drawablePadding="4dp"
+            android:layout_toLeftOf="@+id/btn_record_location"
+            android:text="Excavator blocking issue"
+            android:textColor="@color/blue_link"
+            android:textSize="14sp"/>
+    <TextView
+            android:padding="4dp"
+            android:layout_width="wrap_content"
+            android:drawableLeft="@drawable/lighgreen"
+            android:drawablePadding="4dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/btn_record_location"
+            android:text="Crank shaft operation video"
+            android:textColor="@color/blue_link"
+            android:textSize="14sp"/>
+    <TextView
+            android:padding="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/lighgreen"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/btn_record_location"
+            android:text="Operator issues"
+            android:drawablePadding="4dp"
+            android:textColor="@color/blue_link"
+            android:textSize="14sp"/>
+
+    <TextView
+            android:padding="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:drawablePadding="4dp"
+            android:layout_toLeftOf="@+id/btn_record_location"
+            android:text="AMC reports"
+            android:drawableLeft="@drawable/lighgreen"
+            android:textColor="@color/blue_link"
+            android:textSize="14sp"/>
+    <TextView
+            android:padding="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawablePadding="4dp"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/btn_record_location"
+            android:text="BreakDown Reports"
+            android:textColor="@color/blue_link"
+            android:drawableLeft="@drawable/lighgreen"
+            android:textSize="14sp"/>
+
+
+</LinearLayout>
