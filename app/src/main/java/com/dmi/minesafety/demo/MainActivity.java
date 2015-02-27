@@ -24,7 +24,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallback {
 
-    private GoogleMap googleMap;
+    private GoogleMap googleMap;  
     private ViewGroup infoWindow;
     private TextView infoTitle;
     private OnInfoWindowElemTouchListener infoButtonListener;
