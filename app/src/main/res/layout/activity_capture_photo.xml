@@ -99,7 +99,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/btn_cancel"
-                    android:background="@android:drawable/editbox_background_normal"
                     android:gravity="start"
                     android:layout_marginBottom="5dp"
                     android:hint="@string/text_hint_capture_note"
