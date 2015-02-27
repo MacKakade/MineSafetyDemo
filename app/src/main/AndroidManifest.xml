@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dmi.minesafety.demo" >
+    package="com.dmi.minesafety.demo">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,53 +15,53 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon_logo"
-        android:theme="@style/AppThemeBar"
-        android:label="@string/app_name" >
-
+        android:label="@string/app_name"
+        android:theme="@style/AppThemeBar">
         <meta-data
-                android:name="com.google.android.gms.version"
-                android:value="@integer/google_play_services_version" />
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <meta-data
-                android:name="com.google.android.maps.v2.API_KEY"
-                android:value="AIzaSyCGGTuNfh_pC74CCK8F8i6eUQe5_wWxFDk" />
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCGGTuNfh_pC74CCK8F8i6eUQe5_wWxFDk" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreenActivity"
             android:label="@string/action_bar_title"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/action_bar_title"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".CapturePhotoActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/action_bar_title"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
-
         <activity
             android:name=".InspectionOptionsActivity"
             android:label="@string/action_bar_title"
-            android:screenOrientation="landscape"/>
-
+            android:screenOrientation="landscape" />
         <activity
             android:name=".MineMapActivity"
             android:label="@string/action_bar_title"
-            android:screenOrientation="landscape" >
-        </activity>
-
+            android:screenOrientation="landscape" />
         <activity
             android:name=".MakeNoteActivity"
             android:configChanges="orientation|keyboardHidden"
+            android:label="@string/action_bar_title"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:label="@string/action_bar_title" >
-        </activity>
-
+            android:windowSoftInputMode="stateAlwaysHidden" />
     </application>
 
 </manifest>
+

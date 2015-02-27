@@ -1,11 +1,9 @@
 package com.dmi.minesafety.demo;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -13,10 +11,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.Spinner;
 
 import java.util.Date;
@@ -29,8 +25,6 @@ public class InspectionOptionsActivity extends Activity {
     private Spinner mLocationSpinner;
 
     private String[] mLocationsTitles;
-
-    private int a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +79,6 @@ public class InspectionOptionsActivity extends Activity {
         });
 
 
-
         Button btnArtifacts = (Button) findViewById(R.id.button_my_artifacts);
         btnArtifacts.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,19 +86,17 @@ public class InspectionOptionsActivity extends Activity {
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(
                         InspectionOptionsActivity.this);
-                alert.setView(getLayoutInflater().inflate(R.layout.layout_inspection_artifacts,null,false));
+                alert.setView(getLayoutInflater().inflate(R.layout.layout_inspection_artifacts, null, false));
                 alert.show();
             }
         });
-
-
 
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
-            Intent data) {
+                                    Intent data) {
 
         if (resultCode != RESULT_CANCELED) {
             if (requestCode == 0) {

@@ -20,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 
 public class MineMapActivity extends Activity {
@@ -107,7 +106,7 @@ public class MineMapActivity extends Activity {
 
                         AlertDialog.Builder alert = new AlertDialog.Builder(
                                 MineMapActivity.this);
-                        alert.setView(getLayoutInflater().inflate(R.layout.popup,null,false));
+                        alert.setView(getLayoutInflater().inflate(R.layout.popup, null, false));
                         alert.show();
                     }
 
@@ -116,7 +115,7 @@ public class MineMapActivity extends Activity {
 
                         AlertDialog.Builder alert = new AlertDialog.Builder(
                                 MineMapActivity.this);
-                        alert.setView(getLayoutInflater().inflate(R.layout.popup,null,false));
+                        alert.setView(getLayoutInflater().inflate(R.layout.popup, null, false));
                         alert.show();
                     }
 
@@ -125,7 +124,7 @@ public class MineMapActivity extends Activity {
 
                         AlertDialog.Builder alert = new AlertDialog.Builder(
                                 MineMapActivity.this);
-                        alert.setView(getLayoutInflater().inflate(R.layout.popup,null,false));
+                        alert.setView(getLayoutInflater().inflate(R.layout.popup, null, false));
                         alert.show();
                     }
 //                    Toast.makeText(MineMapActivity.this, text,
@@ -162,7 +161,7 @@ public class MineMapActivity extends Activity {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
-                long id) {
+                                long id) {
             // selectItem(position);
         }
     }
