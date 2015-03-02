@@ -1,13 +1,14 @@
 package com.dmi.minesafety.demo;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
@@ -21,12 +22,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallback {
 
-    private GoogleMap googleMap;  
+    private GoogleMap googleMap;
     private ViewGroup infoWindow;
     private OnInfoWindowElemTouchListener infoButtonListener;
     private MarkerOptions markerOptions[];
     private MapWrapperLayout mapWrapperLayout;
     private Marker currentMarker;
+    private final int RQS_GooglePlayServices = 1;
 
     // Create a LatLngBounds that includes USA.
     final LatLngBounds USA = new LatLngBounds(
@@ -45,7 +47,7 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                if(currentMarker != null) {
+                if (currentMarker != null) {
                     currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker_red));
                 }
                 marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker_green));
@@ -55,6 +57,21 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
         });
 
         googleMap.setOnMapLoadedCallback(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+
+        if (resultCode == ConnectionResult.SUCCESS) {
+            Toast.makeText(getApplicationContext(),
+                    "isGooglePlayServicesAvailable SUCCESS",
+                    Toast.LENGTH_LONG).show();
+        } else {
+            GooglePlayServicesUtil.getErrorDialog(resultCode, this, RQS_GooglePlayServices);
+        }
     }
 
     private void putMarkers() {
@@ -69,11 +86,11 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
         BitmapDescriptor markerRed = BitmapDescriptorFactory.fromResource(R.drawable.marker_red);
         markerOptions = new MarkerOptions[]
                 {new MarkerOptions().position(new LatLng(32.75, -113.98)).icon(markerRed),
-                 new MarkerOptions().position((new LatLng(32.13, -112.66))).icon(markerRed),
-                 new MarkerOptions().position((new LatLng(34.88, -114.02))).icon(markerRed),
-                 new MarkerOptions().position((new LatLng(34.82, -113.32))).icon(markerRed),
-                 new MarkerOptions().position((new LatLng(35.46, -111.85))).icon(markerRed),
-                 new MarkerOptions().position((new LatLng(36.42, -111.68))).icon(markerRed)};
+                        new MarkerOptions().position((new LatLng(32.13, -112.66))).icon(markerRed),
+                        new MarkerOptions().position((new LatLng(34.88, -114.02))).icon(markerRed),
+                        new MarkerOptions().position((new LatLng(34.82, -113.32))).icon(markerRed),
+                        new MarkerOptions().position((new LatLng(35.46, -111.85))).icon(markerRed),
+                        new MarkerOptions().position((new LatLng(36.42, -111.68))).icon(markerRed)};
     }
 
     @Override

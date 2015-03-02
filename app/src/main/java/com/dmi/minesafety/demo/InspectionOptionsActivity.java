@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import java.util.Date;
@@ -48,7 +49,7 @@ public class InspectionOptionsActivity extends Activity {
         mLocationSpinner.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.layout_spinner_item_drawer_black, mLocationsTitles));
 
-        Button btnPicture = (Button) findViewById(R.id.button_take_picture);
+        RelativeLayout btnPicture = (RelativeLayout) findViewById(R.id.rel_take_picture);
         btnPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +69,7 @@ public class InspectionOptionsActivity extends Activity {
             }
         });
 
-        Button btnNote = (Button) findViewById(R.id.button_make_notes);
+        RelativeLayout btnNote = (RelativeLayout) findViewById(R.id.rel_take_notes);
         btnNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +80,7 @@ public class InspectionOptionsActivity extends Activity {
         });
 
 
-        Button btnArtifacts = (Button) findViewById(R.id.button_my_artifacts);
+        RelativeLayout btnArtifacts = (RelativeLayout) findViewById(R.id.rel_my_artifacts);
         btnArtifacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,8 +91,6 @@ public class InspectionOptionsActivity extends Activity {
                 alert.show();
             }
         });
-
-
     }
 
     @Override
