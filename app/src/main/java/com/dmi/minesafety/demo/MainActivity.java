@@ -26,6 +26,7 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
     private OnInfoWindowElemTouchListener infoButtonListener;
     private MarkerOptions markerOptions[];
     private MapWrapperLayout mapWrapperLayout;
+    private Marker currentMarker;
 
     // Create a LatLngBounds that includes USA.
     final LatLngBounds USA = new LatLngBounds(
@@ -44,7 +45,11 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+                if(currentMarker != null) {
+                    currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker_red));
+                }
                 marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker_green));
+                currentMarker = marker;
                 return false;
             }
         });
@@ -64,11 +69,11 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
         BitmapDescriptor markerRed = BitmapDescriptorFactory.fromResource(R.drawable.marker_red);
         markerOptions = new MarkerOptions[]
                 {new MarkerOptions().position(new LatLng(32.75, -113.98)).icon(markerRed),
-                        new MarkerOptions().position((new LatLng(32.13, -112.66))).icon(markerRed),
-                        new MarkerOptions().position((new LatLng(34.88, -114.02))).icon(markerRed),
-                        new MarkerOptions().position((new LatLng(34.82, -113.32))).icon(markerRed),
-                        new MarkerOptions().position((new LatLng(35.46, -111.85))).icon(markerRed),
-                        new MarkerOptions().position((new LatLng(36.42, -111.68))).icon(markerRed)};
+                 new MarkerOptions().position((new LatLng(32.13, -112.66))).icon(markerRed),
+                 new MarkerOptions().position((new LatLng(34.88, -114.02))).icon(markerRed),
+                 new MarkerOptions().position((new LatLng(34.82, -113.32))).icon(markerRed),
+                 new MarkerOptions().position((new LatLng(35.46, -111.85))).icon(markerRed),
+                 new MarkerOptions().position((new LatLng(36.42, -111.68))).icon(markerRed)};
     }
 
     @Override
