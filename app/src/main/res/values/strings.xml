@@ -8,10 +8,10 @@
     <string name="action_bar_title">US Department of Labour</string>
     <string name="action_bar_sub_title">Mine Safety and Health Administrator</string>
     <string name="action_bar_search_box_hint">Search...</string>
-    <string name="name_mine_organisation">American Manganese Inc.</string>
-    <string name="name_cave">Mohave Cave County, Arizona</string>
-    <string name="button_record_location">Record Location</string>
-    <string name="text_geo_location">Geo Location: 35°0.5\'N 115°28.5\'W</string>
+    <string name="name_mine_organisation">Brody Mine No 1</string>
+    <string name="name_cave">Brody Mine LLC, Wharton, West Virginia, ID: 4609086"</string>
+    <string name="button_record_location">RECORD LOCATION</string>
+    <string name="text_geo_location">35°0.5\'N 115°28.5\'W</string>
     <string name="text_hint_capture_note">Enter Description</string>
     <string name="text_map_view">Map View</string>
 

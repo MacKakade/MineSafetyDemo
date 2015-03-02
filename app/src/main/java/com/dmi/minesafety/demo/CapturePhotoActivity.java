@@ -10,8 +10,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -29,6 +31,11 @@ public class CapturePhotoActivity extends ActionBarActivity {
         Uri uri = getIntent().getExtras().getParcelable("img_uri");
         ImageView photo = (ImageView) findViewById(R.id.imv_camera_capture);
         Bitmap bitmap = null;
+
+        String[] mLocationsTitles = getResources().getStringArray(R.array.spinner_data);
+        Spinner mLocationSpinner = (Spinner) findViewById(R.id.spinner_location);
+        mLocationSpinner.setAdapter(new ArrayAdapter<>(this,
+                R.layout.layout_spinner_item_drawer_black, mLocationsTitles));
 
         try {
             bitmap = MediaStore.Images.Media
