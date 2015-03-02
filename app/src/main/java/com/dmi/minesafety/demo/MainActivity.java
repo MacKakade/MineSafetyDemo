@@ -1,15 +1,12 @@
 package com.dmi.minesafety.demo;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,7 +23,6 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
 
     private GoogleMap googleMap;  
     private ViewGroup infoWindow;
-    private TextView infoTitle;
     private OnInfoWindowElemTouchListener infoButtonListener;
     private MarkerOptions markerOptions[];
     private MapWrapperLayout mapWrapperLayout;
@@ -39,15 +35,6 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        final ViewGroup actionBarLayout = (ViewGroup) getLayoutInflater().inflate(R.layout.action_bar, null);
-//        final ActionBar actionBar = getActionBar();
-//        actionBar.setDisplayShowHomeEnabled(false);
-//        actionBar.setDisplayShowTitleEnabled(false);
-//        actionBar.setDisplayShowCustomEnabled(true);
-//        actionBar.setCustomView(actionBarLayout);
-//        final int actionBarColor = getResources().getColor(R.color.action_bar_bg);
-//        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
         setMarkers();
 
@@ -63,7 +50,6 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
         });
 
         googleMap.setOnMapLoadedCallback(this);
-
     }
 
     private void putMarkers() {
@@ -85,11 +71,6 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
                         new MarkerOptions().position((new LatLng(36.42, -111.68))).icon(markerRed)};
     }
 
-    public static int getPixelsFromDp(Context context, float dp) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dp * scale + 0.5f);
-    }
-
     @Override
     public void onMapLoaded() {
         putMarkers();
@@ -109,13 +90,18 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
         });
         mapWrapperLayout.init(googleMap, 0);
         infoWindow = (ViewGroup) getLayoutInflater().inflate(R.layout.marker_window, null);
-        infoTitle = (TextView) infoWindow.findViewById(R.id.txv_goto_mine_map);
         infoButtonListener = new OnInfoWindowElemTouchListener(infoWindow,
                 null,
                 null) {
             @Override
             protected void onClickConfirmed(View v, Marker marker) {
-                startActivity(new Intent(MainActivity.this, MineMapActivity.class));
+                String tag = (String) v.getTag();
+                if (tag.equals("item1")) {
+                    Toast.makeText(MainActivity.this, "item 1 clicked", Toast.LENGTH_SHORT).show();
+                } else if (tag.equals("item2")) {
+                    startActivity(new Intent(MainActivity.this, MineMapActivity.class));
+                    Toast.makeText(MainActivity.this, "item 2 clicked", Toast.LENGTH_SHORT).show();
+                }
             }
         };
         infoWindow.setOnTouchListener(infoButtonListener);

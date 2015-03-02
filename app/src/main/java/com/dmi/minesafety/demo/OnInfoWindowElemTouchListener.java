@@ -3,6 +3,7 @@ package com.dmi.minesafety.demo;
 /**
  * Created by Digvijay on 2/24/2015.
  */
+
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -20,6 +21,11 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
     private Marker marker;
     private boolean pressed = false;
 
+    //Marker window item co-ordinates
+    private final float item1topX = 0, item1topY = 3, item1bottomX = 398, item1bottomY = 50,
+            item2topX = 0, item2topY = 52, item2bottomX = 398, item2bottomY = 98;
+    private boolean itemClicked;
+
     public OnInfoWindowElemTouchListener(View view, Drawable bgDrawableNormal, Drawable bgDrawablePressed) {
         this.view = view;
         this.bgDrawableNormal = bgDrawableNormal;
@@ -32,23 +38,36 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
 
     @Override
     public boolean onTouch(View vv, MotionEvent event) {
-//        if (0 <= event.getX() && event.getX() <= view.getWidth() &&
-//                0 <= event.getY() && event.getY() <= view.getHeight())
 
-        if(event.getX() >= vv.getX() && event.getX() <= vv.getWidth()+vv.getX() &&
-                event.getY() >= vv.getY() && event.getY() <=vv.getHeight()+vv.getY())
-        {
+        if (event.getX() >= item1topX && event.getX() <= item1bottomX &&
+                event.getY() >= item1topY && event.getY() <= item1bottomY) {
+            view.setTag("item1");
+            itemClicked = true;
+        } else if (event.getX() >= item2topX && event.getX() <= item2bottomX &&
+                event.getY() >= item2topY && event.getY() <= item2bottomY) {
+            view.setTag("item2");
+            itemClicked = true;
+        }
+
+        if (itemClicked) {
+            itemClicked = false;
             switch (event.getActionMasked()) {
-                case MotionEvent.ACTION_DOWN: startPress(); break;
+                case MotionEvent.ACTION_DOWN:
+                    startPress();
+                    break;
 
                 // We need to delay releasing of the view a little so it shows the pressed state on the screen
-                case MotionEvent.ACTION_UP: handler.postDelayed(confirmClickRunnable, 150); break;
+                case MotionEvent.ACTION_UP:
+                    handler.postDelayed(confirmClickRunnable, 150);
+                    break;
 
-                case MotionEvent.ACTION_CANCEL: endPress(); break;
-                default: break;
+                case MotionEvent.ACTION_CANCEL:
+                    endPress();
+                    break;
+                default:
+                    break;
             }
-        }
-        else {
+        } else {
             // If the touch goes outside of the view's area
             // (like when moving finger out of the pressed button)
             // just release the press
@@ -75,8 +94,7 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
             if (marker != null)
                 marker.showInfoWindow();
             return true;
-        }
-        else
+        } else
             return false;
     }
 
