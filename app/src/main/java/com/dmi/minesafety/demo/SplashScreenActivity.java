@@ -17,7 +17,7 @@ public class SplashScreenActivity extends ActionBarActivity {
             public void run() {
                 try {
                     int waited = 0;
-                    while (waited < 1000) {
+                    while (waited < 3000) {
                         sleep(100);
                         waited += 100;
                     }

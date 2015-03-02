@@ -28,32 +28,27 @@
     <string name="hello_world">Hello world!</string>
 
     <string-array name="dots_array">
-        <item>Abrasive Materials</item>
-        <item>Fall from height</item>
+        <item>Past Events</item>
+        <item>Past Citations</item>
         <item>Fire and Explosion</item>
-        <item>Surface Coating</item>
-        <item>Manual Handling</item>
-        <item>Ground Vibrations</item>
-        <item>Unathorized actions</item>
-        <item>Noise Level</item>
-        <item>Unguarded Area</item>
-        <item>Overcrowding</item>
-        <item>Water Spilage</item>
-        <item>Insufficient Lighting</item>
+        <item>Past Samples</item>
+        <item>Past Accidents</item>
+        <item>Past Production and Employment</item>
+        <item>Past time Activity Entry</item>
     </string-array>
 
 
     <string-array name="spinner_array">
-        <item>Past 6 Months</item>
-        <item>Past 12 Months</item>
-        <item>Past 18 Months</item>
-        <item>Past 24 Months</item>
-        <item>Past 30 Months</item>
-        <item>Past 36 Months</item>
-        <item>Past 42 Months</item>
-        <item>Past 48 Months</item>
-        <item>Past 54 Months</item>
-        <item>Past 60 Months</item>
+        <item> 0-6 Months</item>
+        <item> 6-12 Months</item>
+        <item> 12-18 Months</item>
+        <item> 18-24 Months</item>
+        <item> 24-30 Months</item>
+        <item> 30-36 Months</item>
+        <item> 36-42 Months</item>
+        <item> 42-48 Months</item>
+        <item> 48-54 Months</item>
+        <item> 54-60 Months</item>
     </string-array>
 
     <string name="drawer_open">Open navigation drawer</string>

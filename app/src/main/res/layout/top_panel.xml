@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:id="@+id/top_panel"
+        android:background="#dce6ef"
+        android:layout_height="wrap_content">
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:orientation="vertical"
+                  android:layout_centerVertical="true"
+                  android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/title_org"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:textAppearanceMedium"
+                android:layout_marginLeft="15dp"
+                android:text="@string/name_mine_organisation"/>
+
+        <TextView
+                android:id="@+id/title_mine"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="15dp"
+                style="?android:textAppearanceSmall"
+                android:layout_height="wrap_content"
+                android:text="@string/name_cave"/>
+
+    </LinearLayout>
+    <Button
+            android:id="@+id/button_referral_docs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/map_view"
+            android:layout_margin="12dp"
+            android:background="#2f517d"
+            android:layout_centerVertical="true"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:text="REFERRAL DOCUMENTS"
+            android:textColor="@color/white"/>
+    <ImageView
+            android:id="@+id/map_view"
+            android:layout_toLeftOf="@+id/list_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/map_selected"
+            android:layout_centerVertical="true"/>
+
+    <ImageView
+            android:id="@+id/list_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/list_unselected"
+            android:layout_alignParentRight="true"
+            android:padding="12dp"/>
+
+</RelativeLayout>

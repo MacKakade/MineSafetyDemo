@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/menu_go_to_map"
-        android:showAsAction="always|withText"
+        app:showAsAction="always|withText"
         android:icon="@drawable/icon_mapview"
         android:title="Go to Map">
     </item>

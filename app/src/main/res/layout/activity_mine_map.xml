@@ -8,65 +8,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:id="@+id/top_panel"
-                android:background="#dce6ef"
-                android:layout_height="wrap_content">
-
-            <LinearLayout android:layout_width="wrap_content"
-                          android:orientation="vertical"
-                          android:layout_centerVertical="true"
-                          android:layout_height="wrap_content">
-
-                <TextView
-                        android:id="@+id/title_org"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="?android:textAppearanceLarge"
-                        android:layout_marginLeft="15dp"
-                        android:text="@string/name_mine_organisation"/>
-
-                <TextView
-                        android:id="@+id/title_mine"
-                        android:layout_width="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        style="?android:textAppearanceMedium"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name_cave"/>
-
-            </LinearLayout>
-            <Button
-                    android:id="@+id/button_referral_docs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/button_inpection_reports"
-                    android:layout_margin="12dp"
-                    android:background="#2f517d"
-                    android:layout_centerVertical="true"
-                    android:padding="12dp"
-                    android:textSize="14sp"
-                    android:text="Referral Documents"
-                    android:textColor="@color/white"/>
-
-            <Button
-                    android:id="@+id/button_inpection_reports"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="12dp"
-                    android:background="#2f517d"
-                    android:padding="12dp"
-                    android:textSize="14sp"
-                    android:text="Inspection Reports"
-                    android:textColor="@color/white"/>
-        </RelativeLayout>
+        <include android:id="@+id/layout_top_panel"
+                 layout="@layout/top_panel"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"/>
         <View
                 android:id="@+id/view_border"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@+id/top_panel"
+                android:layout_below="@+id/layout_top_panel"
                 android:background="#000000"/>
 
         <FrameLayout
@@ -100,11 +50,23 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"/>
 
+        <Button
+                android:id="@+id/button_select_all"
+                android:text="SELECT ALL"
+                android:textSize="14sp"
+                android:layout_margin="4dp"
+                android:textColor="@color/white"
+                android:background="#2f517d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spinner_date"
+                android:layout_alignParentRight="true"/>
+
         <ListView
                 android:id="@+id/left_drawer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/spinner_date"
+                android:layout_below="@+id/button_select_all"
                 android:choiceMode="multipleChoice"
                 android:divider="@android:color/black"
                 android:dividerHeight="0.5dp"/>

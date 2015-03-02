@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -42,6 +43,10 @@ public class MineMapActivity extends ActionBarActivity {
 
     TouchImageView img;
 
+    private ImageView mMapView, mListView;
+
+    private int mCurrentSelection = 0;
+
     private int[] mDrawables = new int[]{R.drawable.purple, R.drawable.lightred,
             R.drawable.violet, R.drawable.red, R.drawable.magenta,
             R.drawable.lightviolet, R.drawable.lightblue, R.drawable.lighgreen,
@@ -52,6 +57,34 @@ public class MineMapActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mine_map);
+
+        mMapView = (ImageView) findViewById(
+                R.id.map_view);
+
+        mListView = (ImageView) findViewById(
+                R.id.list_view);
+
+        mMapView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCurrentSelection == 1) {
+                    mCurrentSelection = 0;
+                    mMapView.setImageResource(R.drawable.map_selected);
+                    mListView.setImageResource(R.drawable.list_unselected);
+                }
+            }
+        });
+
+        mListView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCurrentSelection == 0) {
+                    mCurrentSelection = 1;
+                    mMapView.setImageResource(R.drawable.map_unselected);
+                    mListView.setImageResource(R.drawable.list_selected);
+                }
+            }
+        });
 
         mTitle = mDrawerTitle = getTitle();
         mDotsTitles = getResources().getStringArray(R.array.dots_array);
