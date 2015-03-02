@@ -4,7 +4,7 @@
     android:layout_height="?android:attr/listPreferredItemHeightSmall"
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
     android:gravity="center_vertical"
-    android:background="#2f517d"
+    android:background="#f8f8f8"
     android:drawablePadding="4dp"
-    android:textColor="#FFFFFF"
+    android:textColor="@android:color/primary_text_light"
     android:padding="8dp" />

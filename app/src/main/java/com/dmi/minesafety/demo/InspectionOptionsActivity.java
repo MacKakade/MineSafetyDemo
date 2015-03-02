@@ -1,12 +1,12 @@
 package com.dmi.minesafety.demo;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,7 +19,7 @@ import android.widget.Spinner;
 import java.util.Date;
 
 
-public class InspectionOptionsActivity extends Activity {
+public class InspectionOptionsActivity extends ActionBarActivity {
 
     private Uri mUri;
 
@@ -81,13 +81,16 @@ public class InspectionOptionsActivity extends Activity {
 
 
         RelativeLayout btnArtifacts = (RelativeLayout) findViewById(R.id.rel_my_artifacts);
+
         btnArtifacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(
                         InspectionOptionsActivity.this);
-                alert.setView(getLayoutInflater().inflate(R.layout.layout_inspection_artifacts, null, false));
+                alert.setView(getLayoutInflater()
+                        .inflate(R.layout.layout_inspection_artifacts, null,
+                                false));
                 alert.show();
             }
         });
@@ -95,7 +98,7 @@ public class InspectionOptionsActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent data) {
+            Intent data) {
 
         if (resultCode != RESULT_CANCELED) {
             if (requestCode == 0) {

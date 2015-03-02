@@ -1,13 +1,13 @@
 package com.dmi.minesafety.demo;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,7 +22,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 
-public class MineMapActivity extends Activity {
+public class MineMapActivity extends ActionBarActivity {
 
     private DrawerLayout mDrawerLayout;
 
@@ -59,7 +59,7 @@ public class MineMapActivity extends Activity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mDateSpinner = (Spinner) findViewById(R.id.spinner_date);
 
@@ -79,15 +79,14 @@ public class MineMapActivity extends Activity {
 
         mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
                 mDrawerLayout, /* DrawerLayout object */
-                R.drawable.ic_drawer, /* nav drawer image to replace 'Up' caret */
                 R.string.drawer_open, R.string.drawer_close) {
             public void onDrawerClosed(View view) {
-                getActionBar().setTitle(mTitle);
+                getSupportActionBar().setTitle(mTitle);
                 invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle(mDrawerTitle);
+                getSupportActionBar().setTitle(mDrawerTitle);
                 invalidateOptionsMenu();
             }
         };
@@ -106,7 +105,9 @@ public class MineMapActivity extends Activity {
 
                         AlertDialog.Builder alert = new AlertDialog.Builder(
                                 MineMapActivity.this);
-                        alert.setView(getLayoutInflater().inflate(R.layout.popup, null, false));
+                        alert.setTitle("Location: SCBA Storage");
+                        alert.setView(getLayoutInflater()
+                                .inflate(R.layout.popup, null, false));
                         alert.show();
                     }
 
@@ -115,7 +116,9 @@ public class MineMapActivity extends Activity {
 
                         AlertDialog.Builder alert = new AlertDialog.Builder(
                                 MineMapActivity.this);
-                        alert.setView(getLayoutInflater().inflate(R.layout.popup, null, false));
+                        alert.setTitle("Location: SCBA Storage");
+                        alert.setView(getLayoutInflater()
+                                .inflate(R.layout.popup, null, false));
                         alert.show();
                     }
 
@@ -124,7 +127,9 @@ public class MineMapActivity extends Activity {
 
                         AlertDialog.Builder alert = new AlertDialog.Builder(
                                 MineMapActivity.this);
-                        alert.setView(getLayoutInflater().inflate(R.layout.popup, null, false));
+                        alert.setTitle("Location: SCBA Storage");
+                        alert.setView(getLayoutInflater()
+                                .inflate(R.layout.popup, null, false));
                         alert.show();
                     }
 //                    Toast.makeText(MineMapActivity.this, text,
@@ -161,7 +166,7 @@ public class MineMapActivity extends Activity {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
+                long id) {
             // selectItem(position);
         }
     }

@@ -1,11 +1,11 @@
 package com.dmi.minesafety.demo;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,19 +19,20 @@ import java.io.IOException;
 /**
  * Created by Digvijay on 2/23/2015.
  */
-public class CapturePhotoActivity extends Activity {
+public class CapturePhotoActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_capture_photo);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Uri uri = getIntent().getExtras().getParcelable("img_uri");
         ImageView photo = (ImageView) findViewById(R.id.imv_camera_capture);
         Bitmap bitmap = null;
 
         try {
-            bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+            bitmap = MediaStore.Images.Media
+                    .getBitmap(this.getContentResolver(), uri);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -43,7 +44,8 @@ public class CapturePhotoActivity extends Activity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(CapturePhotoActivity.this, "   Photo is saved!   ", Toast.LENGTH_LONG).show();
+                Toast.makeText(CapturePhotoActivity.this,
+                        "   Photo is saved!   ", Toast.LENGTH_LONG).show();
                 finish();
             }
         });

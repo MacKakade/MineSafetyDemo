@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
@@ -20,12 +21,27 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallback {
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends ActionBarActivity
+        implements GoogleMap.OnMapLoadedCallback {
 
     private GoogleMap googleMap;
+
     private ViewGroup infoWindow;
+
+    private TextView infoTitle;
+
     private OnInfoWindowElemTouchListener infoButtonListener;
+
     private MarkerOptions markerOptions[];
+
     private MapWrapperLayout mapWrapperLayout;
     private Marker currentMarker;
     private final int RQS_GooglePlayServices = 1;
@@ -37,13 +53,15 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_main);;
         setMarkers();
 
-        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-        mapWrapperLayout = (MapWrapperLayout) findViewById(R.id.map_relative_layout);
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapWrapperLayout = (MapWrapperLayout) findViewById(
+                R.id.map_relative_layout);
         googleMap = mapFragment.getMap();
+
         googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -83,14 +101,26 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
     }
 
     private void setMarkers() {
-        BitmapDescriptor markerRed = BitmapDescriptorFactory.fromResource(R.drawable.marker_red);
+        BitmapDescriptor markerRed = BitmapDescriptorFactory
+                .fromResource(R.drawable.marker_red);
         markerOptions = new MarkerOptions[]
-                {new MarkerOptions().position(new LatLng(32.75, -113.98)).icon(markerRed),
-                        new MarkerOptions().position((new LatLng(32.13, -112.66))).icon(markerRed),
-                        new MarkerOptions().position((new LatLng(34.88, -114.02))).icon(markerRed),
-                        new MarkerOptions().position((new LatLng(34.82, -113.32))).icon(markerRed),
-                        new MarkerOptions().position((new LatLng(35.46, -111.85))).icon(markerRed),
-                        new MarkerOptions().position((new LatLng(36.42, -111.68))).icon(markerRed)};
+                {new MarkerOptions().position(new LatLng(32.75, -113.98))
+                        .icon(markerRed),
+                        new MarkerOptions()
+                                .position((new LatLng(32.13, -112.66)))
+                                .icon(markerRed),
+                        new MarkerOptions()
+                                .position((new LatLng(34.88, -114.02)))
+                                .icon(markerRed),
+                        new MarkerOptions()
+                                .position((new LatLng(34.82, -113.32)))
+                                .icon(markerRed),
+                        new MarkerOptions()
+                                .position((new LatLng(35.46, -111.85)))
+                                .icon(markerRed),
+                        new MarkerOptions()
+                                .position((new LatLng(36.42, -111.68)))
+                                .icon(markerRed)};
     }
 
     @Override
@@ -111,7 +141,9 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
             }
         });
         mapWrapperLayout.init(googleMap, 0);
-        infoWindow = (ViewGroup) getLayoutInflater().inflate(R.layout.marker_window, null);
+        infoWindow = (ViewGroup) getLayoutInflater()
+                .inflate(R.layout.marker_window, null);
+
         infoButtonListener = new OnInfoWindowElemTouchListener(infoWindow,
                 null,
                 null) {
@@ -119,11 +151,15 @@ public class MainActivity extends Activity implements GoogleMap.OnMapLoadedCallb
             protected void onClickConfirmed(View v, Marker marker) {
                 String tag = (String) v.getTag();
                 if (tag.equals("item1")) {
-                    Toast.makeText(MainActivity.this, "item 1 clicked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "item 1 clicked",
+                            Toast.LENGTH_SHORT).show();
                 } else if (tag.equals("item2")) {
-                    startActivity(new Intent(MainActivity.this, MineMapActivity.class));
-                    Toast.makeText(MainActivity.this, "item 2 clicked", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this,
+                            MineMapActivity.class));
+                    Toast.makeText(MainActivity.this, "item 2 clicked",
+                            Toast.LENGTH_SHORT).show();
                 }
+
             }
         };
         infoWindow.setOnTouchListener(infoButtonListener);

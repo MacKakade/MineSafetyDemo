@@ -92,7 +92,7 @@
             android:layout_width="360dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="#2f517d">
+            android:background="#f8f8f8">
 
         <Spinner
                 android:id="@+id/spinner_date"
