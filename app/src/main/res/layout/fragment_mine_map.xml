@@ -1,8 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:id="@+id/imageFrame"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_below="@+id/view_border">
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
 
 
     <com.dmi.minesafety.demo.TouchImageView

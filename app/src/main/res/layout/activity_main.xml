@@ -5,10 +5,36 @@
     android:layout_height="match_parent"
     tools:context="com.dmi.miningsafety.demo.MainActivity">
 
-    <fragment
-        android:id="@+id/map"
-        class="com.google.android.gms.maps.MapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:id="@+id/top_panel"
+            android:background="#dce6ef"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:id="@+id/map_view"
+                android:layout_toLeftOf="@+id/list_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/map_selected"
+                android:layout_centerVertical="true"/>
+
+        <ImageView
+                android:id="@+id/list_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/list_unselected"
+                android:layout_alignParentRight="true"
+                android:padding="12dp"/>
+
+    </RelativeLayout>
+
+    <FrameLayout android:id="@+id/layout_container"
+                 android:layout_width="match_parent"
+                 android:layout_below="@+id/top_panel"
+                 android:layout_height="wrap_content"/>
+
 
 </com.dmi.minesafety.demo.MapWrapperLayout>

@@ -51,6 +51,221 @@
         <item> 54-60 Months</item>
     </string-array>
 
+    <string-array name="mine_id">
+        <item>4608992</item>
+        <item>4608736</item>
+        <item>4608861</item>
+        <item>4606497</item>
+        <item>4603140</item>
+        <item>4608574</item>
+        <item>4609173</item>
+        <item>4609294</item>
+        <item>4608132</item>
+        <item>4608915</item>
+        <item>4609395</item>
+        <item>4609181</item>
+        <item>4609344</item>
+        <item>4608940</item>
+        <item>4609050</item>
+        <item>4606448</item>
+        <item>4609485</item>
+        <item>4602602</item>
+        <item>4601286</item>
+        <item>4600044</item>
+        <item>4606956</item>
+        <item>4609211</item>
+        <item>4607407</item>
+        <item>4608846</item>
+        <item>4609111</item>
+        <item>4604335</item>
+        <item>4602805</item>
+        <item>4605449</item>
+        <item>4608133</item>
+        <item>4608588</item>
+        <item>4602380</item>
+        <item>4601867</item>
+        <item>4602443</item>
+        <item>4609296</item>
+        <item>4602445</item>
+        <item>4609130</item>
+        <item>4608758</item>
+        <item>4607537</item>
+        <item>4609086</item>
+    </string-array>
+
+
+    <string-array name="mine_name">
+        <item>Adrian #1 Deep Mine</item>
+        <item>Wesley Strip</item>
+        <item>Muddy Creek Mountain Stone</item>
+        <item>Alloy Dock</item>
+        <item>Spruce Laurel Preparation Plant</item>
+        <item>Eagle Land No. 1 Sur. Mine</item>
+        <item>Mine No 1A</item>
+        <item>Washington Mine</item>
+        <item>Five Forks Mine</item>
+        <item>Double M Mining</item>
+        <item>Dry Branch Surface Mine</item>
+        <item>Eagle No. 1 Surface Mine</item>
+        <item>Gladesville Quarry</item>
+        <item>Bull Creek Prep and Refuse Disp Facility</item>
+        <item>Barrackville Refuse Pile</item>
+        <item>Rocklick Preparation Plant</item>
+        <item>Atwell Branch Surface Mine</item>
+        <item>Wilson Strip #6</item>
+        <item>Windsor Mine</item>
+        <item>Raleigh Quarry</item>
+        <item>Cheylan Dock</item>
+        <item>Squire Jim No 2 Mine</item>
+        <item>Tallmans Run Mine No.1</item>
+        <item>ABC Corp</item>
+        <item>Peerless #1</item>
+        <item>IMI FABI Benwood Plant</item>
+        <item>Berkeley Plant</item>
+        <item>Amonate Preparation Plant</item>
+        <item>Monoc #3 Surface Mine</item>
+        <item>Cedar Grove Mine</item>
+        <item>Bishop Impoundment Area</item>
+        <item>Blacksville #1</item>
+        <item>Little White Oak</item>
+        <item>Mine No. 2</item>
+        <item>Pond Fork Processing</item>
+        <item>Brandy Station</item>
+        <item>Eagle #1</item>
+        <item>Alloy Surface Mine</item>
+        <item>Brody Mine No 1</item>
+    </string-array>
+
+
+    <string-array name="mine_state">
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+        <item>WV</item>
+    </string-array>
+
+    <string-array name="mine_operator">
+        <item>Glady Fork Mining Inc.</item>
+        <item>Loyal G Forman and Son</item>
+        <item>Muddy Creek Mountain Stone Inc</item>
+        <item>Periama Handling, LLC</item>
+        <item>Coal River Mining, LLC</item>
+        <item>Independence Coal Company Inc</item>
+        <item>Mare Development LLC</item>
+        <item>Hampden Coal, LLC</item>
+        <item>Brooks Run Mining Company, LLC</item>
+        <item>Double M Mining Lc</item>
+        <item>Extra Energy, Inc.</item>
+        <item>F and N Construction, LLC</item>
+        <item>Fayette Coal and  Coke Inc</item>
+        <item>Raven Crest Contracting, LLC</item>
+        <item>LP Mineral, LLC</item>
+        <item>Eastern Associated Coal LLC</item>
+        <item>Little Ben Trucking</item>
+        <item>Buffalo Coal Company Inc</item>
+        <item>Windsor Coal Company</item>
+        <item>Boxley Aggregates of WV LLC</item>
+        <item>Mountain Edge Mining Inc</item>
+        <item>GEMCO Energy Inc</item>
+        <item>Roblee Coal Company</item>
+        <item>ABC Corp</item>
+        <item>Peachtree Ridge Mining Company, Inc.</item>
+        <item>IMI Fabi LLC</item>
+        <item>U S Silica Company</item>
+        <item>CONSOL Amonate Facility LLC</item>
+        <item>Fola Coal Company, LLC</item>
+        <item>Day LLC</item>
+        <item>Chestnut Land Holdings, LLC</item>
+        <item>Consolidation Coal Company</item>
+        <item>Apogee Coal Company LLC</item>
+        <item>SELAH Corporation</item>
+        <item>Thunderhill Coal LLC</item>
+        <item>Brooks Run Mining Company LLC</item>
+        <item>Rhino Eastern LLC</item>
+        <item>Alex Energy Inc.</item>
+        <item>Brody Mining LLC</item>
+    </string-array>
+
+    <string-array name="mine_city">
+        <item>Adrian</item>
+        <item>Albright</item>
+        <item>Alderson</item>
+        <item>Alloy</item>
+        <item>Alum Creek</item>
+        <item>Ameagle</item>
+        <item>AMHERSDALE</item>
+        <item>AMHERSTDALE</item>
+        <item>Amigo</item>
+        <item>Amonate</item>
+        <item>Anawalt</item>
+        <item>Ansted</item>
+        <item>Arthurdale</item>
+        <item>Ashford</item>
+        <item>Barrackville</item>
+        <item>Barrett</item>
+        <item>Bartley</item>
+        <item>Bayard</item>
+        <item>Beach Bottom</item>
+        <item>Beaver</item>
+        <item>Beckley</item>
+        <item>Beech Fork</item>
+        <item>Belington</item>
+        <item>Belle</item>
+        <item>Belva</item>
+        <item>Benwood</item>
+        <item>Berkeley Springs</item>
+        <item>Berwind</item>
+        <item>Bickmore</item>
+        <item>Bim</item>
+        <item>Bishop</item>
+        <item>Blacksville</item>
+        <item>Blair</item>
+        <item>Blount</item>
+        <item>Bob White</item>
+        <item>Boggs</item>
+        <item>Bolt</item>
+        <item>Boomer</item>
+        <item>Wharton</item>
+    </string-array>
+
+
+
+
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="title_activity_make_note">MakeNoteActivity</string>

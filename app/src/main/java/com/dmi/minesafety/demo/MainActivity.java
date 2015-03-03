@@ -47,11 +47,9 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ;
         setMarkers();
 
-        MapFragment mapFragment = (MapFragment) getFragmentManager()
-                .findFragmentById(R.id.map);
+        MapFragment mapFragment = new MapFragment();
         mapWrapperLayout = (MapWrapperLayout) findViewById(
                 R.id.map_relative_layout);
         googleMap = mapFragment.getMap();
@@ -87,7 +85,7 @@ public class MainActivity extends ActionBarActivity
 //                    Toast.LENGTH_LONG).show();
         } else {
             GooglePlayServicesUtil
-                    .getErrorDialog(resultCode, this, RQS_GooglePlayServices);
+                    .getErrorDialog(resultCode, this, RQS_GooglePlayServices).show();
         }
     }
 
