@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -23,7 +24,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 
-public class MineMapActivity extends ActionBarActivity {
+public class MineMapActivity extends ActionBarActivity    implements DocumentListFragment.Callbacks {
 
     private DrawerLayout mDrawerLayout;
 
@@ -41,16 +42,16 @@ public class MineMapActivity extends ActionBarActivity {
 
     private String[] mDatesTitles;
 
-    TouchImageView img;
+
 
     private ImageView mMapView, mListView;
 
     private int mCurrentSelection = 0;
 
-    private int[] mDrawables = new int[]{R.drawable.purple, R.drawable.lightred,
-            R.drawable.violet, R.drawable.red, R.drawable.magenta,
-            R.drawable.lightviolet, R.drawable.lightblue, R.drawable.lighgreen,
-            R.drawable.orange, R.drawable.green, R.drawable.brown,
+    private int[] mDrawables = new int[]{R.drawable.lighgreen, R.drawable.red,
+            R.drawable.purple, R.drawable.red, R.drawable.orange,
+            R.drawable.lightviolet, R.drawable.brown, R.drawable.lighgreen,
+            R.drawable.brown, R.drawable.green, R.drawable.brown,
             R.drawable.blue};
 
     @Override
@@ -71,6 +72,8 @@ public class MineMapActivity extends ActionBarActivity {
                     mCurrentSelection = 0;
                     mMapView.setImageResource(R.drawable.map_selected);
                     mListView.setImageResource(R.drawable.list_unselected);
+                    Fragment fragment = new MineMapFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.imageFrame,fragment).commit();
                 }
             }
         });
@@ -82,6 +85,8 @@ public class MineMapActivity extends ActionBarActivity {
                     mCurrentSelection = 1;
                     mMapView.setImageResource(R.drawable.map_unselected);
                     mListView.setImageResource(R.drawable.list_selected);
+                    Fragment fragment = new DocumentListParentFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.imageFrame,fragment).commit();
                 }
             }
         });
@@ -124,54 +129,9 @@ public class MineMapActivity extends ActionBarActivity {
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-        img = (TouchImageView) findViewById(R.id.imageViewMine);
-        //       img.setZoom(2);
-        img.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    String text = "You click at x = " + event.getX()
-                            + " and y = " + event.getY();
 
-                    if (event.getX() > 900 && event.getX() < 1000
-                            ) {
-
-                        AlertDialog.Builder alert = new AlertDialog.Builder(
-                                MineMapActivity.this);
-                        alert.setTitle("Location: SCBA Storage");
-                        alert.setView(getLayoutInflater()
-                                .inflate(R.layout.popup, null, false));
-                        alert.show();
-                    }
-
-                    if (event.getX() > 1500 && event.getX() < 2000
-                            ) {
-
-                        AlertDialog.Builder alert = new AlertDialog.Builder(
-                                MineMapActivity.this);
-                        alert.setTitle("Location: SCBA Storage");
-                        alert.setView(getLayoutInflater()
-                                .inflate(R.layout.popup, null, false));
-                        alert.show();
-                    }
-
-                    if (event.getX() > 150 && event.getX() < 200
-                            ) {
-
-                        AlertDialog.Builder alert = new AlertDialog.Builder(
-                                MineMapActivity.this);
-                        alert.setTitle("Location: SCBA Storage");
-                        alert.setView(getLayoutInflater()
-                                .inflate(R.layout.popup, null, false));
-                        alert.show();
-                    }
-//                    Toast.makeText(MineMapActivity.this, text,
-//                            Toast.LENGTH_LONG).show();
-                }
-
-                return true;
-            }
-        });
+        Fragment fragment = new MineMapFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.imageFrame,fragment).commit();
 
     }
 
@@ -226,6 +186,23 @@ public class MineMapActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemSelected(String id) {
+
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            Bundle arguments = new Bundle();
+            arguments.putString(DocumentDetailFragment.ARG_ITEM_ID, id);
+            DocumentDetailFragment fragment = new DocumentDetailFragment();
+            fragment.setArguments(arguments);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.document_detail_container, fragment)
+                    .commit();
+
+
     }
 
     private class MineAdapter extends ArrayAdapter<String> {

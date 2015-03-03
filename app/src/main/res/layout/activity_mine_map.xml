@@ -26,13 +26,6 @@
                 android:layout_below="@+id/view_border">
 
 
-            <com.dmi.minesafety.demo.TouchImageView
-                    android:id="@+id/imageViewMine"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:contentDescription="ty"
-                    android:src="@drawable/mine_map"/>
 
         </FrameLayout>
     </RelativeLayout>
@@ -54,6 +47,8 @@
                 android:id="@+id/button_select_all"
                 android:text="SELECT ALL"
                 android:textSize="14sp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
                 android:layout_margin="4dp"
                 android:textColor="@color/white"
                 android:background="#2f517d"

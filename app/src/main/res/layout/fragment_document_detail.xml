@@ -1,223 +1,226 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/document_detail"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context="com.dmi.minesafety.demo.DocumentDetailFragment">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Citations#: 877142"
-        android:textColor="@color/inspection_button_blue"
-        android:textSize="24sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/inspection_button_blue" />
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal">
+            android:id="@+id/document_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date : "
-            android:textSize="20sp"
-            android:textStyle="bold" />
+                android:id="@+id/docs_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Citations#: 877142"
+                android:textColor="@color/inspection_button_blue"
+                android:textSize="24sp"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/inspection_button_blue"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date : "
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="02/24/2015"
+                    android:textSize="20sp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:text="Time(24 hr clock) : "
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:text="08-23"
+                    android:textSize="20sp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Served to : "
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Matt Jennings (Supervisor)"
+                    android:textSize="20sp"/>
+        </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="02/24/2015"
-            android:textSize="20sp" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Condition or Practise :"
+                android:textColor="@color/inspection_button_blue"
+                android:textSize="22sp"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/inspection_button_blue"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:text="Time(24 hr clock) : "
-            android:textSize="20sp"
-            android:textStyle="bold" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingTop="16dp"
+                android:text="@string/text_dummy_citation"
+                android:textSize="22sp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:text="08-23"
-            android:textSize="20sp" />
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Served to : "
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            <TextView
+                    android:id="@+id/txv_label_artifacts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Inspection Artifacts"
+                    android:textColor="@color/inspection_button_blue"
+                    android:textSize="22sp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Matt Jennings (Supervisor)"
-            android:textSize="20sp" />
+            <TextView
+                    android:id="@+id/txv_label_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="150dp"
+                    android:layout_toRightOf="@+id/txv_label_artifacts"
+                    android:text="Date"
+                    android:textColor="@color/inspection_button_blue"
+                    android:textSize="22sp"/>
+
+            <View
+                    android:id="@+id/view_border"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/txv_label_artifacts"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/inspection_button_blue"/>
+
+            <TextView
+                    android:id="@+id/txv_artifact_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view_border"
+                    android:drawableLeft="@drawable/ic_picture_popup"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:text="Site image"
+                    android:textColor="#375883"
+                    android:textSize="20sp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/txv_artifact_image"
+                    android:layout_alignLeft="@+id/txv_label_date"
+                    android:layout_alignTop="@+id/txv_artifact_image"
+                    android:gravity="center"
+                    android:text="12/29/1015"
+                    android:textColor="@color/inspection_button_blue"
+                    android:textSize="20sp"/>
+
+            <View
+                    android:id="@+id/view_border2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/txv_artifact_image"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/container_capture_photo_bg"/>
+
+            <TextView
+                    android:id="@+id/txv_artifact_audio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view_border2"
+                    android:drawableLeft="@drawable/ic_audio_popup"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:text="Miner's Feedback"
+                    android:textColor="#375883"
+                    android:textSize="20sp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/txv_artifact_audio"
+                    android:layout_alignLeft="@+id/txv_label_date"
+                    android:layout_alignTop="@+id/txv_artifact_audio"
+                    android:gravity="center"
+                    android:text="02/27/1015"
+                    android:textColor="@color/inspection_button_blue"
+                    android:textSize="20sp"/>
+
+            <View
+                    android:id="@+id/view_border3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/txv_artifact_audio"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/container_capture_photo_bg"/>
+
+            <TextView
+                    android:id="@+id/txv_artifact_document"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view_border3"
+                    android:drawableLeft="@drawable/ic_document_popup"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:text="Safety Document"
+                    android:textColor="#375883"
+                    android:textSize="20sp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/txv_artifact_document"
+                    android:layout_alignLeft="@+id/txv_label_date"
+                    android:layout_alignTop="@+id/txv_artifact_document"
+                    android:gravity="center"
+                    android:text="02/25/1015"
+                    android:textColor="@color/inspection_button_blue"
+                    android:textSize="20sp"/>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/txv_artifact_document"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/container_capture_photo_bg"/>
+        </RelativeLayout>
+
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Condition or Practise :"
-        android:textColor="@color/inspection_button_blue"
-        android:textSize="22sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/inspection_button_blue" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
-        android:paddingTop="16dp"
-        android:text="@string/text_dummy_citation"
-        android:textSize="22sp" />
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
-
-        <TextView
-            android:id="@+id/txv_label_artifacts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Inspection Artifacts"
-            android:textColor="@color/inspection_button_blue"
-            android:textSize="22sp" />
-
-        <TextView
-            android:id="@+id/txv_label_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
-            android:layout_toRightOf="@+id/txv_label_artifacts"
-            android:text="Date"
-            android:textColor="@color/inspection_button_blue"
-            android:textSize="22sp" />
-
-        <View
-            android:id="@+id/view_border"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/txv_label_artifacts"
-            android:layout_marginTop="4dp"
-            android:background="@color/inspection_button_blue" />
-
-        <TextView
-            android:id="@+id/txv_artifact_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/view_border"
-            android:drawableLeft="@drawable/ic_picture_popup"
-            android:drawablePadding="8dp"
-            android:gravity="center_vertical"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp"
-            android:text="Site image"
-            android:textColor="#375883"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/txv_artifact_image"
-            android:layout_alignLeft="@+id/txv_label_date"
-            android:layout_alignTop="@+id/txv_artifact_image"
-            android:gravity="center"
-            android:text="12/29/1015"
-            android:textColor="@color/inspection_button_blue"
-            android:textSize="20sp" />
-
-        <View
-            android:id="@+id/view_border2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/txv_artifact_image"
-            android:layout_marginTop="4dp"
-            android:background="@color/container_capture_photo_bg" />
-
-        <TextView
-            android:id="@+id/txv_artifact_audio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/view_border2"
-            android:drawableLeft="@drawable/ic_audio_popup"
-            android:drawablePadding="8dp"
-            android:gravity="center_vertical"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp"
-            android:text="Miner's Feedback"
-            android:textColor="#375883"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/txv_artifact_audio"
-            android:layout_alignLeft="@+id/txv_label_date"
-            android:layout_alignTop="@+id/txv_artifact_audio"
-            android:gravity="center"
-            android:text="02/27/1015"
-            android:textColor="@color/inspection_button_blue"
-            android:textSize="20sp" />
-
-        <View
-            android:id="@+id/view_border3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/txv_artifact_audio"
-            android:layout_marginTop="4dp"
-            android:background="@color/container_capture_photo_bg" />
-
-        <TextView
-            android:id="@+id/txv_artifact_document"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/view_border3"
-            android:drawableLeft="@drawable/ic_document_popup"
-            android:drawablePadding="8dp"
-            android:gravity="center_vertical"
-            android:paddingBottom="2dp"
-            android:paddingTop="2dp"
-            android:text="Safety Document"
-            android:textColor="#375883"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/txv_artifact_document"
-            android:layout_alignLeft="@+id/txv_label_date"
-            android:layout_alignTop="@+id/txv_artifact_document"
-            android:gravity="center"
-            android:text="02/25/1015"
-            android:textColor="@color/inspection_button_blue"
-            android:textSize="20sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/txv_artifact_document"
-            android:layout_marginTop="4dp"
-            android:background="@color/container_capture_photo_bg" />
-    </RelativeLayout>
-
-</LinearLayout>
+</ScrollView>

@@ -1,14 +1,19 @@
 package com.dmi.minesafety.demo;
 
+import com.dmi.minesafety.demo.dummy.DummyContent;
+
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-
-import com.dmi.minesafety.demo.dummy.DummyContent;
+import android.widget.TextView;
 
 /**
  * A list fragment representing a list of Documents. This fragment also supports
@@ -71,11 +76,7 @@ public class DocumentListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
-                getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                DummyContent.ITEMS));
+        setListAdapter(new DocsAdapter(getActivity(),R.layout.layout_spinner_item_docs,new DummyContent.DummyItem[DummyContent.ITEMS.size()]));
     }
 
     @Override
@@ -88,6 +89,8 @@ public class DocumentListFragment extends ListFragment {
             setActivatedPosition(
                     savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
         }
+
+        setActivateOnItemClick(true);
     }
 
     @Override
@@ -150,5 +153,37 @@ public class DocumentListFragment extends ListFragment {
         }
 
         mActivatedPosition = position;
+    }
+
+    private class DocsAdapter extends ArrayAdapter<DummyContent.DummyItem> {
+
+
+        LayoutInflater mLayoutInflater;
+
+        public DocsAdapter(Context context, int resource,
+                DummyContent.DummyItem[] objects) {
+            super(context, resource, objects);
+            mLayoutInflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View v;
+            if (DummyContent.ITEMS.get(position).id
+                    .equalsIgnoreCase("Header")) {
+                v =mLayoutInflater
+                                .inflate(R.layout.layout_spinner_item_docs_grey, null,
+                                        false);
+            } else {
+                v =
+                        mLayoutInflater
+                                .inflate(R.layout.layout_spinner_item_docs, null,
+                                        false);
+            }
+            ((TextView)v.findViewById(R.id.text_docs)).setText(
+                    DummyContent.ITEMS.get(position).content);
+            return v;
+        }
     }
 }

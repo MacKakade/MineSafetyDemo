@@ -1,15 +1,7 @@
 package com.dmi.minesafety.demo;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
@@ -27,7 +19,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity
         implements GoogleMap.OnMapLoadedCallback {
@@ -43,7 +34,9 @@ public class MainActivity extends ActionBarActivity
     private MarkerOptions markerOptions[];
 
     private MapWrapperLayout mapWrapperLayout;
+
     private Marker currentMarker;
+
     private final int RQS_GooglePlayServices = 1;
 
     // Create a LatLngBounds that includes USA.
@@ -53,7 +46,8 @@ public class MainActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);;
+        setContentView(R.layout.activity_main);
+        ;
         setMarkers();
 
         MapFragment mapFragment = (MapFragment) getFragmentManager()
@@ -62,17 +56,20 @@ public class MainActivity extends ActionBarActivity
                 R.id.map_relative_layout);
         googleMap = mapFragment.getMap();
 
-        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                if (currentMarker != null) {
-                    currentMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker_red));
-                }
-                marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker_green));
-                currentMarker = marker;
-                return false;
-            }
-        });
+        googleMap.setOnMarkerClickListener(
+                new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        if (currentMarker != null) {
+                            currentMarker.setIcon(BitmapDescriptorFactory
+                                    .fromResource(R.drawable.marker_red));
+                        }
+                        marker.setIcon(BitmapDescriptorFactory
+                                .fromResource(R.drawable.marker_green));
+                        currentMarker = marker;
+                        return false;
+                    }
+                });
 
         googleMap.setOnMapLoadedCallback(this);
     }
@@ -81,14 +78,16 @@ public class MainActivity extends ActionBarActivity
     protected void onResume() {
         super.onResume();
 
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+        int resultCode = GooglePlayServicesUtil
+                .isGooglePlayServicesAvailable(getApplicationContext());
 
         if (resultCode == ConnectionResult.SUCCESS) {
 //            Toast.makeText(getApplicationContext(),
 //                    "isGooglePlayServicesAvailable SUCCESS",
 //                    Toast.LENGTH_LONG).show();
         } else {
-            GooglePlayServicesUtil.getErrorDialog(resultCode, this, RQS_GooglePlayServices);
+            GooglePlayServicesUtil
+                    .getErrorDialog(resultCode, this, RQS_GooglePlayServices);
         }
     }
 
@@ -151,13 +150,13 @@ public class MainActivity extends ActionBarActivity
             protected void onClickConfirmed(View v, Marker marker) {
                 String tag = (String) v.getTag();
                 if (tag.equals("item1")) {
-                    Toast.makeText(MainActivity.this, "item 1 clicked",
-                            Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "item 1 clicked",
+//                            Toast.LENGTH_SHORT).show();
                 } else if (tag.equals("item2")) {
                     startActivity(new Intent(MainActivity.this,
                             MineMapActivity.class));
-                    Toast.makeText(MainActivity.this, "item 2 clicked",
-                            Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "item 2 clicked",
+//                            Toast.LENGTH_SHORT).show();
                 }
 
             }

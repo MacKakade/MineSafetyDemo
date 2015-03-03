@@ -40,9 +40,9 @@ public class DocumentListActivity extends FragmentActivity
 
             // In two-pane mode, list items should be given the
             // 'activated' state when touched.
-            ((DocumentListFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.document_list))
-                    .setActivateOnItemClick(true);
+//            ((DocumentListFragment) getSupportFragmentManager()
+//                    .findFragmentById(R.id.document_list))
+//                    .setActivateOnItemClick(true);
         }
 
         // TODO: If exposing deep links into your app, handle intents here.
