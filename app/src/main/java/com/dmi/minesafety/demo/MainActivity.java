@@ -5,7 +5,8 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
-import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -13,15 +14,22 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import com.dmi.minesafety.demo.dummy.DummyContent;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends ActionBarActivity
-        implements GoogleMap.OnMapLoadedCallback {
+        implements GoogleMap.OnMapLoadedCallback, MineListFragment.Callbacks,
+        OnMapReadyCallback {
 
     private GoogleMap googleMap;
 
@@ -31,13 +39,20 @@ public class MainActivity extends ActionBarActivity
 
     private OnInfoWindowElemTouchListener infoButtonListener;
 
-    private MarkerOptions markerOptions[];
+    private ArrayList<MarkerOptions> markerOptions
+            = new ArrayList<MarkerOptions>();
 
     private MapWrapperLayout mapWrapperLayout;
 
     private Marker currentMarker;
 
     private final int RQS_GooglePlayServices = 1;
+
+    private ImageView mMapView, mListView;
+
+    private int mCurrentSelection = 0;
+
+    SupportMapFragment mSupportMapFragment;
 
     // Create a LatLngBounds that includes USA.
     final LatLngBounds USA = new LatLngBounds(
@@ -47,29 +62,51 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setMarkers();
 
-        MapFragment mapFragment = new MapFragment();
+        mMapView = (ImageView) findViewById(
+                R.id.map_view);
+
+        mListView = (ImageView) findViewById(
+                R.id.list_view);
+
+        mMapView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCurrentSelection == 1) {
+                    mCurrentSelection = 0;
+                    mMapView.setImageResource(R.drawable.map_selected);
+                    mListView.setImageResource(R.drawable.list_unselected);
+                    if (mSupportMapFragment != null) {
+                        mSupportMapFragment = SupportMapFragment.newInstance();
+                    }
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.layout_container, mSupportMapFragment)
+                            .commit();
+                    mSupportMapFragment.getMapAsync(MainActivity.this);
+                }
+            }
+        });
+
+        mListView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCurrentSelection == 0) {
+                    mCurrentSelection = 1;
+                    mMapView.setImageResource(R.drawable.map_unselected);
+                    mListView.setImageResource(R.drawable.list_selected);
+                    Fragment fragment = new MineListFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.layout_container, fragment).commit();
+                }
+            }
+        });
         mapWrapperLayout = (MapWrapperLayout) findViewById(
                 R.id.map_relative_layout);
-        googleMap = mapFragment.getMap();
+        mSupportMapFragment = SupportMapFragment.newInstance();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.layout_container, mSupportMapFragment).commit();
+        mSupportMapFragment.getMapAsync(MainActivity.this);
 
-        googleMap.setOnMarkerClickListener(
-                new GoogleMap.OnMarkerClickListener() {
-                    @Override
-                    public boolean onMarkerClick(Marker marker) {
-                        if (currentMarker != null) {
-                            currentMarker.setIcon(BitmapDescriptorFactory
-                                    .fromResource(R.drawable.marker_red));
-                        }
-                        marker.setIcon(BitmapDescriptorFactory
-                                .fromResource(R.drawable.marker_green));
-                        currentMarker = marker;
-                        return false;
-                    }
-                });
-
-        googleMap.setOnMapLoadedCallback(this);
     }
 
     @Override
@@ -85,7 +122,8 @@ public class MainActivity extends ActionBarActivity
 //                    Toast.LENGTH_LONG).show();
         } else {
             GooglePlayServicesUtil
-                    .getErrorDialog(resultCode, this, RQS_GooglePlayServices).show();
+                    .getErrorDialog(resultCode, this, RQS_GooglePlayServices)
+                    .show();
         }
     }
 
@@ -100,24 +138,14 @@ public class MainActivity extends ActionBarActivity
     private void setMarkers() {
         BitmapDescriptor markerRed = BitmapDescriptorFactory
                 .fromResource(R.drawable.marker_red);
-        markerOptions = new MarkerOptions[]
-                {new MarkerOptions().position(new LatLng(32.75, -113.98))
-                        .icon(markerRed),
-                        new MarkerOptions()
-                                .position((new LatLng(32.13, -112.66)))
-                                .icon(markerRed),
-                        new MarkerOptions()
-                                .position((new LatLng(34.88, -114.02)))
-                                .icon(markerRed),
-                        new MarkerOptions()
-                                .position((new LatLng(34.82, -113.32)))
-                                .icon(markerRed),
-                        new MarkerOptions()
-                                .position((new LatLng(35.46, -111.85)))
-                                .icon(markerRed),
-                        new MarkerOptions()
-                                .position((new LatLng(36.42, -111.68)))
-                                .icon(markerRed)};
+
+        for (int i = 0; i < DummyContent.MINES.size(); i++) {
+            MarkerOptions markerOption = new MarkerOptions();
+            markerOption.position(new LatLng(DummyContent.MINES.get(i).lat,
+                    DummyContent.MINES.get(i).longg));
+            markerOption.icon(markerRed);
+            markerOptions.add(markerOption);
+        }
     }
 
     @Override
@@ -160,5 +188,32 @@ public class MainActivity extends ActionBarActivity
             }
         };
         infoWindow.setOnTouchListener(infoButtonListener);
+    }
+
+    @Override
+    public void onMineSelected(String id) {
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        this.googleMap = googleMap;
+        googleMap.setOnMarkerClickListener(
+                new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        if (currentMarker != null) {
+                            currentMarker.setIcon(BitmapDescriptorFactory
+                                    .fromResource(R.drawable.marker_red));
+                        }
+                        marker.setIcon(BitmapDescriptorFactory
+                                .fromResource(R.drawable.marker_green));
+                        currentMarker = marker;
+                        return false;
+                    }
+                });
+
+        googleMap.setOnMapLoadedCallback(MainActivity.this);
+        setMarkers();
     }
 }

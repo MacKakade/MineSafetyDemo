@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:padding="12dp"
+                android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Mine Name"
+            android:id="@+id/text_mine_name" android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="City"
+            android:layout_alignBottom="@+id/text_mine_name"
+            android:layout_alignTop="@+id/text_mine_name"
+            android:id="@+id/text_mine_city"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="State"
+            android:id="@+id/text_mine_state"
+            android:layout_alignBottom="@+id/text_mine_operator"
+            android:layout_alignTop="@+id/text_mine_operator"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/text_mine_operator" android:layout_below="@+id/text_mine_name"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+</RelativeLayout>

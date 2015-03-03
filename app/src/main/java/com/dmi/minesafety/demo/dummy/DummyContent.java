@@ -19,6 +19,8 @@ public class DummyContent {
 
     public static List<Mine> MINES = new ArrayList<Mine>();
 
+
+
     /**
      * A map of sample (dummy) items, by ID.
      */
@@ -96,12 +98,19 @@ public class DummyContent {
 
         public String state;
 
-        public Mine(String id, String name,String operatorName, String city, String state) {
+        public double lat;
+
+        public double longg;
+
+
+        public Mine(String id, String name,String operatorName, String city, String state,double lat,double longg) {
             this.id = id;
             this.name = name;
             this.operatorName = operatorName;
             this.city = city;
             this.state = state;
+            this.lat = lat;
+            this.longg = longg;
         }
 
 
