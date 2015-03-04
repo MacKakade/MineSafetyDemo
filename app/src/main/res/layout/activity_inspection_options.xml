@@ -31,40 +31,55 @@
             android:layout_marginLeft="15dp"
             android:text="@string/name_cave" />
 
-        <Spinner
-            android:id="@+id/spinner_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:layout_toLeftOf="@+id/txv_geo_location" />
+        <!--<Spinner-->
+            <!--android:id="@+id/spinner_location"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginRight="15dp"-->
+            <!--android:layout_toLeftOf="@+id/txv_geo_location" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_record_location"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_margin="12dp"-->
+            <!--android:layout_marginRight="15dp"-->
+            <!--android:background="@color/inspection_button_blue"-->
+            <!--android:padding="12dp"-->
+            <!--android:paddingLeft="15dp"-->
+            <!--android:paddingRight="15dp"-->
+            <!--android:text="@string/button_record_location"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="14sp" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/txv_geo_location"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:layout_toLeftOf="@+id/btn_record_location"-->
+            <!--android:text="@string/text_geo_location"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textSize="14sp" />-->
 
         <Button
-            android:id="@+id/btn_record_location"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_margin="12dp"
-            android:layout_marginRight="15dp"
-            android:background="@color/inspection_button_blue"
-            android:padding="12dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:text="@string/button_record_location"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+        android:id="@+id/btn_my_artifacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="12dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/inspection_button_blue"
+        android:drawableLeft="@drawable/ic_my_artifacts"
+        android:text="My inspection Artifacts"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/txv_geo_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@+id/btn_record_location"
-            android:text="@string/text_geo_location"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
     </RelativeLayout>
 
     <ScrollView
@@ -297,7 +312,7 @@
 
 
                 <RelativeLayout
-                    android:id="@+id/rel_my_artifacts"
+                    android:id="@+id/rel_all_forms"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -308,20 +323,20 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_my_artifacts"
+                        android:layout_above="@+id/txv_all_forms"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:paddingLeft="25dp"
                         android:paddingRight="25dp"
-                        android:src="@drawable/ic_my_artifacts" />
+                        android:src="@drawable/ic_forms_white" />
 
                     <TextView
-                        android:id="@+id/txv_my_artifacts"
+                        android:id="@+id/txv_all_forms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-                        android:text="My Inspection Artifacts"
+                        android:text="All Forms"
                         android:textColor="@color/white"
                         android:textSize="23sp" />
                 </RelativeLayout>

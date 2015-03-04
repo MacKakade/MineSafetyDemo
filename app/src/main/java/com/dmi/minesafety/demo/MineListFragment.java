@@ -70,8 +70,7 @@ public class MineListFragment extends ListFragment {
 
         // TODO: replace with a real list adapter.
         setListAdapter(new MineListAdapter(getActivity(),
-                R.layout.layout_spinner_item_mines,
-                new DummyContent.Mine[DummyContent.MINES.size()]));
+                R.layout.layout_spinner_item_mines,DummyContent.MINES));
     }
 
     @Override

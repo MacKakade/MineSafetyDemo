@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:background="#375883"
         android:padding="10dp"
-        android:text="Inspection Artifacts"
+        android:text="All Forms"
         android:textColor="@color/white"
         android:textSize="18sp" />
 
@@ -52,11 +52,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_picture_popup"
+        android:drawableLeft="@drawable/pdf_icon"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:padding="8dp"
-        android:text="Damaged Crank Shaft image"
+        android:text="Event Form"
         android:textColor="#375883"
         android:textSize="16sp" />
 
@@ -68,11 +68,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_audio_popup"
+        android:drawableLeft="@drawable/pdf_icon"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:padding="8dp"
-        android:text="Voice Recording of the Shaft at work"
+        android:text="Citation Form"
         android:textColor="#375883"
         android:textSize="16sp" />
 
@@ -84,11 +84,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_document_popup"
+        android:drawableLeft="@drawable/pdf_icon"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:padding="8dp"
-        android:text="Shaft Design Documents (Specification Documents)"
+        android:text="Sample Form"
         android:textColor="#375883"
         android:textSize="16sp" />
 
@@ -100,11 +100,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_document_popup"
+        android:drawableLeft="@drawable/pdf_icon"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:padding="8dp"
-        android:text="Equipment Registration Documents"
+        android:text="Accident Form"
         android:textColor="#375883"
         android:textSize="16sp" />
 
@@ -116,11 +116,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_audio_popup"
+        android:drawableLeft="@drawable/pdf_icon"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:padding="8dp"
-        android:text="Interview with Crank shaft operator"
+        android:text="Production and Employment Form"
         android:textColor="#375883"
         android:textSize="16sp" />
 
@@ -132,11 +132,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_document_popup"
+        android:drawableLeft="@drawable/pdf_icon"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:padding="8dp"
-        android:text="AMC Reports of the motors"
+        android:text="Health Hazards"
         android:textColor="#375883"
         android:textSize="16sp" />
 
@@ -148,11 +148,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_document_popup"
+        android:drawableLeft="@drawable/pdf_icon"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:padding="8dp"
-        android:text="Breakdown Reports"
+        android:text="Breakdown Form"
         android:textColor="#375883"
         android:textSize="16sp" />
 
@@ -164,11 +164,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_document_popup"
+        android:drawableLeft="@drawable/pdf_icon"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:padding="8dp"
-        android:text="Mine Emergency Ops (MEO)"
+        android:text="AMC Forms"
         android:textColor="#375883"
         android:textSize="16sp" />
 
@@ -180,11 +180,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_document_popup"
+        android:drawableLeft="@drawable/pdf_icon"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:padding="8dp"
-        android:text="Mine Emergency Mapping Tool"
+        android:text="Medical Forms"
         android:textColor="#375883"
         android:textSize="16sp" />
 
@@ -192,48 +192,5 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#375883" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_video_popup"
-        android:drawablePadding="8dp"
-        android:gravity="center_vertical"
-        android:padding="8dp"
-        android:text="Mine Rescue Video"
-        android:textColor="#375883"
-        android:textSize="16sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#375883" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_video_popup"
-        android:drawablePadding="8dp"
-        android:gravity="center_vertical"
-        android:padding="8dp"
-        android:text="Miner's Grievances"
-        android:textColor="#375883"
-        android:textSize="16sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#375883" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_document_popup"
-        android:drawablePadding="8dp"
-        android:gravity="center_vertical"
-        android:padding="8dp"
-        android:text="Health Hazard Reports"
-        android:textColor="#375883"
-        android:textSize="16sp" />
 
 </LinearLayout>

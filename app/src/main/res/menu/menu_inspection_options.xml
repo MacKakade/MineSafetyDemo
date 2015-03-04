@@ -2,11 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--<item-->
+            <!--android:id="@+id/menu_go_to_map"-->
+            <!--app:showAsAction="always|withText"-->
+            <!--android:icon="@drawable/icon_mapview"-->
+            <!--android:title="Go to Map">-->
+    <!--</item>-->
+
     <item
-        android:id="@+id/menu_go_to_map"
-        app:showAsAction="always|withText"
-        android:icon="@drawable/icon_mapview"
-        android:title="Go to Map">
-    </item>
+            android:id="@+id/search"
+            android:title="Search"
+            app:showAsAction="always|withText"
+            app:actionViewClass="android.support.v7.widget.SearchView"/>
 
 </menu>

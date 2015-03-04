@@ -1,6 +1,5 @@
 package com.dmi.minesafety.demo;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -13,18 +12,21 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
 
-public class MineMapActivity extends ActionBarActivity    implements DocumentListFragment.Callbacks {
+
+public class MineMapActivity extends ActionBarActivity
+        implements DocumentListFragment.Callbacks {
 
     private DrawerLayout mDrawerLayout;
 
@@ -42,11 +44,17 @@ public class MineMapActivity extends ActionBarActivity    implements DocumentLis
 
     private String[] mDatesTitles;
 
+    private Button mSelectAll;
 
+    private ListView mDrawerListView;
+
+    private ArrayList<Integer> mSelectedPositions = new ArrayList<>();
 
     private ImageView mMapView, mListView;
 
     private int mCurrentSelection = 0;
+
+    private Fragment mCurrentFragment;
 
     private int[] mDrawables = new int[]{R.drawable.lighgreen, R.drawable.red,
             R.drawable.purple, R.drawable.red, R.drawable.orange,
@@ -58,6 +66,12 @@ public class MineMapActivity extends ActionBarActivity    implements DocumentLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mine_map);
+
+        mSelectAll = (Button) findViewById(
+                R.id.button_select_all);
+
+        mDrawerListView = (ListView) findViewById(
+                R.id.left_drawer);
 
         mMapView = (ImageView) findViewById(
                 R.id.map_view);
@@ -73,7 +87,9 @@ public class MineMapActivity extends ActionBarActivity    implements DocumentLis
                     mMapView.setImageResource(R.drawable.map_selected);
                     mListView.setImageResource(R.drawable.list_unselected);
                     Fragment fragment = new MineMapFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.imageFrame,fragment).commit();
+                    mCurrentFragment = fragment;
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.imageFrame, fragment).commit();
                 }
             }
         });
@@ -86,7 +102,9 @@ public class MineMapActivity extends ActionBarActivity    implements DocumentLis
                     mMapView.setImageResource(R.drawable.map_unselected);
                     mListView.setImageResource(R.drawable.list_selected);
                     Fragment fragment = new DocumentListParentFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.imageFrame,fragment).commit();
+                    mCurrentFragment = fragment;
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.imageFrame, fragment).commit();
                 }
             }
         });
@@ -131,7 +149,9 @@ public class MineMapActivity extends ActionBarActivity    implements DocumentLis
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         Fragment fragment = new MineMapFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.imageFrame,fragment).commit();
+        mCurrentFragment = fragment;
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.imageFrame, fragment).commit();
 
     }
 
@@ -191,16 +211,16 @@ public class MineMapActivity extends ActionBarActivity    implements DocumentLis
     @Override
     public void onItemSelected(String id) {
 
-            // In two-pane mode, show the detail view in this activity by
-            // adding or replacing the detail fragment using a
-            // fragment transaction.
-            Bundle arguments = new Bundle();
-            arguments.putString(DocumentDetailFragment.ARG_ITEM_ID, id);
-            DocumentDetailFragment fragment = new DocumentDetailFragment();
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.document_detail_container, fragment)
-                    .commit();
+        // In two-pane mode, show the detail view in this activity by
+        // adding or replacing the detail fragment using a
+        // fragment transaction.
+        Bundle arguments = new Bundle();
+        arguments.putString(DocumentDetailFragment.ARG_ITEM_ID, id);
+        DocumentDetailFragment fragment = new DocumentDetailFragment();
+        fragment.setArguments(arguments);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.document_detail_container, fragment)
+                .commit();
 
 
     }
@@ -213,16 +233,59 @@ public class MineMapActivity extends ActionBarActivity    implements DocumentLis
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView,
+                ViewGroup parent) {
 
             View v = getLayoutInflater()
                     .inflate(R.layout.layout_list_item_drawer, null, false);
-            ((CheckedTextView) v.findViewById(R.id.text1))
-                    .setText(mDotsTitles[position]);
-            ((CheckedTextView) v.findViewById(R.id.text1))
-                    .setCompoundDrawablesWithIntrinsicBounds(
-                            getResources().getDrawable(mDrawables[position]),
-                            null, null, null);
+
+            final CheckedTextView textView;
+            textView = (CheckedTextView) v
+                    .findViewById(R.id.text_item_drawer);
+            textView.setText(mDotsTitles[position]);
+            textView.setCompoundDrawablesWithIntrinsicBounds(
+                    getResources().getDrawable(mDrawables[position]),
+                    null, null, null);
+
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (textView.isChecked()) {
+                        textView.setChecked(false);
+                    } else {
+                        textView.setChecked(true);
+                    }
+
+                    if (textView.isChecked()) {
+                        mSelectedPositions.add(position);
+                    } else {
+                        mSelectedPositions.remove((Integer) position);
+                    }
+
+                    if (mCurrentFragment instanceof MineMapFragment) {
+                        if (mSelectedPositions.contains(0)
+                                && mSelectedPositions.contains(1)) {
+                            ((MineMapFragment) mCurrentFragment)
+                                    .reInitializeImage(
+                                            R.drawable.both_map);
+                        } else if (mSelectedPositions.contains(0)) {
+                            ((MineMapFragment) mCurrentFragment)
+                                    .reInitializeImage(
+                                            R.drawable.citations_map);
+                        } else if (mSelectedPositions.contains(1)) {
+                            ((MineMapFragment) mCurrentFragment)
+                                    .reInitializeImage(
+                                            R.drawable.events_map);
+                        } else {
+                            ((MineMapFragment) mCurrentFragment)
+                                    .reInitializeImage(
+                                            R.drawable.blank_map);
+                        }
+                    }
+                }
+            });
+
             return v;
         }
     }

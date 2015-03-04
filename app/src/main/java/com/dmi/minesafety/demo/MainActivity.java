@@ -139,10 +139,10 @@ public class MainActivity extends ActionBarActivity
 
             @Override
             public boolean onQueryTextSubmit(String s) {
-                int textlength = s.length();
+                int textLength = s.length();
                 ArrayList<DummyContent.Mine> tempArrayList = new ArrayList<DummyContent.Mine>();
                 for(DummyContent.Mine c: DummyContent.MINES){
-                    if (textlength <= c.id.length()) {
+                    if (textLength <= c.id.length()) {
                         if (c.id.toLowerCase().contains(s.toLowerCase())) {
                             tempArrayList.add(c);
                         }
@@ -150,8 +150,7 @@ public class MainActivity extends ActionBarActivity
                 }
 
                 mineListAdapter = new MineListAdapter(MainActivity.this,
-                        R.layout.layout_spinner_item_mines,
-                        new DummyContent.Mine[tempArrayList.size()]);
+                        R.layout.layout_spinner_item_mines,tempArrayList);
 
                 mineListFragment.getListView().setAdapter(
                         mineListAdapter );

@@ -9,39 +9,45 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by Mandar on 3/4/2015.
  */
 class MineListAdapter extends ArrayAdapter<DummyContent.Mine> {
 
     LayoutInflater mLayoutInflater;
+    List<DummyContent.Mine> objects;
+
 
     public MineListAdapter(Context context, int resource,
-            DummyContent.Mine[] objects) {
+            List<DummyContent.Mine> objects) {
         super(context, resource, objects);
         mLayoutInflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.objects=objects;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        DummyContent.Mine mine = objects.get(position);
         View v =
                 mLayoutInflater
                         .inflate(R.layout.layout_spinner_item_mines, null,
                                 false);
 
         ((TextView) v.findViewById(R.id.text_mine_name)).setText(
-                DummyContent.MINES.get(position).name);
+                mine.name);
         ((TextView) v.findViewById(R.id.text_mine_state)).setText(
-                DummyContent.MINES.get(position).state);
+                mine.state);
         ((TextView) v.findViewById(R.id.text_mine_city)).setText(
-                DummyContent.MINES.get(position).city);
+                mine.city);
         ((TextView) v.findViewById(R.id.text_mine_operator)).setText(
-                DummyContent.MINES.get(position).operatorName);
+                mine.operatorName);
 
         ((TextView) v.findViewById(R.id.text_mine_id))
-                .setText(DummyContent.MINES.get(position).id);
+                .setText(mine.id);
 
         return v;
     }

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -121,6 +122,7 @@ public class DocumentListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
+        (CheckedTextView)view.findViewById(R.id.text_docs).
         mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
     }
 

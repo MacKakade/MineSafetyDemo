@@ -7,6 +7,15 @@
               android:layout_height="100dp">
 
     <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#375883"
+            android:padding="10dp"
+            android:text="Citation #878942"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    <TextView
             android:padding="8dp"
             android:drawablePadding="8dp"
             android:layout_width="wrap_content"
@@ -31,7 +40,7 @@
             android:layout_marginRight="8dp"
             android:drawableLeft="@drawable/ic_audio_popup"
             android:layout_toLeftOf="@+id/btn_record_location"
-            android:text="Miner's feedback"
+            android:text="Miner's comments"
             android:textColor="@color/blue_link"
             android:textSize="14sp"/>
 
@@ -43,13 +52,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:drawableLeft="@drawable/ic_document_popup"
+            android:drawableLeft="@drawable/pdf_icon"
             android:layout_marginRight="8dp"
             android:drawablePadding="8dp"
             android:layout_toLeftOf="@+id/btn_record_location"
-            android:text="Safety Document"
+            android:text="Citation Form"
             android:textColor="@color/blue_link"
             android:textSize="14sp"/>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp"
+          android:background="@color/primary_dark_material_dark"/>
+
+    <TextView
+            android:padding="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/pdf_icon"
+            android:layout_marginRight="8dp"
+            android:drawablePadding="8dp"
+            android:layout_toLeftOf="@+id/btn_record_location"
+            android:text="Inspection Form"
+            android:textColor="@color/blue_link"
+            android:textSize="14sp"/>
+
 
 
     <!--<TextView-->

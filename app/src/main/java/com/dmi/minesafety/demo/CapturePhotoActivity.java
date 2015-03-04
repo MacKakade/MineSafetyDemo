@@ -76,12 +76,12 @@ public class CapturePhotoActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.menu_go_to_map) {
-            startActivity(new Intent(CapturePhotoActivity.this,
-                    MainActivity.class));
-            finish();
-            return true;
-        }
+//        if (item.getItemId() == R.id.menu_go_to_map) {
+//            startActivity(new Intent(CapturePhotoActivity.this,
+//                    MainActivity.class));
+//            finish();
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }

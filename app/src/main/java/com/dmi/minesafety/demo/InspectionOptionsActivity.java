@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -23,77 +24,67 @@ public class InspectionOptionsActivity extends ActionBarActivity {
 
     private Uri mUri;
 
-    private Spinner mLocationSpinner;
-
-    private String[] mLocationsTitles;
+//    private Spinner mLocationSpinner;
+//
+//    private String[] mLocationsTitles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inspection_options);
 
-        Button b = (Button) findViewById(R.id.btn_record_location);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(InspectionOptionsActivity.this,
-                        MineMapActivity.class));
-                finish();
-            }
-        });
+//        Button b = (Button) findViewById(R.id.btn_record_location);
+//        b.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(InspectionOptionsActivity.this,
+//                        MineMapActivity.class));
+//                finish();
+//            }
+//        });
 
-        mLocationsTitles = getResources().getStringArray(R.array.spinner_data);
+//        mLocationsTitles = getResources().getStringArray(R.array.spinner_data);
+//
+//        mLocationSpinner = (Spinner) findViewById(R.id.spinner_location);
+//
+//        mLocationSpinner.setAdapter(new ArrayAdapter<String>(this,
+//                R.layout.layout_spinner_item_drawer_black, mLocationsTitles));
 
-        mLocationSpinner = (Spinner) findViewById(R.id.spinner_location);
-
-        mLocationSpinner.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.layout_spinner_item_drawer_black, mLocationsTitles));
-
-        RelativeLayout btnPicture = (RelativeLayout) findViewById(R.id.rel_take_picture);
+        RelativeLayout btnPicture = (RelativeLayout) findViewById(
+                R.id.rel_take_picture);
         btnPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContentValues values = new ContentValues();
-                values.put(MediaStore.Images.Media.TITLE,
-                        "IMG_" + new Date() + ".jpg");
+                try {
+                    takePicture();
+                } catch (Exception e) {
+                    Toast.makeText(InspectionOptionsActivity.this,
+                            "Unable to take picture..Please check your camera settings.",
+                            Toast.LENGTH_LONG);
+                }
 
-                mUri = getContentResolver()
-                        .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                                values); // store content values
-
-                Intent takePhotoIntent = new Intent(
-                        MediaStore.ACTION_IMAGE_CAPTURE);
-                takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        mUri);
-                startActivityForResult(takePhotoIntent, 0);
             }
         });
 
-
-
-        RelativeLayout btnBarcode = (RelativeLayout) findViewById(R.id.rel_scan_barcode);
+        RelativeLayout btnBarcode = (RelativeLayout) findViewById(
+                R.id.rel_scan_barcode);
         btnBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContentValues values = new ContentValues();
-                values.put(MediaStore.Images.Media.TITLE,
-                        "IMG_" + new Date() + ".jpg");
 
-                mUri = getContentResolver()
-                        .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                                values); // store content values
+                try {
+                    takePicture();
+                } catch (Exception e) {
+                    Toast.makeText(InspectionOptionsActivity.this,
+                            "Unable to take picture..Please check your camera settings.",
+                            Toast.LENGTH_LONG);
+                }
 
-                Intent takePhotoIntent = new Intent(
-                        MediaStore.ACTION_IMAGE_CAPTURE);
-                takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        mUri);
-                startActivityForResult(takePhotoIntent, 0);
             }
         });
 
-
-
-        RelativeLayout btnNote = (RelativeLayout) findViewById(R.id.rel_take_notes);
+        RelativeLayout btnNote = (RelativeLayout) findViewById(
+                R.id.rel_take_notes);
         btnNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,10 +94,24 @@ public class InspectionOptionsActivity extends ActionBarActivity {
             }
         });
 
+        RelativeLayout btnAllForms = (RelativeLayout) findViewById(
+                R.id.rel_all_forms);
 
-        RelativeLayout btnArtifacts = (RelativeLayout) findViewById(R.id.rel_my_artifacts);
+        btnAllForms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        btnArtifacts.setOnClickListener(new View.OnClickListener() {
+                AlertDialog.Builder alert = new AlertDialog.Builder(
+                        InspectionOptionsActivity.this);
+                alert.setView(getLayoutInflater()
+                        .inflate(R.layout.layout_all_forms, null,
+                                false));
+                alert.show();
+            }
+        });
+
+        Button buttonArtifacts = (Button) findViewById(R.id.btn_my_artifacts);
+        buttonArtifacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -118,6 +123,22 @@ public class InspectionOptionsActivity extends ActionBarActivity {
                 alert.show();
             }
         });
+    }
+
+    private void takePicture() {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE,
+                "IMG_" + new Date() + ".jpg");
+
+        mUri = getContentResolver()
+                .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        values); // store content values
+
+        Intent takePhotoIntent = new Intent(
+                MediaStore.ACTION_IMAGE_CAPTURE);
+        takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                mUri);
+        startActivityForResult(takePhotoIntent, 0);
     }
 
     @Override
@@ -145,12 +166,12 @@ public class InspectionOptionsActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.menu_go_to_map) {
-            startActivity(new Intent(InspectionOptionsActivity.this,
-                    MainActivity.class));
-            finish();
-            return true;
-        }
+//        if (item.getItemId() == R.id.menu_go_to_map) {
+//            startActivity(new Intent(InspectionOptionsActivity.this,
+//                    MainActivity.class));
+//            finish();
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }

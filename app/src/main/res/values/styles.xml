@@ -26,7 +26,7 @@
     <style name="MyActionBarStyle"
            parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="android:background">@color/action_bar_bg</item>
-        <item name="android:subtitle">Mine Safety and Health Administrator
+        <item name="android:subtitle">@string/action_bar_sub_title
         </item>
         <item name="android:titleTextStyle">
             @style/MyTheme.ActionBar.TitleTextStyle
