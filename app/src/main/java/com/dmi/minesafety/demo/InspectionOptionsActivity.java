@@ -69,6 +69,30 @@ public class InspectionOptionsActivity extends ActionBarActivity {
             }
         });
 
+
+
+        RelativeLayout btnBarcode = (RelativeLayout) findViewById(R.id.rel_scan_barcode);
+        btnBarcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.TITLE,
+                        "IMG_" + new Date() + ".jpg");
+
+                mUri = getContentResolver()
+                        .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                                values); // store content values
+
+                Intent takePhotoIntent = new Intent(
+                        MediaStore.ACTION_IMAGE_CAPTURE);
+                takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        mUri);
+                startActivityForResult(takePhotoIntent, 0);
+            }
+        });
+
+
+
         RelativeLayout btnNote = (RelativeLayout) findViewById(R.id.rel_take_notes);
         btnNote.setOnClickListener(new View.OnClickListener() {
             @Override

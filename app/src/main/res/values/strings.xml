@@ -5,8 +5,8 @@
     <string name="title_activity_inspection_options">InspectionOptionsActivity</string>
     <string name="title_activity_capture_photo">CapturePhotoActivity></string>
     <string name="action_settings">Settings</string>
-    <string name="action_bar_title">US Department of Labour</string>
-    <string name="action_bar_sub_title">Mine Safety and Health Administrator</string>
+    <string name="action_bar_title">US Department of Labor</string>
+    <string name="action_bar_sub_title">Mine Safety and Health Administration</string>
     <string name="action_bar_search_box_hint">Search...</string>
     <string name="name_mine_organisation">Brody Mine No 1</string>
     <string name="name_cave">Brody Mine LLC, Wharton, West Virginia, ID: 4609086"</string>

@@ -1,35 +1,51 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:padding="12dp"
-                android:layout_height="match_parent">
+                android:background="#FFFFFF"
+                android:layout_height="wrap_content">
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="City"
+            android:layout_alignTop="@+id/text_mine_id"
+            android:layout_alignBottom="@+id/text_mine_id"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="120dp"
+            android:layout_toRightOf="@+id/text_mine_id"
+            android:id="@+id/text_mine_city"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="ID"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/text_mine_id"/>
+
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Mine Name"
-            android:id="@+id/text_mine_name" android:layout_alignParentTop="true"
+            android:textColor="#375883"
+            android:id="@+id/text_mine_name"
+            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"/>
+
+
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="City"
-            android:layout_alignBottom="@+id/text_mine_name"
-            android:layout_alignTop="@+id/text_mine_name"
-            android:id="@+id/text_mine_city"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="State"
             android:id="@+id/text_mine_state"
-            android:layout_alignBottom="@+id/text_mine_operator"
-            android:layout_alignTop="@+id/text_mine_operator"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"/>
     <TextView
@@ -37,7 +53,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Medium Text"
-            android:id="@+id/text_mine_operator" android:layout_below="@+id/text_mine_name"
+            android:id="@+id/text_mine_operator"
+            android:layout_below="@+id/text_mine_name"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"/>
 </RelativeLayout>

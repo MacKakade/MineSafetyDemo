@@ -3,22 +3,17 @@ package com.dmi.minesafety.demo;
 import com.dmi.minesafety.demo.dummy.DummyContent;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 /**
  * A list fragment representing a list of Documents. This fragment also supports
  * tablet devices by allowing list items to be given an 'activated' state upon
  * selection. This helps indicate which item is currently being viewed in a
- * {@link com.dmi.minesafety.demo.DocumentDetailFragment}. <p> Activities containing this fragment MUST
- * implement the {@link Callbacks} interface.
+ * {@link com.dmi.minesafety.demo.DocumentDetailFragment}. <p> Activities
+ * containing this fragment MUST implement the {@link Callbacks} interface.
  */
 public class MineListFragment extends ListFragment {
 
@@ -74,7 +69,9 @@ public class MineListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         // TODO: replace with a real list adapter.
-        setListAdapter(new MineAdapter(getActivity(),R.layout.layout_spinner_item_mines,new DummyContent.Mine[DummyContent.MINES.size()]));
+        setListAdapter(new MineListAdapter(getActivity(),
+                R.layout.layout_spinner_item_mines,
+                new DummyContent.Mine[DummyContent.MINES.size()]));
     }
 
     @Override
@@ -153,35 +150,6 @@ public class MineListFragment extends ListFragment {
         mActivatedPosition = position;
     }
 
-    private class MineAdapter extends ArrayAdapter<DummyContent.Mine> {
 
 
-        LayoutInflater mLayoutInflater;
-
-        public MineAdapter(Context context, int resource,
-                DummyContent.Mine[] objects) {
-            super(context, resource, objects);
-            mLayoutInflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            View v =
-                        mLayoutInflater
-                                .inflate(R.layout.layout_spinner_item_mines, null,
-                                        false);
-
-            ((TextView)v.findViewById(R.id.text_mine_name)).setText(
-                    DummyContent.MINES.get(position).name);
-            ((TextView)v.findViewById(R.id.text_mine_state)).setText(
-                    DummyContent.MINES.get(position).state);
-            ((TextView)v.findViewById(R.id.text_mine_city)).setText(
-                    DummyContent.MINES.get(position).city);
-            ((TextView)v.findViewById(R.id.text_mine_operator)).setText(
-                    DummyContent.MINES.get(position).operatorName+" , "+DummyContent.MINES.get(position).id);
-            return v;
-        }
-    }
 }
