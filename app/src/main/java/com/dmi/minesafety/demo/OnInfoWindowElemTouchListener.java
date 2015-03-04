@@ -6,6 +6,7 @@ package com.dmi.minesafety.demo;
 
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -22,8 +23,7 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
     private boolean pressed = false;
 
     //Marker window item co-ordinates
-    private final float item1topX = 0, item1topY = 3, item1bottomX = 398, item1bottomY = 50,
-            item2topX = 0, item2topY = 52, item2bottomX = 398, item2bottomY = 98;
+    private final float correctionFactor = 47, markerItemHeight = 47;
     private boolean itemClicked;
 
     public OnInfoWindowElemTouchListener(View view, Drawable bgDrawableNormal, Drawable bgDrawablePressed) {
@@ -39,12 +39,12 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
     @Override
     public boolean onTouch(View vv, MotionEvent event) {
 
-        if (event.getX() >= item1topX && event.getX() <= item1bottomX &&
-                event.getY() >= item1topY && event.getY() <= item1bottomY) {
+        if (event.getX() >= 0 && event.getX() <= view.getWidth() &&
+                event.getY() >= view.getHeight()+correctionFactor-(markerItemHeight*2) && event.getY() <= view.getHeight()+correctionFactor-markerItemHeight) {
             view.setTag("item1");
             itemClicked = true;
-        } else if (event.getX() >= item2topX && event.getX() <= item2bottomX &&
-                event.getY() >= item2topY && event.getY() <= item2bottomY) {
+        } else if (event.getX() >= 0 && event.getX() <= view.getWidth() &&
+                event.getY() >= view.getHeight()+correctionFactor-markerItemHeight && event.getY() <= view.getHeight()+correctionFactor) {
             view.setTag("item2");
             itemClicked = true;
         }

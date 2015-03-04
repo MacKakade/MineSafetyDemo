@@ -70,9 +70,10 @@
 
     <ImageView
         android:id="@+id/imv_camera_capture"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/rel_controls"
+        android:layout_centerInParent="true"
         android:layout_marginBottom="40dp"
         android:layout_marginLeft="200dp"
         android:layout_marginRight="200dp"
@@ -90,7 +91,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="#66FFFFFF"
+        android:background="#8CFFFFFF"
         android:gravity="start"
         android:hint="@string/text_hint_capture_note"
         android:padding="10dp" />
@@ -100,7 +101,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignTop="@+id/btn_cancel"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="20dp"
         android:layout_toLeftOf="@+id/btn_cancel"
         android:background="@drawable/ic_save" />
 
@@ -123,4 +124,13 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/ic_scribble" />
+
+    <Button
+        android:id="@+id/btn_edit"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/btn_scribble"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/btn_scribble"
+        android:background="@drawable/ic_edit" />
 </RelativeLayout>

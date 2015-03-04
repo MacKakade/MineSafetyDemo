@@ -1,5 +1,22 @@
 package com.dmi.minesafety.demo;
 
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
+import android.text.InputType;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
+
+import com.dmi.minesafety.demo.dummy.DummyContent;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -14,22 +31,8 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import com.dmi.minesafety.demo.dummy.DummyContent;
-
-import android.app.SearchManager;
-import android.content.Context;
-import android.content.Intent;
-import android.database.MatrixCursor;
-import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.SearchView;
-import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends ActionBarActivity
         implements GoogleMap.OnMapLoadedCallback, MineListFragment.Callbacks,
@@ -44,7 +47,7 @@ public class MainActivity extends ActionBarActivity
 
     private ViewGroup infoWindow;
 
-    private TextView infoTitle;
+    private Fragment mCurrentFragment;
 
     private OnInfoWindowElemTouchListener infoButtonListener;
 
@@ -60,6 +63,8 @@ public class MainActivity extends ActionBarActivity
     private ImageView mMapView, mListView;
 
     private int mCurrentSelection = 0;
+
+    private ArrayList<DummyContent.Mine> tempArrayList;
 
     SupportMapFragment mSupportMapFragment;
 
@@ -87,9 +92,11 @@ public class MainActivity extends ActionBarActivity
                     mCurrentSelection = 0;
                     mMapView.setImageResource(R.drawable.map_selected);
                     mListView.setImageResource(R.drawable.list_unselected);
+
                     if (mSupportMapFragment != null) {
                         mSupportMapFragment = SupportMapFragment.newInstance();
                     }
+                    mCurrentFragment = mSupportMapFragment;
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.layout_container, mSupportMapFragment)
                             .commit();
@@ -103,9 +110,12 @@ public class MainActivity extends ActionBarActivity
             public void onClick(View v) {
                 if (mCurrentSelection == 0) {
                     mCurrentSelection = 1;
+
                     mMapView.setImageResource(R.drawable.map_unselected);
                     mListView.setImageResource(R.drawable.list_selected);
                     mineListFragment = new MineListFragment();
+
+                    mCurrentFragment = mineListFragment;
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.layout_container, mineListFragment).commit();
                 }
@@ -116,9 +126,8 @@ public class MainActivity extends ActionBarActivity
         mSupportMapFragment = SupportMapFragment.newInstance();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.layout_container, mSupportMapFragment).commit();
+        mCurrentFragment = mSupportMapFragment;
         mSupportMapFragment.getMapAsync(MainActivity.this);
-
-
     }
 
     @Override
@@ -130,49 +139,57 @@ public class MainActivity extends ActionBarActivity
         SearchManager manager = (SearchManager) getSystemService(
                 Context.SEARCH_SERVICE);
 
-        SearchView search = (SearchView) menu.findItem(R.id.search)
+        final SearchView search = (SearchView) menu.findItem(R.id.search)
                 .getActionView();
 
         search.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
+        search.setInputType(InputType.TYPE_CLASS_NUMBER);
+        search.setQueryHint("Mine ID");
+
+        final Cursor cursor = getCursor();
 
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(String s) {
-                int textLength = s.length();
-                ArrayList<DummyContent.Mine> tempArrayList = new ArrayList<DummyContent.Mine>();
-                for(DummyContent.Mine c: DummyContent.MINES){
-                    if (textLength <= c.id.length()) {
-                        if (c.id.toLowerCase().contains(s.toLowerCase())) {
-                            tempArrayList.add(c);
-                        }
-                    }
-                }
 
-                mineListAdapter = new MineListAdapter(MainActivity.this,
-                        R.layout.layout_spinner_item_mines,tempArrayList);
-
-                mineListFragment.getListView().setAdapter(
-                        mineListAdapter );
-
-                return true;
+                return false;
             }
 
             @Override
             public boolean onQueryTextChange(String query) {
-
-                loadHistory(query);
-
+                loadMinesList(query, cursor);
                 return true;
-
             }
 
+        });
+
+        search.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
+            @Override
+            public boolean onSuggestionSelect(int i) {
+                return false;
+            }
+
+            @Override
+            public boolean onSuggestionClick(int i) {
+                if (i <= tempArrayList.size() && mCurrentFragment instanceof MineListFragment) {
+                    List<DummyContent.Mine> tempList = new ArrayList<DummyContent.Mine>();
+                    tempList.add(tempArrayList.get(i));
+                    mineListAdapter = new MineListAdapter(MainActivity.this,
+                            R.layout.layout_spinner_item_mines, tempList);
+                    mineListFragment.getListView().setAdapter(
+                            mineListAdapter);
+                    search.setQuery(tempArrayList.get(i).id, false);
+                    hideKeyboard();
+                }
+                return true;
+            }
         });
 
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void loadHistory(String query) {
+    private Cursor getCursor() {
 
         // Cursor
         String[] columns = new String[]{"_id", "text"};
@@ -184,21 +201,24 @@ public class MainActivity extends ActionBarActivity
 
             temp[0] = i;
             temp[1] = DummyContent.MINES.get(i);
-
             cursor.addRow(temp);
-
         }
+        return cursor;
+    }
 
-        int textlength = query.length();
-        ArrayList<DummyContent.Mine> tempArrayList = new ArrayList<DummyContent.Mine>();
-        for(DummyContent.Mine c: DummyContent.MINES){
-            if (textlength <= c.id.length()) {
-                if (c.id.toLowerCase().contains(query.toString().toLowerCase())) {
-                    tempArrayList.add(c);
+    private void loadMinesList(String query, Cursor cursor) {
+
+        int textLength = query.length();
+        tempArrayList = new ArrayList<DummyContent.Mine>();
+        if (textLength > 0) {
+            for (DummyContent.Mine mine : DummyContent.MINES) {
+                if (textLength <= mine.id.length()) {
+                    if (mine.id.contains(query)) {
+                        tempArrayList.add(mine);
+                    }
                 }
             }
         }
-
 
         final SearchView search = (SearchView) menu.findItem(R.id.search)
                 .getActionView();
@@ -206,8 +226,16 @@ public class MainActivity extends ActionBarActivity
         search.setSuggestionsAdapter(
                 new SearchAdapter(this, cursor, tempArrayList));
 
-    }
+        mineListAdapter = new MineListAdapter(MainActivity.this,
+                R.layout.layout_spinner_item_mines, tempArrayList);
 
+        if (mCurrentFragment instanceof MineListFragment) {
+            mineListFragment.getListView().setAdapter(
+                    mineListAdapter);
+        } else {
+
+        }
+    }
 
     @Override
     protected void onResume() {
@@ -315,5 +343,10 @@ public class MainActivity extends ActionBarActivity
 
         googleMap.setOnMapLoadedCallback(MainActivity.this);
         setMarkers();
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 }

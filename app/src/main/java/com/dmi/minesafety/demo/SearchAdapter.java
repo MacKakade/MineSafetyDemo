@@ -5,6 +5,7 @@ import com.dmi.minesafety.demo.dummy.DummyContent;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * Created by Mandar on 3/3/2015.
  */
-public class SearchAdapter extends CursorAdapter {
+public class SearchAdapter extends CursorAdapter implements View.OnClickListener{
 
     private List<DummyContent.Mine> items;
 
@@ -48,6 +49,17 @@ public class SearchAdapter extends CursorAdapter {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        TextView textView = (TextView) v;
+        Log.i("onclick",textView.getText().toString());
+    }
+
+
+
+//    public interface OnSearchViewListItemClickListener {
+//        public void updateView();
+//    }
 }
 
 
