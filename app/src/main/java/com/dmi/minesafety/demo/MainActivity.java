@@ -213,7 +213,7 @@ public class MainActivity extends ActionBarActivity
         if (textLength > 0) {
             for (DummyContent.Mine mine : DummyContent.MINES) {
                 if (textLength <= mine.id.length()) {
-                    if (mine.id.contains(query)) {
+                    if (mine.id.contains(query) && !tempArrayList.contains(mine)) {
                         tempArrayList.add(mine);
                     }
                 }

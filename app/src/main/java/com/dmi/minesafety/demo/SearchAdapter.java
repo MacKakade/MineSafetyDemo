@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by Mandar on 3/3/2015.
  */
-public class SearchAdapter extends CursorAdapter implements View.OnClickListener{
+public class SearchAdapter extends CursorAdapter {
 
     private List<DummyContent.Mine> items;
 
@@ -49,17 +49,6 @@ public class SearchAdapter extends CursorAdapter implements View.OnClickListener
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        TextView textView = (TextView) v;
-        Log.i("onclick",textView.getText().toString());
-    }
-
-
-
-//    public interface OnSearchViewListItemClickListener {
-//        public void updateView();
-//    }
 }
 
 
