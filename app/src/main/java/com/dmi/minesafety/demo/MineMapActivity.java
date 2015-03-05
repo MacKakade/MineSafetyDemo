@@ -76,19 +76,22 @@ public class MineMapActivity extends ActionBarActivity
                     for (int i = 0; i < mDotsTitles.length; i++) {
                         mDrawerList.setItemChecked(i, true);
                     }
-                    ((MineMapFragment) mCurrentFragment)
-                            .reInitializeImage(
-                                    R.drawable.both_map);
+                    if (mCurrentFragment instanceof MineMapFragment) {
+                        ((MineMapFragment) mCurrentFragment)
+                                .reInitializeImage(
+                                        R.drawable.both_map);
+
+                    }
                     mSelectAll.setText(getString(R.string.deselect_all));
-                }
-                else
-                {
+                } else {
                     for (int i = 0; i < mDotsTitles.length; i++) {
                         mDrawerList.setItemChecked(i, false);
                     }
-                    ((MineMapFragment) mCurrentFragment)
-                            .reInitializeImage(
-                                    R.drawable.blank_map);
+                    if (mCurrentFragment instanceof MineMapFragment) {
+                        ((MineMapFragment) mCurrentFragment)
+                                .reInitializeImage(
+                                        R.drawable.blank_map);
+                    }
                     mSelectAll.setText(getString(R.string.select_all));
                 }
 
@@ -100,9 +103,6 @@ public class MineMapActivity extends ActionBarActivity
 
         mListView = (ImageView) findViewById(
                 R.id.list_view);
-
-
-
 
         mMapView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,8 +178,7 @@ public class MineMapActivity extends ActionBarActivity
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.imageFrame, fragment).commit();
 
-
-        for (int i = 0; i < 2 ; i++) {
+        for (int i = 0; i < 2; i++) {
             mDrawerList.setItemChecked(i, true);
         }
 

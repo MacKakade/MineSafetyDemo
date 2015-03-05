@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -298,15 +300,15 @@ public class MainActivity extends ActionBarActivity
                 .inflate(R.layout.marker_window, null);
 
         infoButtonListener = new OnInfoWindowElemTouchListener(infoWindow,
-                null,
-                null) {
+                new ColorDrawable(Color.TRANSPARENT),
+                new ColorDrawable(Color.LTGRAY)) {
             @Override
             protected void onClickConfirmed(View v, Marker marker) {
                 String tag = (String) v.getTag();
-                if (tag.equalsIgnoreCase("item1")) {
+                if (tag.equalsIgnoreCase("1")) {
 //                    Toast.makeText(MainActivity.this, "item 1 clicked",
 //                            Toast.LENGTH_SHORT).show();
-                } else if (tag.equalsIgnoreCase("item2")) {
+                } else if (tag.equalsIgnoreCase("2")) {
                     startActivity(new Intent(MainActivity.this,
                             MineMapActivity.class));
 //                    Toast.makeText(MainActivity.this, "item 2 clicked",

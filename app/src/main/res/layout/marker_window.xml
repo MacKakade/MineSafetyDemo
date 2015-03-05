@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@color/white"
               android:orientation="vertical">
 
     <TextView
@@ -17,6 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="6dp"
+            android:tag="1"
+            android:background="?selectableItemBackground"
             android:drawableLeft="@drawable/ic_blue_dot"
             android:drawablePadding="6dp"
             android:text="@string/marker_item_previous_reports"
@@ -28,7 +29,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="6dp"
+            android:tag="2"
             android:drawableLeft="@drawable/ic_blue_dot"
+            android:background="?selectableItemBackground"
             android:drawablePadding="6dp"
             android:text="@string/marker_item_goto_mine_map"
             android:textColor="@color/blue_link"

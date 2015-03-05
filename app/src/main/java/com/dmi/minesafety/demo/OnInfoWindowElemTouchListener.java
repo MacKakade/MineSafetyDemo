@@ -4,29 +4,37 @@ package com.dmi.minesafety.demo;
  * Created by Digvijay on 2/24/2015.
  */
 
+import com.google.android.gms.maps.model.Marker;
+
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-import com.google.android.gms.maps.model.Marker;
-
 public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
+
     private final View view;
+
     private final Drawable bgDrawableNormal;
+
     private final Drawable bgDrawablePressed;
+
     private final Handler handler = new Handler();
 
     private Marker marker;
+
     private boolean pressed = false;
 
     //Marker window item co-ordinates
     private final float correctionFactor = 47, markerItemHeight = 47;
+
     private boolean itemClicked;
 
-    public OnInfoWindowElemTouchListener(View view, Drawable bgDrawableNormal, Drawable bgDrawablePressed) {
+    private String mClickedItemPos = "0";
+
+    public OnInfoWindowElemTouchListener(View view, Drawable bgDrawableNormal,
+            Drawable bgDrawablePressed) {
         this.view = view;
         this.bgDrawableNormal = bgDrawableNormal;
         this.bgDrawablePressed = bgDrawablePressed;
@@ -40,12 +48,16 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
     public boolean onTouch(View vv, MotionEvent event) {
 
         if (event.getX() >= 0 && event.getX() <= view.getWidth() &&
-                event.getY() >= view.getHeight()+correctionFactor-(markerItemHeight*2) && event.getY() <= view.getHeight()+correctionFactor-markerItemHeight) {
-            view.setTag("item1");
+                event.getY() >= view.getHeight() + correctionFactor - (
+                        markerItemHeight * 2) && event.getY()
+                <= view.getHeight() + correctionFactor - markerItemHeight) {
+            mClickedItemPos = "1";
             itemClicked = true;
         } else if (event.getX() >= 0 && event.getX() <= view.getWidth() &&
-                event.getY() >= view.getHeight()+correctionFactor-markerItemHeight && event.getY() <= view.getHeight()+correctionFactor) {
-            view.setTag("item2");
+                event.getY() >= view.getHeight() + correctionFactor
+                        - markerItemHeight
+                && event.getY() <= view.getHeight() + correctionFactor) {
+            mClickedItemPos = "2";
             itemClicked = true;
         }
 
@@ -80,9 +92,11 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
         if (!pressed) {
             pressed = true;
             handler.removeCallbacks(confirmClickRunnable);
-            view.setBackground(bgDrawablePressed);
-            if (marker != null)
+            view.findViewWithTag(mClickedItemPos)
+                    .setBackground(bgDrawablePressed);
+            if (marker != null) {
                 marker.showInfoWindow();
+            }
         }
     }
 
@@ -90,18 +104,20 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
         if (pressed) {
             this.pressed = false;
             handler.removeCallbacks(confirmClickRunnable);
-            view.setBackground(bgDrawableNormal);
-            if (marker != null)
+            view.findViewWithTag(mClickedItemPos).setBackground(bgDrawableNormal);
+            if (marker != null) {
                 marker.showInfoWindow();
+            }
             return true;
-        } else
+        } else {
             return false;
+        }
     }
 
     private final Runnable confirmClickRunnable = new Runnable() {
         public void run() {
             if (endPress()) {
-                onClickConfirmed(view, marker);
+                onClickConfirmed(view.findViewWithTag(mClickedItemPos), marker);
             }
         }
     };
