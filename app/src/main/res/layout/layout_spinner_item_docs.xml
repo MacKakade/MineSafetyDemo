@@ -1,8 +1,9 @@
-<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/text_docs"
-    android:layout_width="match_parent"
-    android:layout_height="?attr/listPreferredItemHeightLarge"
-    android:gravity="center_vertical"
-    android:textColor="#000000"
-    android:textSize="22sp"
-    android:padding="2dp" />
+<CheckedTextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/text_docs"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/listPreferredItemHeightLarge"
+        android:gravity="center_vertical"
+        android:background="@drawable/docs_item_selector"
+        android:textSize="18sp"
+        android:padding="6dp"/>

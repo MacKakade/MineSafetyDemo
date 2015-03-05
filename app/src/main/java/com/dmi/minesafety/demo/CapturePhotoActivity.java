@@ -1,7 +1,9 @@
 package com.dmi.minesafety.demo;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -30,20 +32,27 @@ public class CapturePhotoActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Uri uri = getIntent().getExtras().getParcelable("img_uri");
         ImageView photo = (ImageView) findViewById(R.id.imv_camera_capture);
-        Bitmap bitmap = null;
-
         String[] mLocationsTitles = getResources().getStringArray(R.array.spinner_data);
         Spinner mLocationSpinner = (Spinner) findViewById(R.id.spinner_location);
         mLocationSpinner.setAdapter(new ArrayAdapter<>(this,
                 R.layout.layout_spinner_item_drawer_black, mLocationsTitles));
 
         try {
-            bitmap = MediaStore.Images.Media
-                    .getBitmap(this.getContentResolver(), uri);
-        } catch (IOException e) {
+
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 4;
+
+            AssetFileDescriptor fileDescriptor =null;
+            fileDescriptor = getContentResolver().openAssetFileDescriptor(uri, "r");
+
+            Bitmap actuallyUsableBitmap
+                    = BitmapFactory.decodeFileDescriptor(
+                    fileDescriptor.getFileDescriptor(), null, options);
+            photo.setImageBitmap(actuallyUsableBitmap);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        photo.setImageBitmap(bitmap);
+
 
         Button btnSave = (Button) findViewById(R.id.btn_save);
         Button btnCancel = (Button) findViewById(R.id.btn_cancel);

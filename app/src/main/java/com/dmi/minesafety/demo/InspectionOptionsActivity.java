@@ -28,10 +28,14 @@ public class InspectionOptionsActivity extends ActionBarActivity {
 //
 //    private String[] mLocationsTitles;
 
+     AlertDialog alertDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inspection_options);
+
+
 
 //        Button b = (Button) findViewById(R.id.btn_record_location);
 //        b.setOnClickListener(new View.OnClickListener() {
@@ -103,10 +107,21 @@ public class InspectionOptionsActivity extends ActionBarActivity {
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(
                         InspectionOptionsActivity.this);
-                alert.setView(getLayoutInflater()
-                        .inflate(R.layout.layout_all_forms, null,
-                                false));
-                alert.show();
+
+                alertDialog = alert.create();
+
+                View view = getLayoutInflater()
+                        .inflate(R.layout.layout_all_forms, null, false);
+                view.findViewById(R.id.close)
+                        .setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                alertDialog.dismiss();
+                            }
+                        });
+
+                alertDialog.setView(view);
+                alertDialog.show();
             }
         });
 
@@ -117,10 +132,21 @@ public class InspectionOptionsActivity extends ActionBarActivity {
 
                 AlertDialog.Builder alert = new AlertDialog.Builder(
                         InspectionOptionsActivity.this);
-                alert.setView(getLayoutInflater()
-                        .inflate(R.layout.layout_inspection_artifacts, null,
-                                false));
-                alert.show();
+
+                alertDialog = alert.create();
+
+                View view = getLayoutInflater()
+                        .inflate(R.layout.layout_inspection_artifacts, null, false);
+                view.findViewById(R.id.close)
+                        .setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                alertDialog.dismiss();
+                            }
+                        });
+
+                alertDialog.setView(view);
+                alertDialog.show();
             }
         });
     }

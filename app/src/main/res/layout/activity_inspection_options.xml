@@ -73,10 +73,12 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_margin="12dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/inspection_button_blue"
+        android:layout_marginRight="20dp"
+        android:padding="6dp"
+        android:background="#0d112a"
         android:drawableLeft="@drawable/ic_my_artifacts"
-        android:text="My inspection Artifacts"
+        android:drawablePadding="4dp"
+        android:text="My Inspection Artifacts"
         android:textColor="@color/white"
         android:textSize="16sp" />
 

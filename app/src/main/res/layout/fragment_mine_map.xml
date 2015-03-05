@@ -10,6 +10,6 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:contentDescription="ty"
-            android:src="@drawable/blank_map"/>
+            android:src="@drawable/both_map"/>
 
 </FrameLayout>

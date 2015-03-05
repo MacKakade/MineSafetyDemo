@@ -12,7 +12,7 @@
                 android:id="@+id/docs_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Citations#: 877142"
+                android:text="Citations#: 877141"
                 android:textColor="@color/inspection_button_blue"
                 android:textSize="24sp"/>
 
@@ -31,52 +31,52 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date : "
-                    android:textSize="20sp"
+                    android:text="Date: "
+                    android:textSize="18sp"
                     android:textStyle="bold"/>
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="02/24/2015"
-                    android:textSize="20sp"/>
+                    android:textSize="18sp"/>
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
-                    android:text="Time(24 hr clock) : "
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
+                    android:text="Time (24 hr clock): "
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="40dp"
-                    android:text="08-23"
-                    android:textSize="20sp"/>
+                    android:text="08:23"
+                    android:textSize="18sp"/>
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Served to : "
-                    android:textSize="20sp"
+                    android:text="Served to: "
+                    android:textSize="18sp"
                     android:textStyle="bold"/>
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Matt Jennings (Supervisor)"
-                    android:textSize="20sp"/>
+                    android:textSize="18sp"/>
         </LinearLayout>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="Condition or Practise :"
+                android:text="Condition or Practice:"
                 android:textColor="@color/inspection_button_blue"
-                android:textSize="22sp"/>
+                android:textSize="20sp"/>
 
         <View
                 android:layout_width="match_parent"
@@ -90,7 +90,7 @@
                 android:paddingBottom="16dp"
                 android:paddingTop="16dp"
                 android:text="@string/text_dummy_citation"
-                android:textSize="22sp"/>
+                android:textSize="18sp"/>
 
         <RelativeLayout
                 android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:text="Inspection Artifacts"
                     android:textColor="@color/inspection_button_blue"
-                    android:textSize="22sp"/>
+                    android:textSize="20sp"/>
 
             <TextView
                     android:id="@+id/txv_label_date"
@@ -113,7 +113,7 @@
                     android:layout_toRightOf="@+id/txv_label_artifacts"
                     android:text="Date"
                     android:textColor="@color/inspection_button_blue"
-                    android:textSize="22sp"/>
+                    android:textSize="20sp"/>
 
             <View
                     android:id="@+id/view_border"
@@ -135,7 +135,7 @@
                     android:paddingTop="2dp"
                     android:text="Site image"
                     android:textColor="#375883"
-                    android:textSize="20sp"/>
+                    android:textSize="18sp"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -144,9 +144,9 @@
                     android:layout_alignLeft="@+id/txv_label_date"
                     android:layout_alignTop="@+id/txv_artifact_image"
                     android:gravity="center"
-                    android:text="12/29/1015"
+                    android:text="01/29/2015"
                     android:textColor="@color/inspection_button_blue"
-                    android:textSize="20sp"/>
+                    android:textSize="18sp"/>
 
             <View
                     android:id="@+id/view_border2"
@@ -166,9 +166,9 @@
                     android:gravity="center_vertical"
                     android:paddingBottom="2dp"
                     android:paddingTop="2dp"
-                    android:text="Miner's Feedback"
+                    android:text="Miner's Comment"
                     android:textColor="#375883"
-                    android:textSize="20sp"/>
+                    android:textSize="18sp"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -177,9 +177,9 @@
                     android:layout_alignLeft="@+id/txv_label_date"
                     android:layout_alignTop="@+id/txv_artifact_audio"
                     android:gravity="center"
-                    android:text="02/27/1015"
+                    android:text="02/04/2015"
                     android:textColor="@color/inspection_button_blue"
-                    android:textSize="20sp"/>
+                    android:textSize="18sp"/>
 
             <View
                     android:id="@+id/view_border3"
@@ -190,36 +190,65 @@
                     android:background="@color/container_capture_photo_bg"/>
 
             <TextView
-                    android:id="@+id/txv_artifact_document"
+                    android:id="@+id/txv_citation_form"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/view_border3"
-                    android:drawableLeft="@drawable/ic_document_popup"
+                    android:drawableLeft="@drawable/pdf_icon"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
                     android:paddingBottom="2dp"
                     android:paddingTop="2dp"
-                    android:text="Safety Document"
+                    android:text="Citation Form"
                     android:textColor="#375883"
-                    android:textSize="20sp"/>
+                    android:textSize="18sp"/>
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/txv_artifact_document"
+                    android:layout_alignBottom="@+id/txv_citation_form"
                     android:layout_alignLeft="@+id/txv_label_date"
-                    android:layout_alignTop="@+id/txv_artifact_document"
+                    android:layout_alignTop="@+id/txv_citation_form"
                     android:gravity="center"
-                    android:text="02/25/1015"
+                    android:text="02/25/2015"
                     android:textColor="@color/inspection_button_blue"
-                    android:textSize="20sp"/>
+                    android:textSize="18sp"/>
+
 
             <View
+                    android:id="@+id/view_border4"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_below="@+id/txv_artifact_document"
+                    android:layout_below="@+id/txv_citation_form"
                     android:layout_marginTop="4dp"
                     android:background="@color/container_capture_photo_bg"/>
+
+
+            <TextView
+                    android:id="@+id/txv_inspection_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view_border4"
+                    android:drawableLeft="@drawable/pdf_icon"
+                    android:drawablePadding="8dp"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="2dp"
+                    android:paddingTop="2dp"
+                    android:text="Inspection Form"
+                    android:textColor="#375883"
+                    android:textSize="18sp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/txv_inspection_form"
+                    android:layout_alignLeft="@+id/txv_label_date"
+                    android:layout_alignTop="@+id/txv_inspection_form"
+                    android:gravity="center"
+                    android:text="02/26/2015"
+                    android:textColor="@color/inspection_button_blue"
+                    android:textSize="18sp"/>
+
         </RelativeLayout>
 
     </LinearLayout>

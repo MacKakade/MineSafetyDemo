@@ -283,5 +283,7 @@
     <string name="title_document_detail">Document Detail</string>
 
     <string name="text_dummy_citation">There was no signs prohibiting smoking or open flames posted in the used oil storage area. This area is behind the warehouse. This hazard exposes the miners to increased risk of burn or smoke inhalation injuries and risk of explosion.</string>
+    <string name="deselect_all">DESELECT ALL</string>
+    <string name="select_all">SELECT ALL</string>
 
 </resources>

@@ -6,14 +6,29 @@
               android:layout_width="100dp"
               android:layout_height="100dp">
 
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#375883">
+
     <TextView
+            android:id="@+id/title_popup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#375883"
             android:padding="10dp"
-            android:text="Citation #878942"
+            android:text="Citation#: 878942"
             android:textColor="@color/white"
             android:textSize="18sp" />
+
+    <ImageView android:layout_alignParentRight="true"
+               android:id="@+id/close"
+               android:padding="8dp"
+               android:layout_centerVertical="true"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/close_icon"/>
+
+    </RelativeLayout>
 
     <TextView
             android:padding="8dp"

@@ -2,7 +2,7 @@
     android:id="@+id/text_docs"
     android:layout_width="match_parent"
     android:layout_height="?attr/listPreferredItemHeightLarge"
-    android:textSize="24sp"
+    android:textSize="20sp"
     android:textAppearance="?attr/textAppearanceListItem"
     android:gravity="center_vertical"
     android:textColor="#FFFFFF"

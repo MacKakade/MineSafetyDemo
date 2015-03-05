@@ -4,8 +4,6 @@ import com.dmi.minesafety.demo.dummy.DummyContent;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -29,6 +27,10 @@ public class DocumentListFragment extends ListFragment {
      * The serialization (saved instance state) Bundle key representing the
      * activated item position. Only used on tablets.
      */
+
+    private CheckedTextView mCheckedTextView;
+
+
     private static final String STATE_ACTIVATED_POSITION = "activated_position";
 
     /**
@@ -77,7 +79,9 @@ public class DocumentListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         // TODO: replace with a real list adapter.
-        setListAdapter(new DocsAdapter(getActivity(),R.layout.layout_spinner_item_docs,new DummyContent.DummyItem[DummyContent.ITEMS.size()]));
+        setListAdapter(new DocsAdapter(getActivity(),
+                R.layout.layout_spinner_item_docs,
+                new DummyContent.DummyItem[DummyContent.ITEMS.size()]));
     }
 
     @Override
@@ -92,6 +96,8 @@ public class DocumentListFragment extends ListFragment {
         }
 
         setActivateOnItemClick(true);
+        setActivatedPosition(1);
+        mCallbacks.onItemSelected(DummyContent.ITEMS.get(0).id);
     }
 
     @Override
@@ -122,6 +128,9 @@ public class DocumentListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
+
+       ((CheckedTextView) view.findViewById(R.id.text_docs)).setChecked(true);
+
         mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
     }
 
@@ -173,16 +182,15 @@ public class DocumentListFragment extends ListFragment {
             View v;
             if (DummyContent.ITEMS.get(position).id
                     .equalsIgnoreCase("Header")) {
-                v =mLayoutInflater
-                                .inflate(R.layout.layout_spinner_item_docs_grey, null,
-                                        false);
+                v = mLayoutInflater
+                        .inflate(R.layout.layout_spinner_item_docs_grey, null,
+                                false);
             } else {
-                v =
-                        mLayoutInflater
-                                .inflate(R.layout.layout_spinner_item_docs, null,
+                v = mLayoutInflater.inflate(R.layout.layout_spinner_item_docs,
+                                        null,
                                         false);
             }
-            ((TextView)v.findViewById(R.id.text_docs)).setText(
+            ((TextView) v.findViewById(R.id.text_docs)).setText(
                     DummyContent.ITEMS.get(position).content);
             return v;
         }

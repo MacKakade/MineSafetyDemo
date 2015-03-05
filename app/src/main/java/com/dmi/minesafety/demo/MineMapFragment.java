@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -39,6 +40,8 @@ public class MineMapFragment extends Fragment {
 
     public LayoutInflater mLayoutInflater;
 
+    AlertDialog alertDialog;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,14 +52,119 @@ public class MineMapFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater,
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
-        mLayoutInflater=inflater;
+        mLayoutInflater = inflater;
         View v = inflater
                 .inflate(R.layout.fragment_mine_map, container, false);
         img = (TouchImageView) v.findViewById(R.id.imageViewMine);
         //       img.setZoom(2);
+        bitmap = ((BitmapDrawable) img.getDrawable()).getBitmap();
 
+        img.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    String text = "You click at x = " + event.getX()
+                            + " and y = " + event.getY();
 
+                    Matrix inverse = new Matrix();
+                    img.getImageMatrix().invert(inverse);
+                    float[] touchPoint = new float[]{event.getX(),
+                            event.getY()};
+                    inverse.mapPoints(touchPoint);
+                    int xCoord = Integer.valueOf((int) touchPoint[0]);
+                    int yCoord = Integer.valueOf((int) touchPoint[1]);
 
+                    int pixel = bitmap.getPixel(xCoord, yCoord);
+
+                    int redValue = Color.red(pixel);
+                    int blueValue = Color.blue(pixel);
+                    int greenValue = Color.green(pixel);
+
+//                    Toast.makeText(getActivity(),
+//                            redValue + " " + blueValue + " " + greenValue,
+//                            Toast.LENGTH_LONG).show();
+
+                    if ((redValue >= 250 && redValue <= 255) && (greenValue >= 0
+                            && greenValue <= 30) && (blueValue >= 0
+                            && blueValue <= 20)) {
+                        final AlertDialog.Builder alert
+                                = new AlertDialog.Builder(
+                                getActivity());
+                        alertDialog = alert.create();
+
+                        View view = mLayoutInflater
+                                .inflate(R.layout.popup, null, false);
+                        view.findViewById(R.id.close)
+                                .setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        alertDialog.dismiss();
+                                    }
+                                });
+                        alertDialog.setView(view);
+                        alertDialog.show();
+                    }
+
+                    if ((redValue >= 40 && redValue <= 50) && (greenValue >= 145
+                            && greenValue <= 160)
+                            && (blueValue >= 60 && blueValue <= 70)) {
+                        final AlertDialog.Builder alert
+                                = new AlertDialog.Builder(
+                                getActivity());
+                        alertDialog = alert.create();
+
+                        View view = mLayoutInflater
+                                .inflate(R.layout.popup, null, false);
+                        view.findViewById(R.id.close)
+                                .setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        alertDialog.dismiss();
+                                    }
+                                });
+                        ((TextView)view.findViewById(R.id.title_popup)).setText("Event#: 878765");
+                        alertDialog.setView(view);
+                        alertDialog.show();
+                    }
+
+//                    if (event.getX() > 900 && event.getX() < 1000) {
+//
+//                        AlertDialog.Builder alert = new AlertDialog.Builder(
+//                                getActivity());
+//                        alert.setTitle("Citation #878942");
+//                        alert.setView(inflater
+//                                .inflate(R.layout.popup, null, false));
+//                        alert.show();
+//                    }
+//
+//                    if (event.getX() > 1500 && event.getX() < 2000
+//                            ) {
+//
+//                        AlertDialog.Builder alert = new AlertDialog.Builder(
+//                                getActivity());
+//                        alert.setTitle("Citation #877156");
+//                        alert.setView(inflater
+//                                .inflate(R.layout.popup, null, false));
+//                        alert.show();
+//                    }
+//
+//                    if (event.getX() > 150 && event.getX() < 200
+//                            ) {
+//
+//                        AlertDialog.Builder alert = new AlertDialog.Builder(
+//                                getActivity());
+//                        alert.setTitle("Citation #877144");
+//                        alert.setView(inflater
+//                                .inflate(R.layout.popup, null, false));
+//                        alert.show();
+//                    }
+//                    Toast.makeText(MineMapActivity.this, text,
+//                            Toast.LENGTH_LONG).show();
+                }
+
+                return true;
+            }
+        });
         return v;
     }
 
@@ -86,27 +194,51 @@ public class MineMapFragment extends Fragment {
                     int blueValue = Color.blue(pixel);
                     int greenValue = Color.green(pixel);
 
-                    Toast.makeText(getActivity(),
-                            redValue + " " + blueValue + " " + greenValue,
-                            Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getActivity(),
+//                            redValue + " " + blueValue + " " + greenValue,
+//                            Toast.LENGTH_LONG).show();
 
-                    if (redValue == 255 && greenValue == 30 && blueValue == 0) {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(
+                    if ((redValue >= 250 && redValue <= 255) && (greenValue >= 0
+                            && greenValue <= 30) && (blueValue >= 0
+                            && blueValue <= 20)) {
+                        final AlertDialog.Builder alert
+                                = new AlertDialog.Builder(
                                 getActivity());
-                        alert.setTitle("Citation #878942");
-                        alert.setView(mLayoutInflater
-                                .inflate(R.layout.popup, null, false));
-                        alert.show();
+                        alertDialog = alert.create();
+
+                        View view = mLayoutInflater
+                                .inflate(R.layout.popup, null, false);
+                        view.findViewById(R.id.close)
+                                .setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        alertDialog.dismiss();
+                                    }
+                                });
+                        alertDialog.setView(view);
+                        alertDialog.show();
                     }
 
-                    if (redValue == 44 && greenValue == 154
-                            && blueValue == 66) {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(
+                    if ((redValue >= 40 && redValue <= 50) && (greenValue >= 145
+                            && greenValue <= 160)
+                            && (blueValue >= 60 && blueValue <= 70)) {
+                        final AlertDialog.Builder alert
+                                = new AlertDialog.Builder(
                                 getActivity());
-                        alert.setTitle("Citation #878942");
-                        alert.setView(mLayoutInflater
-                                .inflate(R.layout.popup, null, false));
-                        alert.show();
+                        alertDialog = alert.create();
+
+                        View view = mLayoutInflater
+                                .inflate(R.layout.popup, null, false);
+                        view.findViewById(R.id.close)
+                                .setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        alertDialog.dismiss();
+                                    }
+                                });
+                        ((TextView)view.findViewById(R.id.title_popup)).setText("Event#: 878765");
+                        alertDialog.setView(view);
+                        alertDialog.show();
                     }
 
 //                    if (event.getX() > 900 && event.getX() < 1000) {

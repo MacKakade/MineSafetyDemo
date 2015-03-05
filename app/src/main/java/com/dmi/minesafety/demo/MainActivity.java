@@ -321,6 +321,9 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onMineSelected(String id) {
 
+        startActivity(new Intent(MainActivity.this,
+                MineMapActivity.class));
+
     }
 
     @Override

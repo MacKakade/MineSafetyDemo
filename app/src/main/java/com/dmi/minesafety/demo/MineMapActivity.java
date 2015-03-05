@@ -46,8 +46,6 @@ public class MineMapActivity extends ActionBarActivity
 
     private Button mSelectAll;
 
-    private ListView mDrawerListView;
-
     private ArrayList<Integer> mSelectedPositions = new ArrayList<>();
 
     private ImageView mMapView, mListView;
@@ -56,7 +54,7 @@ public class MineMapActivity extends ActionBarActivity
 
     private Fragment mCurrentFragment;
 
-    private int[] mDrawables = new int[]{R.drawable.lighgreen, R.drawable.red,
+    private int[] mDrawables = new int[]{R.drawable.red, R.drawable.lighgreen,
             R.drawable.purple, R.drawable.red, R.drawable.orange,
             R.drawable.lightviolet, R.drawable.brown, R.drawable.lighgreen,
             R.drawable.brown, R.drawable.green, R.drawable.brown,
@@ -70,14 +68,41 @@ public class MineMapActivity extends ActionBarActivity
         mSelectAll = (Button) findViewById(
                 R.id.button_select_all);
 
-        mDrawerListView = (ListView) findViewById(
-                R.id.left_drawer);
+        mSelectAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!mSelectAll.getText().toString()
+                        .equalsIgnoreCase("DESELECT ALL")) {
+                    for (int i = 0; i < mDotsTitles.length; i++) {
+                        mDrawerList.setItemChecked(i, true);
+                    }
+                    ((MineMapFragment) mCurrentFragment)
+                            .reInitializeImage(
+                                    R.drawable.both_map);
+                    mSelectAll.setText(getString(R.string.deselect_all));
+                }
+                else
+                {
+                    for (int i = 0; i < mDotsTitles.length; i++) {
+                        mDrawerList.setItemChecked(i, false);
+                    }
+                    ((MineMapFragment) mCurrentFragment)
+                            .reInitializeImage(
+                                    R.drawable.blank_map);
+                    mSelectAll.setText(getString(R.string.select_all));
+                }
+
+            }
+        });
 
         mMapView = (ImageView) findViewById(
                 R.id.map_view);
 
         mListView = (ImageView) findViewById(
                 R.id.list_view);
+
+
+
 
         mMapView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,6 +177,11 @@ public class MineMapActivity extends ActionBarActivity
         mCurrentFragment = fragment;
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.imageFrame, fragment).commit();
+
+
+        for (int i = 0; i < 2 ; i++) {
+            mDrawerList.setItemChecked(i, true);
+        }
 
     }
 
