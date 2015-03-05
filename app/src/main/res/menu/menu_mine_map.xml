@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search"
+        android:title="Search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|withText" />
 
     <item
         android:id="@+id/menut_start_inspection"
-        app:showAsAction="always|withText"
         android:icon="@drawable/ic_inspector"
-        android:title="Start Inspection">
-    </item>
-
-    <item android:id="@+id/search"
-          android:title="Search"
-          app:showAsAction="always|withText"
-          app:actionViewClass="android.support.v7.widget.SearchView"/>
+        android:title="Start Inspection"
+        app:showAsAction="always|withText" />
 
 </menu>

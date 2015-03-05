@@ -9,7 +9,8 @@ import android.support.v7.app.ActionBarActivity;
 
 public class SplashScreenActivity extends ActionBarActivity {
 
-    public final double[] mLatArray = new double[]{38.905378,
+    public final double[] mLatArray = new double[]{
+            38.905378,
             39.493977,
             37.725954,
             38.137607,
@@ -50,7 +51,8 @@ public class SplashScreenActivity extends ActionBarActivity {
             37.903440
     };
 
-    public final double[] mLongArray = new double[]{-80.275638,
+    public final double[] mLngArray = new double[]{
+            -80.275638,
             -79.642830,
             -80.642024,
             -81.274276,
@@ -106,7 +108,7 @@ public class SplashScreenActivity extends ActionBarActivity {
         for (int i = 0; i < mineID.length; i++) {
             DummyContent.addMine(new DummyContent.Mine(mineID[i], mineName[i],
                     mineOperator[i], mineCity[i], mineState[i], mLatArray[i],
-                    mLongArray[i]));
+                    mLngArray[i]));
         }
 
         Thread splashThread = new Thread() {

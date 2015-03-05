@@ -1,16 +1,20 @@
 package com.dmi.minesafety.demo;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.SearchView;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +26,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.dmi.minesafety.demo.dummy.DummyContent;
+
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class MineMapActivity extends ActionBarActivity
@@ -53,6 +60,8 @@ public class MineMapActivity extends ActionBarActivity
     private int mCurrentSelection = 0;
 
     private Fragment mCurrentFragment;
+
+    private Menu menu;
 
     private int[] mDrawables = new int[]{R.drawable.red, R.drawable.lighgreen,
             R.drawable.purple, R.drawable.red, R.drawable.orange,
@@ -208,15 +217,55 @@ public class MineMapActivity extends ActionBarActivity
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
-                long id) {
+                                long id) {
             // selectItem(position);
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_mine_map, menu);
+        getMenuInflater().inflate(R.menu.menu_mine_map, menu);
+
+        this.menu = menu;
+        SearchManager manager = (SearchManager) getSystemService(
+                Context.SEARCH_SERVICE);
+
+        final SearchView search = (SearchView) menu.findItem(R.id.search)
+                .getActionView();
+
+        search.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
+        search.setInputType(InputType.TYPE_CLASS_NUMBER);
+        search.setQueryHint("Mine ID");
+
+        final Cursor cursor = getCursor();
+
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                loadMinesList(query, cursor);
+                return true;
+            }
+
+        });
+
+        search.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
+            @Override
+            public boolean onSuggestionSelect(int i) {
+                return false;
+            }
+
+            @Override
+            public boolean onSuggestionClick(int i) {
+                return true;
+            }
+        });
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -263,7 +312,7 @@ public class MineMapActivity extends ActionBarActivity
 
         @Override
         public View getView(final int position, View convertView,
-                ViewGroup parent) {
+                            ViewGroup parent) {
 
             View v = getLayoutInflater()
                     .inflate(R.layout.layout_list_item_drawer, null, false);
@@ -317,5 +366,44 @@ public class MineMapActivity extends ActionBarActivity
 
             return v;
         }
+    }
+
+    private Cursor getCursor() {
+
+        // Cursor
+        String[] columns = new String[]{"_id", "text"};
+        Object[] temp = new Object[]{0, "default"};
+
+        MatrixCursor cursor = new MatrixCursor(columns);
+
+        for (int i = 0; i < DummyContent.MINES.size(); i++) {
+
+            temp[0] = i;
+            temp[1] = DummyContent.MINES.get(i);
+            cursor.addRow(temp);
+        }
+        return cursor;
+    }
+
+    private void loadMinesList(String query, Cursor cursor) {
+
+        int textLength = query.length();
+        List<DummyContent.Mine> tempArrayList = new ArrayList<DummyContent.Mine>();
+        if (textLength > 0) {
+            for (DummyContent.Mine mine : DummyContent.MINES) {
+                if (textLength <= mine.id.length()) {
+                    if (mine.id.contains(query) && !tempArrayList.contains(mine)) {
+                        tempArrayList.add(mine);
+                    }
+                }
+            }
+        }
+
+        final SearchView search = (SearchView) menu.findItem(R.id.search)
+                .getActionView();
+
+        search.setSuggestionsAdapter(
+                new SearchAdapter(this, cursor, tempArrayList));
+
     }
 }

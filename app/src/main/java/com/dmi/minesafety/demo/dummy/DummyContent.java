@@ -52,7 +52,6 @@ public class DummyContent {
         addItem(new DummyItem("19", "Event#: 838149"));
         addItem(new DummyItem("20", "Event#: 839150"));
 
-
     }
 
     private static void addItem(DummyItem item) {
@@ -100,17 +99,17 @@ public class DummyContent {
 
         public double lat;
 
-        public double longg;
+        public double lng;
 
 
-        public Mine(String id, String name,String operatorName, String city, String state,double lat,double longg) {
+        public Mine(String id, String name,String operatorName, String city, String state,double lat,double lng) {
             this.id = id;
             this.name = name;
             this.operatorName = operatorName;
             this.city = city;
             this.state = state;
             this.lat = lat;
-            this.longg = longg;
+            this.lng = lng;
         }
 
 

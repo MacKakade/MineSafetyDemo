@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.dmi.minesafety.demo.dummy.DummyContent;
 import com.google.android.gms.common.ConnectionResult;
@@ -39,7 +40,6 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity
         implements GoogleMap.OnMapLoadedCallback, MineListFragment.Callbacks,
         OnMapReadyCallback {
-
 
     private Menu menu;
 
@@ -272,7 +272,7 @@ public class MainActivity extends ActionBarActivity
         for (int i = 0; i < DummyContent.MINES.size(); i++) {
             MarkerOptions markerOption = new MarkerOptions();
             markerOption.position(new LatLng(DummyContent.MINES.get(i).lat,
-                    DummyContent.MINES.get(i).longg));
+                    DummyContent.MINES.get(i).lng));
             markerOption.icon(markerRed);
             markerOptions.add(markerOption);
         }
@@ -325,7 +325,6 @@ public class MainActivity extends ActionBarActivity
 
         startActivity(new Intent(MainActivity.this,
                 MineMapActivity.class));
-
     }
 
     @Override
@@ -342,6 +341,14 @@ public class MainActivity extends ActionBarActivity
                         marker.setIcon(BitmapDescriptorFactory
                                 .fromResource(R.drawable.marker_green));
                         currentMarker = marker;
+
+                        TextView txvMineName = (TextView) infoWindow.findViewById(R.id.mine_name);
+                        for (DummyContent.Mine mine : DummyContent.MINES) {
+                            if(marker.getPosition().equals(new LatLng(mine.lat, mine.lng))) {
+                                txvMineName.setText(mine.name);
+                            }
+                        }
+
                         return false;
                     }
                 });
