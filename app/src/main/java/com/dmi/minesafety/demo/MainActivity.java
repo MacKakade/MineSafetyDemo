@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +54,9 @@ public class MainActivity extends ActionBarActivity
 
     private OnInfoWindowElemTouchListener infoButtonListener;
 
-    private ArrayList<MarkerOptions> markerOptions
-            = new ArrayList<MarkerOptions>();
+    private List<Marker> markerList = new ArrayList<Marker>();
+
+    private GoogleMap.OnMarkerClickListener onMarkerClickListener;
 
     private MapWrapperLayout mapWrapperLayout;
 
@@ -154,7 +156,6 @@ public class MainActivity extends ActionBarActivity
 
             @Override
             public boolean onQueryTextSubmit(String s) {
-
                 return false;
             }
 
@@ -174,7 +175,8 @@ public class MainActivity extends ActionBarActivity
 
             @Override
             public boolean onSuggestionClick(int i) {
-                if (i <= tempArrayList.size() && mCurrentFragment instanceof MineListFragment) {
+                hideKeyboard();
+                if (mCurrentFragment instanceof MineListFragment) {
                     List<DummyContent.Mine> tempList = new ArrayList<DummyContent.Mine>();
                     tempList.add(tempArrayList.get(i));
                     mineListAdapter = new MineListAdapter(MainActivity.this,
@@ -182,7 +184,18 @@ public class MainActivity extends ActionBarActivity
                     mineListFragment.getListView().setAdapter(
                             mineListAdapter);
                     search.setQuery(tempArrayList.get(i).id, false);
-                    hideKeyboard();
+                } else {
+                    String clickedMineId = tempArrayList.get(i).id;
+                    for (DummyContent.Mine mine : DummyContent.MINES) {
+                        if (clickedMineId.equals(mine.id)) {
+                            for (Marker marker : markerList) {
+                                if (marker.getPosition().equals(new LatLng(mine.lat, mine.lng))) {
+                                    onMarkerClickListener.onMarkerClick(marker);
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
                 return true;
             }
@@ -200,7 +213,6 @@ public class MainActivity extends ActionBarActivity
         MatrixCursor cursor = new MatrixCursor(columns);
 
         for (int i = 0; i < DummyContent.MINES.size(); i++) {
-
             temp[0] = i;
             temp[1] = DummyContent.MINES.get(i);
             cursor.addRow(temp);
@@ -234,8 +246,6 @@ public class MainActivity extends ActionBarActivity
         if (mCurrentFragment instanceof MineListFragment) {
             mineListFragment.getListView().setAdapter(
                     mineListAdapter);
-        } else {
-
         }
     }
 
@@ -247,9 +257,7 @@ public class MainActivity extends ActionBarActivity
                 .isGooglePlayServicesAvailable(getApplicationContext());
 
         if (resultCode == ConnectionResult.SUCCESS) {
-//            Toast.makeText(getApplicationContext(),
-//                    "isGooglePlayServicesAvailable SUCCESS",
-//                    Toast.LENGTH_LONG).show();
+
         } else {
             GooglePlayServicesUtil
                     .getErrorDialog(resultCode, this, RQS_GooglePlayServices)
@@ -257,30 +265,22 @@ public class MainActivity extends ActionBarActivity
         }
     }
 
-    private void putMarkers() {
-        googleMap.clear();
-        for (MarkerOptions markerOption : markerOptions) {
-            Marker marker = googleMap.addMarker(markerOption);
-            marker.showInfoWindow();
-        }
-    }
-
     private void setMarkers() {
         BitmapDescriptor markerRed = BitmapDescriptorFactory
                 .fromResource(R.drawable.marker_red);
+        googleMap.clear();
 
         for (int i = 0; i < DummyContent.MINES.size(); i++) {
             MarkerOptions markerOption = new MarkerOptions();
             markerOption.position(new LatLng(DummyContent.MINES.get(i).lat,
                     DummyContent.MINES.get(i).lng));
             markerOption.icon(markerRed);
-            markerOptions.add(markerOption);
+            markerList.add(googleMap.addMarker(markerOption));
         }
     }
 
     @Override
     public void onMapLoaded() {
-        putMarkers();
         googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(USA, 0));
         googleMap.setInfoWindowAdapter(new InfoWindowAdapter() {
             @Override
@@ -306,13 +306,10 @@ public class MainActivity extends ActionBarActivity
             protected void onClickConfirmed(View v, Marker marker) {
                 String tag = (String) v.getTag();
                 if (tag.equalsIgnoreCase("1")) {
-//                    Toast.makeText(MainActivity.this, "item 1 clicked",
-//                            Toast.LENGTH_SHORT).show();
+
                 } else if (tag.equalsIgnoreCase("2")) {
                     startActivity(new Intent(MainActivity.this,
                             MineMapActivity.class));
-//                    Toast.makeText(MainActivity.this, "item 2 clicked",
-//                            Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -328,31 +325,33 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(final GoogleMap googleMap) {
         this.googleMap = googleMap;
-        googleMap.setOnMarkerClickListener(
-                new GoogleMap.OnMarkerClickListener() {
-                    @Override
-                    public boolean onMarkerClick(Marker marker) {
-                        if (currentMarker != null) {
-                            currentMarker.setIcon(BitmapDescriptorFactory
-                                    .fromResource(R.drawable.marker_red));
-                        }
-                        marker.setIcon(BitmapDescriptorFactory
-                                .fromResource(R.drawable.marker_green));
-                        currentMarker = marker;
 
-                        TextView txvMineName = (TextView) infoWindow.findViewById(R.id.mine_name);
-                        for (DummyContent.Mine mine : DummyContent.MINES) {
-                            if(marker.getPosition().equals(new LatLng(mine.lat, mine.lng))) {
-                                txvMineName.setText(mine.name);
-                            }
-                        }
+        onMarkerClickListener = new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                if (currentMarker != null) {
+                    currentMarker.setIcon(BitmapDescriptorFactory
+                            .fromResource(R.drawable.marker_red));
+                }
+                marker.setIcon(BitmapDescriptorFactory
+                        .fromResource(R.drawable.marker_green));
+                currentMarker = marker;
 
-                        return false;
+                TextView txvMineName = (TextView) infoWindow.findViewById(R.id.mine_name);
+                for (DummyContent.Mine mine : DummyContent.MINES) {
+                    if (marker.getPosition().equals(new LatLng(mine.lat, mine.lng))) {
+                        txvMineName.setText(mine.name);
                     }
-                });
+                }
+                marker.showInfoWindow();
+                googleMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+                return true;
+            }
+        };
 
+        googleMap.setOnMarkerClickListener(onMarkerClickListener);
         googleMap.setOnMapLoadedCallback(MainActivity.this);
         setMarkers();
     }
