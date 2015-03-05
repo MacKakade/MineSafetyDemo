@@ -180,8 +180,7 @@ public class MainActivity extends ActionBarActivity
                 .getActionView();
 
         search.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
-        search.setInputType(InputType.TYPE_CLASS_NUMBER);
-        search.setQueryHint("Mine ID");
+        search.setQueryHint("Mine name, Mine id");
 
         final Cursor cursor = getCursor();
 
@@ -268,7 +267,7 @@ public class MainActivity extends ActionBarActivity
         if (textLength > 0) {
             for (DummyContent.Mine mine : DummyContent.MINES) {
                 if (textLength <= mine.id.length()) {
-                    if (mine.id.contains(query) && !tempArrayList
+                    if ((mine.id.contains(query) || mine.name.toLowerCase().contains(query.toLowerCase())) && !tempArrayList
                             .contains(mine)) {
                         tempArrayList.add(mine);
                     }
