@@ -54,8 +54,8 @@ public class CapturePhotoActivity extends ActionBarActivity {
         }
 
 
-        Button btnSave = (Button) findViewById(R.id.btn_save);
-        Button btnCancel = (Button) findViewById(R.id.btn_cancel);
+        ImageView btnSave = (ImageView) findViewById(R.id.btn_save);
+        ImageView btnCancel = (ImageView) findViewById(R.id.btn_cancel);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override

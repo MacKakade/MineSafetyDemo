@@ -96,16 +96,17 @@
         android:hint="@string/text_hint_capture_note"
         android:padding="10dp" />
 
-    <Button
+    <ImageView
         android:id="@+id/btn_save"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignTop="@+id/btn_cancel"
         android:layout_marginRight="20dp"
+        android:background="?selectableItemBackground"
         android:layout_toLeftOf="@+id/btn_cancel"
-        android:background="@drawable/ic_save" />
+        android:src="@drawable/ic_save" />
 
-    <Button
+    <ImageView
         android:id="@+id/btn_cancel"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -113,24 +114,27 @@
         android:layout_alignRight="@+id/edt_note"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
-        android:background="@drawable/ic_cancel" />
+        android:background="?selectableItemBackground"
+        android:src="@drawable/ic_cancel" />
 
-    <Button
+    <ImageView
         android:id="@+id/btn_scribble"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:background="?selectableItemBackground"
         android:layout_alignRight="@+id/imv_camera_capture"
         android:layout_alignTop="@+id/imv_camera_capture"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/ic_scribble" />
+        android:src="@drawable/ic_scribble" />
 
-    <Button
+    <ImageView
         android:id="@+id/btn_edit"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:background="?selectableItemBackground"
         android:layout_alignTop="@+id/btn_scribble"
         android:layout_marginRight="20dp"
         android:layout_toLeftOf="@+id/btn_scribble"
-        android:background="@drawable/ic_edit" />
+        android:src="@drawable/ic_edit" />
 </RelativeLayout>

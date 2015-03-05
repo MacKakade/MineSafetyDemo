@@ -76,7 +76,7 @@
         android:layout_marginRight="20dp"
         android:padding="6dp"
         android:background="#0d112a"
-        android:drawableLeft="@drawable/ic_my_artifacts"
+        android:drawableLeft="@drawable/ic_artifacts"
         android:drawablePadding="4dp"
         android:text="My Inspection Artifacts"
         android:textColor="@color/white"
@@ -109,7 +109,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:background="@color/inspection_button_blue"
+                    android:background="@drawable/bg_blue_button_selector"
                     android:padding="15dp">
 
                     <ImageView
@@ -139,7 +139,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:background="@color/inspection_button_blue"
+                    android:background="@drawable/bg_blue_button_selector"
                     android:padding="15dp">
 
                     <ImageView
@@ -169,7 +169,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:background="@color/inspection_button_blue"
+                    android:background="@drawable/bg_blue_button_selector"
                     android:padding="15dp">
 
                     <ImageView
@@ -207,7 +207,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:background="@color/inspection_button_blue"
+                    android:background="@drawable/bg_blue_button_selector"
                     android:padding="15dp">
 
                     <ImageView
@@ -237,7 +237,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:background="@color/inspection_button_blue"
+                    android:background="@drawable/bg_blue_button_selector"
                     android:padding="15dp">
 
                     <ImageView
@@ -267,7 +267,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:background="@color/inspection_button_blue"
+                    android:background="@drawable/bg_blue_button_selector"
                     android:padding="15dp">
 
                     <ImageView
@@ -319,7 +319,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:background="@color/inspection_button_blue"
+                    android:background="@drawable/bg_blue_button_selector"
                     android:padding="15dp">
 
                     <ImageView

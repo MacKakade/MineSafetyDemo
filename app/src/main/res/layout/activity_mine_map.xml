@@ -51,13 +51,11 @@
                 android:paddingRight="12dp"
                 android:layout_margin="4dp"
                 android:textColor="@color/white"
-                android:background="#2f517d"
+                android:background="@drawable/bg_blue_button_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/spinner_date"
                 android:layout_alignParentRight="true"/>
-
-
 
         <ListView
                 android:id="@+id/left_drawer"

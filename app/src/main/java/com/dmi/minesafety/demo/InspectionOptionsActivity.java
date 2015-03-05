@@ -11,10 +11,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.Date;
@@ -24,18 +22,21 @@ public class InspectionOptionsActivity extends ActionBarActivity {
 
     private Uri mUri;
 
+    private Uri mVideoUri;
+
 //    private Spinner mLocationSpinner;
 //
 //    private String[] mLocationsTitles;
 
-     AlertDialog alertDialog;
+    AlertDialog alertDialog;
+
+    public static final int REQUEST_VIDEO_CAPTURE = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inspection_options);
-
-
 
 //        Button b = (Button) findViewById(R.id.btn_record_location);
 //        b.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +126,19 @@ public class InspectionOptionsActivity extends ActionBarActivity {
             }
         });
 
+        RelativeLayout btnRecordAudio = (RelativeLayout) findViewById(
+                R.id.rel_record_audio);
+
+        btnRecordAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(InspectionOptionsActivity.this,
+                        RecordAudioActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Button buttonArtifacts = (Button) findViewById(R.id.btn_my_artifacts);
         buttonArtifacts.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +150,8 @@ public class InspectionOptionsActivity extends ActionBarActivity {
                 alertDialog = alert.create();
 
                 View view = getLayoutInflater()
-                        .inflate(R.layout.layout_inspection_artifacts, null, false);
+                        .inflate(R.layout.layout_inspection_artifacts, null,
+                                false);
                 view.findViewById(R.id.close)
                         .setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -149,6 +164,17 @@ public class InspectionOptionsActivity extends ActionBarActivity {
                 alertDialog.show();
             }
         });
+
+        RelativeLayout buttonRecordVideo = (RelativeLayout) findViewById(
+                R.id.rel_take_video);
+        buttonRecordVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takeVideo();
+            }
+        });
+
+
     }
 
     private void takePicture() {
@@ -167,6 +193,25 @@ public class InspectionOptionsActivity extends ActionBarActivity {
         startActivityForResult(takePhotoIntent, 0);
     }
 
+
+    private void takeVideo() {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Video.Media.TITLE,
+                "VID_" + new Date() + ".mp4");
+
+        mVideoUri = getContentResolver()
+                .insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+                        values); // store content values
+
+        Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
+            takeVideoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                    mVideoUri);
+            startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
+        }
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode,
             Intent data) {
@@ -177,6 +222,17 @@ public class InspectionOptionsActivity extends ActionBarActivity {
                 intent.putExtra("img_uri", mUri);
                 startActivity(intent);
             }
+
+            if (requestCode == REQUEST_VIDEO_CAPTURE
+                    && resultCode == RESULT_OK) {
+
+//                Uri videoUri = data.getData();
+//                mVideoView.setVideoURI(videoUri);
+
+                Toast.makeText(this, "Video was saved!", Toast.LENGTH_LONG)
+                        .show();
+            }
+
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

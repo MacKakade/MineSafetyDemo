@@ -1,26 +1,5 @@
 package com.dmi.minesafety.demo;
 
-import android.app.SearchManager;
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.MatrixCursor;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.SearchView;
-import android.text.InputType;
-import android.util.Log;
-import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.dmi.minesafety.demo.dummy.DummyContent;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -34,6 +13,28 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import com.dmi.minesafety.demo.dummy.DummyContent;
+
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SwitchCompat;
+import android.text.InputType;
+import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,9 +65,11 @@ public class MainActivity extends ActionBarActivity
 
     private final int RQS_GooglePlayServices = 1;
 
-    private ImageView mMapView, mListView;
+//    private ImageView mMapView, mListView;
 
     private int mCurrentSelection = 0;
+
+    private SwitchCompat mSwitchView;
 
     private ArrayList<DummyContent.Mine> tempArrayList;
 
@@ -83,48 +86,78 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMapView = (ImageView) findViewById(
-                R.id.map_view);
+        mSwitchView = (SwitchCompat) findViewById(
+                R.id.switch_view);
 
-        mListView = (ImageView) findViewById(
-                R.id.list_view);
+        mSwitchView.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView,
+                            boolean isChecked) {
+                        if (!isChecked) {
+                            if (mSupportMapFragment != null) {
+                                mSupportMapFragment = SupportMapFragment
+                                        .newInstance();
+                            }
+                            mCurrentFragment = mSupportMapFragment;
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.layout_container,
+                                            mSupportMapFragment)
+                                    .commit();
+                            mSupportMapFragment.getMapAsync(MainActivity.this);
+                        } else {
+                            mineListFragment = new MineListFragment();
 
-        mMapView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mCurrentSelection == 1) {
-                    mCurrentSelection = 0;
-                    mMapView.setImageResource(R.drawable.map_selected);
-                    mListView.setImageResource(R.drawable.list_unselected);
-
-                    if (mSupportMapFragment != null) {
-                        mSupportMapFragment = SupportMapFragment.newInstance();
+                            mCurrentFragment = mineListFragment;
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.layout_container,
+                                            mineListFragment).commit();
+                        }
                     }
-                    mCurrentFragment = mSupportMapFragment;
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.layout_container, mSupportMapFragment)
-                            .commit();
-                    mSupportMapFragment.getMapAsync(MainActivity.this);
-                }
-            }
-        });
+                });
 
-        mListView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mCurrentSelection == 0) {
-                    mCurrentSelection = 1;
-
-                    mMapView.setImageResource(R.drawable.map_unselected);
-                    mListView.setImageResource(R.drawable.list_selected);
-                    mineListFragment = new MineListFragment();
-
-                    mCurrentFragment = mineListFragment;
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.layout_container, mineListFragment).commit();
-                }
-            }
-        });
+//        mMapView = (ImageView) findViewById(
+//                R.id.map_view);
+//
+//        mListView = (ImageView) findViewById(
+//                R.id.list_view);
+//
+//        mMapView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mCurrentSelection == 1) {
+//                    mCurrentSelection = 0;
+//                    mMapView.setImageResource(R.drawable.map_selected);
+//                    mListView.setImageResource(R.drawable.list_unselected);
+//
+//                    if (mSupportMapFragment != null) {
+//                        mSupportMapFragment = SupportMapFragment.newInstance();
+//                    }
+//                    mCurrentFragment = mSupportMapFragment;
+//                    getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.layout_container, mSupportMapFragment)
+//                            .commit();
+//                    mSupportMapFragment.getMapAsync(MainActivity.this);
+//                }
+//            }
+//        });
+//
+//        mListView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mCurrentSelection == 0) {
+//                    mCurrentSelection = 1;
+//
+//                    mMapView.setImageResource(R.drawable.map_unselected);
+//                    mListView.setImageResource(R.drawable.list_selected);
+//                    mineListFragment = new MineListFragment();
+//
+//                    mCurrentFragment = mineListFragment;
+//                    getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.layout_container, mineListFragment).commit();
+//                }
+//            }
+//        });
         mapWrapperLayout = (MapWrapperLayout) findViewById(
                 R.id.map_relative_layout);
         mSupportMapFragment = SupportMapFragment.newInstance();
@@ -177,32 +210,40 @@ public class MainActivity extends ActionBarActivity
             public boolean onSuggestionClick(int i) {
                 hideKeyboard();
                 if (mCurrentFragment instanceof MineListFragment) {
-                    List<DummyContent.Mine> tempList = new ArrayList<DummyContent.Mine>();
-                    tempList.add(tempArrayList.get(i));
-                    mineListAdapter = new MineListAdapter(MainActivity.this,
-                            R.layout.layout_spinner_item_mines, tempList);
-                    mineListFragment.getListView().setAdapter(
-                            mineListAdapter);
-                    search.setQuery(tempArrayList.get(i).id, false);
-                } else {
-                    String clickedMineId = tempArrayList.get(i).id;
-                    for (DummyContent.Mine mine : DummyContent.MINES) {
-                        if (clickedMineId.equals(mine.id)) {
-                            for (Marker marker : markerList) {
-                                if (marker.getPosition().equals(new LatLng(mine.lat, mine.lng))) {
-                                    onMarkerClickListener.onMarkerClick(marker);
-                                    break;
+                    List<DummyContent.Mine> tempList
+                            = new ArrayList<DummyContent.Mine>();
+                        tempList.add(tempArrayList.get(i));
+                        mineListAdapter = new MineListAdapter(MainActivity.this,
+                                R.layout.layout_spinner_item_mines, tempList);
+                        mineListFragment.getListView().setAdapter(
+                                mineListAdapter);
+                        search.setQuery(tempArrayList.get(i).id, false);
+                    } else {
+                        String clickedMineId = tempArrayList.get(i).id;
+                        for (DummyContent.Mine mine : DummyContent.MINES) {
+                            if (clickedMineId.equals(mine.id)) {
+                                for (Marker marker : markerList) {
+                                    if (marker.getPosition()
+                                            .equals(new LatLng(mine.lat,
+                                                    mine.lng))) {
+                                        onMarkerClickListener
+                                                .onMarkerClick(marker);
+                                        break;
+                                    }
                                 }
                             }
                         }
                     }
+                    return true;
                 }
-                return true;
             }
-        });
 
-        return super.onCreateOptionsMenu(menu);
-    }
+            );
+
+            return super.
+
+            onCreateOptionsMenu(menu);
+        }
 
     private Cursor getCursor() {
 
@@ -227,7 +268,8 @@ public class MainActivity extends ActionBarActivity
         if (textLength > 0) {
             for (DummyContent.Mine mine : DummyContent.MINES) {
                 if (textLength <= mine.id.length()) {
-                    if (mine.id.contains(query) && !tempArrayList.contains(mine)) {
+                    if (mine.id.contains(query) && !tempArrayList
+                            .contains(mine)) {
                         tempArrayList.add(mine);
                     }
                 }
@@ -339,14 +381,17 @@ public class MainActivity extends ActionBarActivity
                         .fromResource(R.drawable.marker_green));
                 currentMarker = marker;
 
-                TextView txvMineName = (TextView) infoWindow.findViewById(R.id.mine_name);
+                TextView txvMineName = (TextView) infoWindow
+                        .findViewById(R.id.mine_name);
                 for (DummyContent.Mine mine : DummyContent.MINES) {
-                    if (marker.getPosition().equals(new LatLng(mine.lat, mine.lng))) {
+                    if (marker.getPosition()
+                            .equals(new LatLng(mine.lat, mine.lng))) {
                         txvMineName.setText(mine.name);
                     }
                 }
                 marker.showInfoWindow();
-                googleMap.animateCamera(CameraUpdateFactory.newLatLng(marker.getPosition()));
+                googleMap.animateCamera(
+                        CameraUpdateFactory.newLatLng(marker.getPosition()));
                 return true;
             }
         };
@@ -357,7 +402,9 @@ public class MainActivity extends ActionBarActivity
     }
 
     private void hideKeyboard() {
-        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
     }
 }

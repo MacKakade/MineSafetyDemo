@@ -1,5 +1,6 @@
 <com.dmi.minesafety.demo.MapWrapperLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:id="@+id/map_relative_layout"
     android:layout_height="match_parent"
@@ -12,12 +13,25 @@
             android:background="#dce6ef"
             android:layout_height="wrap_content">
 
+        <android.support.v7.widget.SwitchCompat
+                app:switchMinWidth="64dp"
+                android:id="@+id/switch_view"
+                android:thumb="@drawable/switch_thumb_selector"
+                app:track="@drawable/switch_track"
+                android:layout_centerVertical="true"
+                android:layout_margin="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
         <ImageView
                 android:id="@+id/map_view"
                 android:layout_toLeftOf="@+id/list_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/map_selected"
+                android:visibility="gone"
                 android:layout_centerVertical="true"/>
 
         <ImageView
@@ -27,6 +41,7 @@
                 android:layout_centerVertical="true"
                 android:src="@drawable/list_unselected"
                 android:layout_alignParentRight="true"
+                android:visibility="gone"
                 android:padding="12dp"/>
 
     </RelativeLayout>

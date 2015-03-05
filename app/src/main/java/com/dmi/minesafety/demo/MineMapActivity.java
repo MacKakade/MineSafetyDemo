@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
 import android.text.InputType;
+import android.support.v7.widget.SwitchCompat;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +23,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
-import android.widget.ImageView;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -55,7 +56,10 @@ public class MineMapActivity extends ActionBarActivity
 
     private ArrayList<Integer> mSelectedPositions = new ArrayList<>();
 
-    private ImageView mMapView, mListView;
+//    private ImageView mMapView, mListView;
+
+
+    private SwitchCompat mSwitchView;
 
     private int mCurrentSelection = 0;
 
@@ -76,6 +80,31 @@ public class MineMapActivity extends ActionBarActivity
 
         mSelectAll = (Button) findViewById(
                 R.id.button_select_all);
+
+        mSwitchView = (SwitchCompat) findViewById(
+                R.id.switch_view);
+
+        mSwitchView.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView,
+                            boolean isChecked) {
+                        if (!isChecked) {
+                            Fragment fragment = new MineMapFragment();
+                            mCurrentFragment = fragment;
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.imageFrame, fragment)
+                                    .commit();
+                        } else {
+                            Fragment fragment
+                                    = new DocumentListParentFragment();
+                            mCurrentFragment = fragment;
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.imageFrame, fragment)
+                                    .commit();
+                        }
+                    }
+                });
 
         mSelectAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,41 +136,41 @@ public class MineMapActivity extends ActionBarActivity
             }
         });
 
-        mMapView = (ImageView) findViewById(
-                R.id.map_view);
-
-        mListView = (ImageView) findViewById(
-                R.id.list_view);
-
-        mMapView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mCurrentSelection == 1) {
-                    mCurrentSelection = 0;
-                    mMapView.setImageResource(R.drawable.map_selected);
-                    mListView.setImageResource(R.drawable.list_unselected);
-                    Fragment fragment = new MineMapFragment();
-                    mCurrentFragment = fragment;
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.imageFrame, fragment).commit();
-                }
-            }
-        });
-
-        mListView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mCurrentSelection == 0) {
-                    mCurrentSelection = 1;
-                    mMapView.setImageResource(R.drawable.map_unselected);
-                    mListView.setImageResource(R.drawable.list_selected);
-                    Fragment fragment = new DocumentListParentFragment();
-                    mCurrentFragment = fragment;
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.imageFrame, fragment).commit();
-                }
-            }
-        });
+//        mMapView = (ImageView) findViewById(
+//                R.id.map_view);
+//
+//        mListView = (ImageView) findViewById(
+//                R.id.list_view);
+//
+//        mMapView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mCurrentSelection == 1) {
+//                    mCurrentSelection = 0;
+//                    mMapView.setImageResource(R.drawable.map_selected);
+//                    mListView.setImageResource(R.drawable.list_unselected);
+//                    Fragment fragment = new MineMapFragment();
+//                    mCurrentFragment = fragment;
+//                    getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.imageFrame, fragment).commit();
+//                }
+//            }
+//        });
+//
+//        mListView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mCurrentSelection == 0) {
+//                    mCurrentSelection = 1;
+//                    mMapView.setImageResource(R.drawable.map_unselected);
+//                    mListView.setImageResource(R.drawable.list_selected);
+//                    Fragment fragment = new DocumentListParentFragment();
+//                    mCurrentFragment = fragment;
+//                    getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.imageFrame, fragment).commit();
+//                }
+//            }
+//        });
 
         mTitle = mDrawerTitle = getTitle();
         mDotsTitles = getResources().getStringArray(R.array.dots_array);
