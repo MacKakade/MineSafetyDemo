@@ -13,7 +13,7 @@
                   android:layout_height="wrap_content">
 
         <TextView
-                android:id="@+id/title_org"
+                android:id="@+id/title_mine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="?android:textAppearanceMedium"
@@ -21,7 +21,7 @@
                 android:text="@string/name_mine_organisation"/>
 
         <TextView
-                android:id="@+id/title_mine"
+                android:id="@+id/title_org"
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="15dp"
                 style="?android:textAppearanceSmall"
@@ -33,13 +33,10 @@
 
 
     <android.support.v7.widget.SwitchCompat
-            app:switchMinWidth="64dp"
             android:id="@+id/switch_view"
-            android:thumb="@drawable/switch_thumb_selector"
-            app:track="@drawable/switch_track"
             android:layout_centerVertical="true"
-            android:layout_margin="6dp"
-            android:layout_toLeftOf="@+id/button_referral_docs"
+            android:layout_margin="10dp"
+            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -52,6 +49,7 @@
             android:background="@drawable/bg_blue_button_selector"
             android:layout_centerVertical="true"
             android:padding="12dp"
+            android:visibility="gone"
             android:layout_alignParentRight="true"
             android:textSize="14sp"
             android:text="REFERRAL DOCUMENTS"
@@ -70,9 +68,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:visibility="gone"
             android:src="@drawable/list_unselected"
             android:layout_alignParentRight="true"
-            android:visibility="gone"
             android:padding="12dp"/>
 
 </RelativeLayout>

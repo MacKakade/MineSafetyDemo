@@ -11,4 +11,6 @@
     <!-- ActionBar color strip -->
     <dimen name="colorstrip">5dp</dimen>
 
+    <dimen name="switch_thumb_min_width">30dp</dimen>
+
 </resources>

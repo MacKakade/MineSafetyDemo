@@ -34,7 +34,7 @@ public class CapturePhotoActivity extends ActionBarActivity {
         ImageView photo = (ImageView) findViewById(R.id.imv_camera_capture);
         String[] mLocationsTitles = getResources().getStringArray(R.array.spinner_data);
         Spinner mLocationSpinner = (Spinner) findViewById(R.id.spinner_location);
-        mLocationSpinner.setAdapter(new ArrayAdapter<>(this,
+        mLocationSpinner.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.layout_spinner_item_drawer_black, mLocationsTitles));
 
         try {

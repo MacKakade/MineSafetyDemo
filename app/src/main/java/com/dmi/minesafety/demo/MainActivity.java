@@ -34,6 +34,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -95,10 +96,8 @@ public class MainActivity extends ActionBarActivity
                     public void onCheckedChanged(CompoundButton buttonView,
                             boolean isChecked) {
                         if (!isChecked) {
-                            if (mSupportMapFragment != null) {
                                 mSupportMapFragment = SupportMapFragment
                                         .newInstance();
-                            }
                             mCurrentFragment = mSupportMapFragment;
                             getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.layout_container,
@@ -239,9 +238,7 @@ public class MainActivity extends ActionBarActivity
 
             );
 
-            return super.
-
-            onCreateOptionsMenu(menu);
+            return super.onCreateOptionsMenu(menu);
         }
 
     private Cursor getCursor() {
@@ -349,8 +346,18 @@ public class MainActivity extends ActionBarActivity
                 if (tag.equalsIgnoreCase("1")) {
 
                 } else if (tag.equalsIgnoreCase("2")) {
-                    startActivity(new Intent(MainActivity.this,
-                            MineMapActivity.class));
+
+                    Intent intent = new Intent(MainActivity.this,
+                            MineMapActivity.class);
+
+                    for (DummyContent.Mine mine : DummyContent.MINES) {
+                        if (currentMarker.getPosition()
+                                .equals(new LatLng(mine.lat, mine.lng))) {
+                            intent.putExtra("mine_info",mine.index);
+                        }
+                    }
+
+                    startActivity(intent);
                 }
 
             }

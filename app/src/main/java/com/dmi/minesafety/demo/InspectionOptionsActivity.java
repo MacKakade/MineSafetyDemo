@@ -1,5 +1,7 @@
 package com.dmi.minesafety.demo;
 
+import com.dmi.minesafety.demo.dummy.DummyContent;
+
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Date;
@@ -32,11 +35,31 @@ public class InspectionOptionsActivity extends ActionBarActivity {
 
     public static final int REQUEST_VIDEO_CAPTURE = 2;
 
+    private TextView mMineTitle;
+
+    private TextView mOrgTitle;
+
+    private int index = 38;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inspection_options);
+
+
+        index = getIntent().getExtras().getInt("mine_info");
+
+        mMineTitle = (TextView) findViewById(
+                R.id.title_mine);
+
+        mOrgTitle = (TextView) findViewById(
+                R.id.title_org);
+
+        DummyContent.Mine mine = DummyContent.MINES.get(index);
+        mMineTitle.setText(mine.name);
+        mOrgTitle.setText(
+                mine.operatorName + ", " + mine.city + ", " + mine.state + ", ID:"
+                        + mine.id);
 
 //        Button b = (Button) findViewById(R.id.btn_record_location);
 //        b.setOnClickListener(new View.OnClickListener() {

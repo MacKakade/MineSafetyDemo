@@ -106,7 +106,7 @@ public class SplashScreenActivity extends ActionBarActivity {
         String[] mineState = getResources().getStringArray(R.array.mine_state);
 
         for (int i = 0; i < mineID.length; i++) {
-            DummyContent.addMine(new DummyContent.Mine(mineID[i], mineName[i],
+            DummyContent.addMine(new DummyContent.Mine(i,mineID[i], mineName[i],
                     mineOperator[i], mineCity[i], mineState[i], mLatArray[i],
                     mLngArray[i]));
         }

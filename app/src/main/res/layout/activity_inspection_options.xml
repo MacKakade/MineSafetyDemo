@@ -13,8 +13,8 @@
         android:paddingTop="6dp">
 
         <TextView
-            android:id="@+id/title_org"
-            style="?android:textAppearanceLarge"
+            android:id="@+id/title_mine"
+            style="?android:textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -22,11 +22,11 @@
             android:text="@string/name_mine_organisation" />
 
         <TextView
-            android:id="@+id/title_mine"
-            style="?android:textAppearanceMedium"
+            android:id="@+id/title_org"
+            style="?android:textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title_org"
+            android:layout_below="@+id/title_mine"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="15dp"
             android:text="@string/name_cave" />
@@ -75,7 +75,7 @@
         android:layout_margin="12dp"
         android:layout_marginRight="20dp"
         android:padding="6dp"
-        android:background="#0d112a"
+        android:background="@drawable/bg_blackish_button_selector"
         android:drawableLeft="@drawable/ic_artifacts"
         android:drawablePadding="4dp"
         android:text="My Inspection Artifacts"

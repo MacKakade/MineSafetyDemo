@@ -11,4 +11,6 @@
     <color name="button_record_location">#3F67BF</color>
     <color name="container_capture_photo_bg">#D7D7D7</color>
     <color name="inspection_button_blue">#2f517d</color>
+
+    <color name="artifacts_button_black">#0d112a</color>
 </resources>

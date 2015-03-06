@@ -27,24 +27,26 @@
             android:hint="@string/text_hint_capture_note"
             android:padding="5dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn_cancel"
+            android:background="?selectableItemBackground"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:layout_alignRight="@+id/edt_note"
             android:layout_marginTop="12dp"
-            android:background="@drawable/icon_button_cancel" />
+            android:src="@drawable/ic_cancel" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn_save"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/edt_note"
+            android:background="?selectableItemBackground"
             android:layout_marginRight="10dp"
             android:layout_marginTop="12dp"
             android:layout_toLeftOf="@+id/btn_cancel"
-            android:background="@drawable/icon_button_save" />
+            android:src="@drawable/ic_save" />
     </RelativeLayout>
 
 </RelativeLayout>

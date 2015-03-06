@@ -13,13 +13,14 @@
             android:background="#dce6ef"
             android:layout_height="wrap_content">
 
+        <!--<org.jraf.android.backport.switchwidget.Switch-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
         <android.support.v7.widget.SwitchCompat
-                app:switchMinWidth="64dp"
                 android:id="@+id/switch_view"
-                android:thumb="@drawable/switch_thumb_selector"
-                app:track="@drawable/switch_track"
                 android:layout_centerVertical="true"
-                android:layout_margin="20dp"
+                android:layout_margin="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -38,11 +39,12 @@
                 android:id="@+id/list_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_centerVertical="true"
                 android:src="@drawable/list_unselected"
                 android:layout_alignParentRight="true"
-                android:visibility="gone"
                 android:padding="12dp"/>
+
 
     </RelativeLayout>
 

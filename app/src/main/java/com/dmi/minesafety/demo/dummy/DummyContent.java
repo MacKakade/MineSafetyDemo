@@ -38,8 +38,6 @@ public class DummyContent {
         addItem(new DummyItem("6", "Citation#: 877146"));
         addItem(new DummyItem("7", "Citation#: 877147"));
         addItem(new DummyItem("8", "Citation#: 877148"));
-        addItem(new DummyItem("9", "Citation#: 877149"));
-        addItem(new DummyItem("10", "Citation#: 877150"));
         addItem(new DummyItem("Header", "Events"));
         addItem(new DummyItem("11", "Event#: 834141"));
         addItem(new DummyItem("12", "Event#: 835142"));
@@ -49,8 +47,6 @@ public class DummyContent {
         addItem(new DummyItem("16", "Event#: 839146"));
         addItem(new DummyItem("17", "Event#: 836147"));
         addItem(new DummyItem("18", "Event#: 837148"));
-        addItem(new DummyItem("19", "Event#: 838149"));
-        addItem(new DummyItem("20", "Event#: 839150"));
 
     }
 
@@ -87,6 +83,8 @@ public class DummyContent {
 
     public static class Mine {
 
+        public int index;
+
         public String id;
 
         public String name;
@@ -102,7 +100,8 @@ public class DummyContent {
         public double lng;
 
 
-        public Mine(String id, String name,String operatorName, String city, String state,double lat,double lng) {
+        public Mine(int index,String id, String name,String operatorName, String city, String state,double lat,double lng) {
+            this.index=index;
             this.id = id;
             this.name = name;
             this.operatorName = operatorName;

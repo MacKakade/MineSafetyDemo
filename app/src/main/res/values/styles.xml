@@ -3,7 +3,6 @@
     <style name="AppThemeBar"
            parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
-        <item name="android:button">@style/MyActionButtonStyle</item>
         <item name="android:actionBarStyle">@style/MyActionBarStyle</item>
         <item name="android:actionMenuTextAppearance">@style/MenuItemText</item>
         <item name="android:actionMenuTextColor">@color/white</item>
@@ -15,11 +14,19 @@
         <!-- Set AppCompat’s color theming attrs -->
         <item name="colorPrimary">@color/action_bar_bg</item>
         <item name="colorPrimaryDark">@color/action_bar_bg</item>
+
+        <item name="switchStyle">@style/Switch</item>
+
     </style>
 
-    <style name="MyActionButtonStyle"
-           parent="@style/Widget.AppCompat.Light.ActionButton">
-        <item name="android:minWidth">28dp</item>
+
+    <style name="Switch">
+        <item name="switchMinWidth">64dp</item>
+        <item name="android:thumb">@drawable/switch_thumb_selector</item>
+        <item name="track">@drawable/switch_track</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textOff">""</item>
+        <item name="android:textOn">""</item>
     </style>
 
 

@@ -1,5 +1,7 @@
 package com.dmi.minesafety.demo;
 
+import com.dmi.minesafety.demo.dummy.DummyContent;
+
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +14,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.SearchView;
-import android.text.InputType;
 import android.support.v7.widget.SwitchCompat;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,10 +26,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
-
-import com.dmi.minesafety.demo.dummy.DummyContent;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +56,7 @@ public class MineMapActivity extends ActionBarActivity
 
     private Button mSelectAll;
 
-    private ArrayList<Integer> mSelectedPositions = new ArrayList<>();
+    private ArrayList<Integer> mSelectedPositions = new ArrayList<Integer>();
 
 //    private ImageView mMapView, mListView;
 
@@ -67,6 +69,12 @@ public class MineMapActivity extends ActionBarActivity
 
     private Menu menu;
 
+    private TextView mMineTitle;
+
+    private TextView mOrgTitle;
+
+    private int index = 38;
+
     private int[] mDrawables = new int[]{R.drawable.red, R.drawable.lighgreen,
             R.drawable.purple, R.drawable.red, R.drawable.orange,
             R.drawable.lightviolet, R.drawable.brown, R.drawable.lighgreen,
@@ -77,6 +85,20 @@ public class MineMapActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mine_map);
+
+        index = getIntent().getExtras().getInt("mine_info");
+
+        mMineTitle = (TextView) findViewById(
+                R.id.title_mine);
+
+        mOrgTitle = (TextView) findViewById(
+                R.id.title_org);
+
+        DummyContent.Mine mine = DummyContent.MINES.get(index);
+        mMineTitle.setText(mine.name);
+        mOrgTitle.setText(
+                mine.operatorName + ", " + mine.city + ", " + mine.state + ", ID:"
+                        + mine.id);
 
         mSelectAll = (Button) findViewById(
                 R.id.button_select_all);
@@ -246,7 +268,7 @@ public class MineMapActivity extends ActionBarActivity
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
+                long id) {
             // selectItem(position);
         }
     }
@@ -306,8 +328,12 @@ public class MineMapActivity extends ActionBarActivity
         }
 
         if (item.getItemId() == R.id.menut_start_inspection) {
-            startActivity(new Intent(MineMapActivity.this,
-                    InspectionOptionsActivity.class));
+            Intent intent = new Intent(MineMapActivity.this,
+                    InspectionOptionsActivity.class);
+
+            intent.putExtra("mine_info", index);
+
+            startActivity(intent);
             return true;
         }
 
@@ -340,7 +366,7 @@ public class MineMapActivity extends ActionBarActivity
 
         @Override
         public View getView(final int position, View convertView,
-                            ViewGroup parent) {
+                ViewGroup parent) {
 
             View v = getLayoutInflater()
                     .inflate(R.layout.layout_list_item_drawer, null, false);
@@ -416,7 +442,8 @@ public class MineMapActivity extends ActionBarActivity
     private void loadMinesList(String query, Cursor cursor) {
 
         int textLength = query.length();
-        List<DummyContent.Mine> tempArrayList = new ArrayList<DummyContent.Mine>();
+        List<DummyContent.Mine> tempArrayList
+                = new ArrayList<DummyContent.Mine>();
         if (textLength > 0) {
             for (DummyContent.Mine mine : DummyContent.MINES) {
                 if (textLength <= mine.id.length()) {
