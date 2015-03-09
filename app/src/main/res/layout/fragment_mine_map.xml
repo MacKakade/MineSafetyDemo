@@ -4,7 +4,7 @@
              android:layout_height="wrap_content">
 
 
-    <com.dmi.minesafety.demo.TouchImageView
+    <com.dmi.minesafety.demo.widget.TouchImageView
             android:id="@+id/imageViewMine"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -1,253 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Mine Citation/Order"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:id="@+id/txv_label_date_format"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_toRightOf="@+id/txv_date_label"
-            android:text="Mo Da Yr"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/edt_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/txv_label_date_format"
-            android:layout_below="@+id/txv_label_date_format"
-            android:text="25/03/2015"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txv_date_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/edt_date"
-            android:text="Date:"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:id="@+id/txv_label_time_format"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_toRightOf="@+id/txv_time_label"
-            android:text="(24. Hr clock)"
-            android:textSize="18sp" />
-
-        <EditText
-            android:id="@+id/edt_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/txv_label_time_format"
-            android:layout_below="@+id/txv_label_time_format"
-            android:text="0823"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txv_time_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/edt_time"
-            android:text="Time:"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/txv_citation_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Citation/ Order Number:"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_toRightOf="@+id/txv_citation_label"
-            android:text="8771431"
-            android:textSize="18sp" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/txv_served_to_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Served To:"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_toRightOf="@+id/txv_served_to_label"
-            android:text="Matt Jenkins - Supervisor"
-            android:textSize="18sp" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/txv_operator_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Operator:"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_toRightOf="@+id/txv_operator_label"
-            android:text="TXI OPERATIONS LP"
-            android:textSize="18sp" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/txv_mine_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mine:"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_toRightOf="@+id/txv_mine_label"
-            android:text="BRIDGEPORT STONE PLANT"
-            android:textSize="18sp" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/txv_mine_id_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mine ID:"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_toRightOf="@+id/txv_mine_id_label"
-            android:text="41-00007"
-            android:textSize="18sp" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/txv_condition_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Condition or Practise:"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txv_condition_label"
-            android:layout_marginTop="8dp"
-            android:text="@string/text_dummy_citation"
-            android:textSize="18sp" />
+            android:layout_margin="10dp"
+            android:text="Mine Citation/Order"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+
+        <EditText
+                android:id="@+id/edt_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25/03/2015"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@+id/txv_date_label"
+                android:layout_centerVertical="true"
+                android:textSize="18sp"/>
+
+        <TextView
+                android:id="@+id/txv_date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date:\n(DD/MM/YYYY)"
+                android:layout_centerVertical="true"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+
+        <EditText
+                android:id="@+id/edt_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="08:23"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@+id/txv_time_label"
+                android:textSize="18sp"/>
+
+        <TextView
+                android:id="@+id/txv_time_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/edt_time"
+                android:text="Time:\n(24. Hr clock)"
+
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+        <TextView
+                android:id="@+id/txv_citation_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Citation/ Order Number:"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@+id/txv_citation_label"
+                android:text="8771431"
+                android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+        <TextView
+                android:id="@+id/txv_served_to_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Served To:"
+                android:layout_centerVertical="true"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@+id/txv_served_to_label"
+                android:text="Matt Jenkins - Supervisor"
+                android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+        <TextView
+                android:id="@+id/txv_operator_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Operator:"
+                android:textSize="18sp"
+                android:layout_centerVertical="true"
+                android:textStyle="bold"/>
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@+id/txv_operator_label"
+                android:text="TXI OPERATIONS LP"
+                android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+        <TextView
+                android:id="@+id/txv_mine_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mine:"
+                android:layout_centerVertical="true"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@+id/txv_mine_label"
+                android:text="BRIDGEPORT STONE PLANT"
+                android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+        <TextView
+                android:id="@+id/txv_mine_id_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mine ID:"
+                android:layout_centerVertical="true"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@+id/txv_mine_id_label"
+                android:text="41-00007"
+                android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/black"/>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+        <TextView
+                android:id="@+id/txv_condition_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Condition or Practise:"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txv_condition_label"
+                android:layout_marginTop="8dp"
+                android:text="@string/text_dummy_citation"
+                android:textSize="18sp"/>
     </RelativeLayout>
 
 </LinearLayout>

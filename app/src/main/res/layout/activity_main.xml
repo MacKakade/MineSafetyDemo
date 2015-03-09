@@ -1,4 +1,4 @@
-<com.dmi.minesafety.demo.MapWrapperLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.dmi.minesafety.demo.widget.MapWrapperLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -54,4 +54,4 @@
                  android:layout_height="wrap_content"/>
 
 
-</com.dmi.minesafety.demo.MapWrapperLayout>
+</com.dmi.minesafety.demo.widget.MapWrapperLayout>

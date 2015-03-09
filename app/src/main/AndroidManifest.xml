@@ -32,7 +32,7 @@
             android:value="AIzaSyCGGTuNfh_pC74CCK8F8i6eUQe5_wWxFDk" />
 
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".activity.SplashScreenActivity"
             android:label="@string/action_bar_title"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/action_bar_title"
             android:screenOrientation="landscape"
@@ -60,17 +60,17 @@
                 android:resource="@xml/searchable" />
         </activity>
         <activity
-            android:name=".CapturePhotoActivity"
+            android:name=".activity.CapturePhotoActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/action_bar_title"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".InspectionOptionsActivity"
+            android:name=".activity.InspectionOptionsActivity"
             android:label="@string/action_bar_title"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".MineMapActivity"
+            android:name=".activity.MineMapActivity"
             android:label="@string/action_bar_title"
             android:screenOrientation="landscape">
             <intent-filter>
@@ -86,29 +86,29 @@
         </activity>
         <activity
 
-                android:name=".MakeNoteActivity"
+                android:name=".activity.MakeNoteActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/action_bar_title"
                 android:screenOrientation="landscape"
                 android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <activity
-                android:name=".RecordAudioActivity"
+                android:name=".activity.RecordAudioActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:label="@string/action_bar_title"
                 android:screenOrientation="landscape"
                 android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <activity
-            android:name=".DocumentListActivity"
+            android:name=".activity.DocumentListActivity"
             android:label="@string/title_document_list"></activity>
         <activity
-            android:name=".DocumentDetailActivity"
+            android:name=".activity.DocumentDetailActivity"
             android:label="@string/title_document_detail"
-            android:parentActivityName=".DocumentListActivity">
+            android:parentActivityName=".activity.DocumentListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.dmi.minesafety.demo.DocumentListActivity" />
+                android:value=".activity.DocumentListActivity" />
         </activity>
     </application>
 
