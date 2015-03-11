@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/lin_navigation_buttons"
+            android:background="@color/citation_form_bg"
+            android:padding="25dp"
+            android:stretchColumns="*">
+
+            <TableRow>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_span="4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="10. Gravity"
+                        android:textColor="@color/inspection_button_blue"
+                        android:textSize="18sp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:id="@+id/txv_label_a"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="A. Injury or illness (has)(is)"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_no_likelihood"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txv_label_a"
+                            android:layout_marginTop="8dp"
+                            android:text="No Likelihood"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_unlikely"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_no_likelihood"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_no_likelihood"
+                            android:text="Unlikely"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_reasonably_likely"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_unlikely"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_unlikely"
+                            android:text="Reasonably Likely"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_highly_likely"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_reasonably_likely"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_reasonably_likely"
+                            android:text="Highly Likely"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_occurred"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_highly_likely"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_highly_likely"
+                            android:text="Occurred"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/txv_label_b"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/chb_no_likelihood"
+                            android:layout_marginTop="20dp"
+                            android:text="B. Injury or illness could reasonably be expected to be"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_no_lost_workdays"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txv_label_b"
+                            android:layout_marginTop="8dp"
+                            android:text="No Lost Workdays"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_lost_workdays"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_no_lost_workdays"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_no_lost_workdays"
+                            android:text="Lost Workdays Or Restricted Duty"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_permanently_disabling"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_lost_workdays"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_lost_workdays"
+                            android:text="Permanently Disabling"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_fatal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_permanently_disabling"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_permanently_disabling"
+                            android:text="Fatal"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/txv_label_c"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/chb_no_lost_workdays"
+                            android:layout_marginTop="20dp"
+                            android:text="C. Significant and Substantial"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txv_label_c"
+                            android:layout_marginTop="8dp"
+                            android:text="Yes"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_yes"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_yes"
+                            android:text="No"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_span="4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="11. Negligence"
+                        android:textColor="@color/inspection_button_blue"
+                        android:textSize="18sp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:padding="15dp">
+
+                        <CheckBox
+                            android:id="@+id/chb_none"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="None"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_low"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_none"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_none"
+                            android:text="Low"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_moderate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_low"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_low"
+                            android:text="Moderate"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_high"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_moderate"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_moderate"
+                            android:text="High"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_reckless_disregard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_high"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_high"
+                            android:text="Reckless Disregard"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_span="4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="12. Type of Action"
+                        android:textColor="@color/inspection_button_blue"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:padding="4dp"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_span="4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="13. Type of Issuance (check one)"
+                        android:textColor="@color/inspection_button_blue"
+                        android:textSize="18sp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:padding="15dp">
+
+                        <CheckBox
+                            android:id="@+id/chb_citation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Citation"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_order"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_citation"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_citation"
+                            android:text="Order"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_safeguard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_order"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_order"
+                            android:text="Safeguard"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_written_notice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_safeguard"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_safeguard"
+                            android:text="Written Notice"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_span="4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="14. Initial Action"
+                        android:textColor="@color/inspection_button_blue"
+                        android:textSize="18sp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:padding="15dp">
+
+                        <CheckBox
+                            android:id="@+id/chb_citation_initial_action"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Citation"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_order_initial_action"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_citation_initial_action"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_citation_initial_action"
+                            android:text="Order"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_safeguard_initial_action"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_order_initial_action"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_order_initial_action"
+                            android:text="Safeguard"
+                            android:textSize="16sp" />
+
+                        <CheckBox
+                            android:id="@+id/chb_written_notice_initial_action"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/chb_safeguard_initial_action"
+                            android:layout_marginLeft="15dp"
+                            android:layout_toRightOf="@+id/chb_safeguard_initial_action"
+                            android:text="Written Notice"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/txv_label_citation_order_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/chb_citation_initial_action"
+                            android:layout_marginTop="20dp"
+                            android:text="Citation / Order No"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/edt_citation_order_no"
+                            android:layout_width="160dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txv_label_citation_order_no"
+                            android:layout_marginTop="8dp"
+                            android:padding="4dp"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/txv_label_dated"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/chb_safeguard_initial_action"
+                            android:layout_below="@+id/chb_citation_initial_action"
+                            android:layout_marginTop="20dp"
+                            android:text="Citation / Order No"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/edt_dated"
+                            android:layout_width="160dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/chb_safeguard_initial_action"
+                            android:layout_below="@+id/txv_label_dated"
+                            android:layout_marginTop="8dp"
+                            android:padding="4dp"
+                            android:textSize="18sp" />
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_span="4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="15. Area or Equipment"
+                        android:textColor="@color/inspection_button_blue"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:minLines="4"
+                        android:padding="4dp"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_span="4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="16. Termination Due"
+                        android:textColor="@color/inspection_button_blue"
+                        android:textSize="18sp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:id="@+id/txv_label_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Date"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/edt_date"
+                            android:layout_width="160dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txv_label_date"
+                            android:layout_marginTop="8dp"
+                            android:padding="4dp"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/txv_label_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="50dp"
+                            android:layout_toRightOf="@+id/edt_date"
+                            android:text="Time (24 Hr. Clock)"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/edt_time"
+                            android:layout_width="160dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/txv_label_time"
+                            android:layout_below="@+id/txv_label_time"
+                            android:layout_marginTop="8dp"
+                            android:padding="4dp"
+                            android:textSize="18sp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </TableRow>
+
+        </TableLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_navigation_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:padding="25dp">
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:background="@color/inspection_button_blue"
+                android:text="BACK"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@color/inspection_button_blue"
+                android:text="NEXT"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
