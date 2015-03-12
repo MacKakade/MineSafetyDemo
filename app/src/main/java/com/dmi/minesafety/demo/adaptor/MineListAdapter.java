@@ -18,6 +18,7 @@ import java.util.List;
 public class MineListAdapter extends ArrayAdapter<DummyContent.Mine> {
 
     LayoutInflater mLayoutInflater;
+
     List<DummyContent.Mine> objects;
 
 
@@ -26,17 +27,16 @@ public class MineListAdapter extends ArrayAdapter<DummyContent.Mine> {
         super(context, resource, objects);
         mLayoutInflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.objects=objects;
+        this.objects = objects;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         DummyContent.Mine mine = objects.get(position);
-        View v =
-                mLayoutInflater
-                        .inflate(R.layout.layout_spinner_item_mines, null,
-                                false);
+        View v = mLayoutInflater.inflate(R.layout.layout_spinner_item_mines,
+                null,
+                false);
 
         ((TextView) v.findViewById(R.id.text_mine_name)).setText(
                 mine.name);

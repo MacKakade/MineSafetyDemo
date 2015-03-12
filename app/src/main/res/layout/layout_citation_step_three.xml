@@ -1,134 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/lin_navigation_buttons"
-        android:background="@color/citation_form_bg"
-        android:padding="25dp"
-        android:stretchColumns="*">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TableRow>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_span="4"
-                android:orientation="vertical">
+        <TableLayout
+                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/table"
+                android:background="@color/citation_form_bg"
+                android:padding="25dp"
+                android:stretchColumns="*">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="17. Action to Terminate"
-                    android:textColor="@color/inspection_button_blue"
-                    android:textSize="18sp" />
+            <TableRow>
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/white"
-                    android:minLines="4"
-                    android:padding="4dp"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </TableRow>
-
-        <TableRow>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_span="4"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="18. Terminate"
-                    android:textColor="@color/inspection_button_blue"
-                    android:textSize="18sp" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/white"
-                    android:padding="15dp">
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_span="4"
+                        android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txv_label_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Date"
-                        android:textSize="18sp" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="17. Action to Terminate"
+                            android:textColor="@color/inspection_button_blue"
+                            android:textSize="18sp"/>
 
                     <EditText
-                        android:id="@+id/edt_date"
-                        android:layout_width="160dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/white"
+                            android:minLines="4"
+                            android:padding="4dp"
+                            android:textSize="18sp"/>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/txv_label_date"
-                        android:layout_marginTop="8dp"
-                        android:padding="4dp"
-                        android:textSize="18sp" />
+                        android:layout_margin="20dp"
+                        android:layout_span="4"
+                        android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txv_label_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="50dp"
-                        android:layout_toRightOf="@+id/edt_date"
-                        android:text="Time (24 Hr. Clock)"
-                        android:textSize="18sp" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="18. Terminate"
+                            android:textColor="@color/inspection_button_blue"
+                            android:textSize="18sp"/>
 
-                    <EditText
-                        android:id="@+id/edt_time"
-                        android:layout_width="160dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/txv_label_time"
-                        android:layout_below="@+id/txv_label_time"
-                        android:layout_marginTop="8dp"
-                        android:padding="4dp"
-                        android:textSize="18sp" />
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/white"
+                            android:padding="15dp">
+
+                        <TextView
+                                android:id="@+id/txv_label_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Date"
+                                android:textSize="18sp"/>
+
+                        <EditText
+                                android:id="@+id/edt_date"
+                                android:layout_width="160dp"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/txv_label_date"
+                                android:layout_marginTop="8dp"
+                                android:padding="4dp"
+                                android:textSize="18sp"/>
+
+                        <TextView
+                                android:id="@+id/txv_label_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="50dp"
+                                android:layout_toRightOf="@+id/edt_date"
+                                android:text="Time (24 Hr. Clock)"
+                                android:textSize="18sp"/>
+
+                        <EditText
+                                android:id="@+id/edt_time"
+                                android:layout_width="160dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignLeft="@+id/txv_label_time"
+                                android:layout_below="@+id/txv_label_time"
+                                android:layout_marginTop="8dp"
+                                android:padding="4dp"
+                                android:textSize="18sp"/>
 
 
-                </RelativeLayout>
-            </LinearLayout>
-        </TableRow>
-    </TableLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
 
 
-    <LinearLayout
-        android:id="@+id/lin_navigation_buttons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:padding="25dp">
+        <LinearLayout
+                android:id="@+id/lin_navigation_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/table"
+                android:gravity="center"
+                android:padding="25dp">
 
-        <Button
-            android:id="@+id/btn_next"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="25dp"
-            android:background="@color/inspection_button_blue"
-            android:text="BACK"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:background="@color/inspection_button_blue"
+                    android:text="BACK"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"/>
 
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:background="@color/inspection_button_blue"
-            android:text="NEXT"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-    </LinearLayout>
+            <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/inspection_button_blue"
+                    android:text="NEXT"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"/>
+        </LinearLayout>
 
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

@@ -1,320 +1,327 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/btn_next"
-        android:background="@color/citation_form_bg"
-        android:padding="25dp"
-        android:stretchColumns="*">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TableRow>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+        <TableLayout
+                android:id="@+id/table"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:background="@color/citation_form_bg"
+                android:padding="25dp"
+                android:stretchColumns="*">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1. Date"
-                    android:textColor="@color/inspection_button_blue"
-                    android:textSize="18sp" />
+            <TableRow>
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/white"
-                    android:padding="4dp"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1. Time"
-                    android:textColor="@color/inspection_button_blue"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/white"
-                    android:padding="4dp"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1. Citation"
-                    android:textColor="@color/inspection_button_blue"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/white"
-                    android:padding="4dp"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1. Served To"
-                    android:textColor="@color/inspection_button_blue"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/white"
-                    android:padding="4dp"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </TableRow>
-
-        <TableRow>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="5. Mine"
-                    android:textColor="@color/inspection_button_blue"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/white"
-                    android:padding="4dp"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="6. Mine ID"
-                    android:textColor="@color/inspection_button_blue"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/white"
-                    android:padding="4dp"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_span="2"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="7. Operator"
-                    android:textColor="@color/inspection_button_blue"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/white"
-                    android:padding="4dp"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-        </TableRow>
-
-        <TableRow>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_span="4"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="8. Conditions or Practises"
-                    android:textColor="@color/inspection_button_blue"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/white"
-                    android:minLines="5"
-                    android:padding="4dp"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </TableRow>
-
-        <TableRow>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_span="4"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="9. Violations"
-                    android:textColor="@color/inspection_button_blue"
-                    android:textSize="18sp" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/white"
-                    android:padding="15dp">
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txv_label_type"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="A. Type"
-                        android:textSize="16sp" />
-
-                    <CheckBox
-                        android:id="@+id/chb_health"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/txv_label_type"
-                        android:layout_marginTop="8dp"
-                        android:text="Health"
-                        android:textSize="16sp" />
-
-                    <CheckBox
-                        android:id="@+id/chb_safety"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/chb_health"
-                        android:layout_marginLeft="15dp"
-                        android:layout_toRightOf="@+id/chb_health"
-                        android:text="Safety"
-                        android:textSize="16sp" />
-
-                    <CheckBox
-                        android:id="@+id/chb_other"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/chb_safety"
-                        android:layout_marginLeft="15dp"
-                        android:layout_toRightOf="@+id/chb_safety"
-                        android:text="Other"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/txv_label_section"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/txv_label_type"
-                        android:layout_marginLeft="80dp"
-                        android:layout_toRightOf="@+id/chb_other"
-                        android:text="B. Section of Act"
-                        android:textSize="16sp" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1. Date"
+                            android:textColor="@color/inspection_button_blue"
+                            android:textSize="18sp"/>
 
                     <EditText
-                        android:id="@+id/edt_section"
-                        android:layout_width="200dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/white"
+                            android:padding="4dp"
+                            android:textSize="18sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/txv_label_section"
-                        android:layout_below="@+id/txv_label_section"
-                        android:layout_marginTop="8dp"
-                        android:padding="4dp" />
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txv_label_part"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/txv_label_type"
-                        android:layout_marginLeft="80dp"
-                        android:layout_toRightOf="@+id/edt_section"
-                        android:text="C. Part/Section of Title 30 CFR"
-                        android:textSize="16sp" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="2. Time"
+                            android:textColor="@color/inspection_button_blue"
+                            android:textSize="18sp"/>
 
                     <EditText
-                        android:layout_width="200dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/white"
+                            android:padding="4dp"
+                            android:textSize="18sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/txv_label_part"
-                        android:layout_below="@+id/txv_label_part"
-                        android:layout_marginTop="8dp"
-                        android:padding="4dp" />
-                </RelativeLayout>
-            </LinearLayout>
-        </TableRow>
-    </TableLayout>
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_next"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginTop="25dp"
-        android:background="@color/inspection_button_blue"
-        android:text="NEXT"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="3. Citation"
+                            android:textColor="@color/inspection_button_blue"
+                            android:textSize="18sp"/>
 
-</RelativeLayout>
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/white"
+                            android:padding="4dp"
+                            android:textSize="18sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="4. Served To"
+                            android:textColor="@color/inspection_button_blue"
+                            android:textSize="18sp"/>
+
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/white"
+                            android:padding="4dp"
+                            android:textSize="18sp"/>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="5. Mine"
+                            android:textColor="@color/inspection_button_blue"
+                            android:textSize="18sp"/>
+
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/white"
+                            android:padding="4dp"
+                            android:textSize="18sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="6. Mine ID"
+                            android:textColor="@color/inspection_button_blue"
+                            android:textSize="18sp"/>
+
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/white"
+                            android:padding="4dp"
+                            android:textSize="18sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_span="2"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="7. Operator"
+                            android:textColor="@color/inspection_button_blue"
+                            android:textSize="18sp"/>
+
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/white"
+                            android:padding="4dp"
+                            android:textSize="18sp"/>
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_span="4"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="8. Conditions or Practises"
+                            android:textColor="@color/inspection_button_blue"
+                            android:textSize="18sp"/>
+
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/white"
+                            android:minLines="5"
+                            android:padding="4dp"
+                            android:textSize="18sp"/>
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_span="4"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="9. Violations"
+                            android:textColor="@color/inspection_button_blue"
+                            android:textSize="18sp"/>
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/white"
+                            android:padding="15dp">
+
+                        <TextView
+                                android:id="@+id/txv_label_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="A. Type"
+                                android:textSize="16sp"/>
+
+                        <CheckBox
+                                android:id="@+id/chb_health"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/txv_label_type"
+                                android:layout_marginTop="8dp"
+                                android:text="Health"
+                                android:textSize="16sp"/>
+
+                        <CheckBox
+                                android:id="@+id/chb_safety"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/chb_health"
+                                android:layout_marginLeft="15dp"
+                                android:layout_toRightOf="@+id/chb_health"
+                                android:text="Safety"
+                                android:textSize="16sp"/>
+
+                        <CheckBox
+                                android:id="@+id/chb_other"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/chb_safety"
+                                android:layout_marginLeft="15dp"
+                                android:layout_toRightOf="@+id/chb_safety"
+                                android:text="Other"
+                                android:textSize="16sp"/>
+
+                        <TextView
+                                android:id="@+id/txv_label_section"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/txv_label_type"
+                                android:layout_marginLeft="80dp"
+                                android:layout_toRightOf="@+id/chb_other"
+                                android:text="B. Section of Act"
+                                android:textSize="16sp"/>
+
+                        <EditText
+                                android:id="@+id/edt_section"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignLeft="@+id/txv_label_section"
+                                android:layout_below="@+id/txv_label_section"
+                                android:layout_marginTop="8dp"
+                                android:padding="4dp"/>
+
+                        <TextView
+                                android:id="@+id/txv_label_part"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBottom="@+id/txv_label_type"
+                                android:layout_marginLeft="80dp"
+                                android:layout_toRightOf="@+id/edt_section"
+                                android:text="C. Part/Section of Title 30 CFR"
+                                android:textSize="16sp"/>
+
+                        <EditText
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignLeft="@+id/txv_label_part"
+                                android:layout_below="@+id/txv_label_part"
+                                android:layout_marginTop="8dp"
+                                android:padding="4dp"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
+
+        <Button
+                android:id="@+id/btn_next"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/table"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp"
+                android:layout_marginTop="25dp"
+                android:background="@color/inspection_button_blue"
+                android:text="NEXT"
+                android:textColor="@color/white"
+                android:textSize="18sp"/>
+
+    </RelativeLayout>
+</ScrollView>

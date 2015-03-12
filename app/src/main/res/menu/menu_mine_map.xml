@@ -14,4 +14,10 @@
         android:title="Start Inspection"
         app:showAsAction="always|withText" />
 
+    <item
+            android:id="@+id/myswitch"
+            android:title=""
+            app:showAsAction="always"
+            app:actionLayout="@layout/switch_layout"
+            />
 </menu>

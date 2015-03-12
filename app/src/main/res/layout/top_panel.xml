@@ -4,6 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:id="@+id/top_panel"
+        android:padding="10dp"
         android:background="#dce6ef"
         android:layout_height="wrap_content">
 
@@ -35,7 +36,8 @@
     <android.support.v7.widget.SwitchCompat
             android:id="@+id/switch_view"
             android:layout_centerVertical="true"
-            android:layout_margin="10dp"
+
+            android:visibility="gone"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

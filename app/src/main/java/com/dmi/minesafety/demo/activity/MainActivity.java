@@ -14,13 +14,13 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import com.dmi.minesafety.demo.adaptor.MineListAdapter;
-import com.dmi.minesafety.demo.widget.MapWrapperLayout;
-import com.dmi.minesafety.demo.fragment.MineListFragment;
-import com.dmi.minesafety.demo.widget.OnInfoWindowElemTouchListener;
 import com.dmi.minesafety.demo.R;
+import com.dmi.minesafety.demo.adaptor.MineListAdapter;
 import com.dmi.minesafety.demo.adaptor.SearchAdapter;
 import com.dmi.minesafety.demo.dummy.DummyContent;
+import com.dmi.minesafety.demo.fragment.MineListFragment;
+import com.dmi.minesafety.demo.widget.MapWrapperLayout;
+import com.dmi.minesafety.demo.widget.OnInfoWindowElemTouchListener;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -35,6 +35,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SwitchCompat;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -74,7 +75,7 @@ public class MainActivity extends ActionBarActivity
 
     private int mCurrentSelection = 0;
 
-    private SwitchCompat mSwitchView;
+//    private SwitchCompat mSwitchView;
 
     private ArrayList<DummyContent.Mine> tempArrayList;
 
@@ -91,33 +92,33 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mSwitchView = (SwitchCompat) findViewById(
-                R.id.switch_view);
+//        mSwitchView = (SwitchCompat) findViewById(
+//                R.id.switch_view);
 
-        mSwitchView.setOnCheckedChangeListener(
-                new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView,
-                            boolean isChecked) {
-                        if (!isChecked) {
-                                mSupportMapFragment = SupportMapFragment
-                                        .newInstance();
-                            mCurrentFragment = mSupportMapFragment;
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.layout_container,
-                                            mSupportMapFragment)
-                                    .commit();
-                            mSupportMapFragment.getMapAsync(MainActivity.this);
-                        } else {
-                            mineListFragment = MineListFragment.newInstance();
-
-                            mCurrentFragment = mineListFragment;
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.layout_container,
-                                            mineListFragment).commit();
-                        }
-                    }
-                });
+//        mSwitchView.setOnCheckedChangeListener(
+//                new CompoundButton.OnCheckedChangeListener() {
+//                    @Override
+//                    public void onCheckedChanged(CompoundButton buttonView,
+//                            boolean isChecked) {
+//                        if (!isChecked) {
+//                                mSupportMapFragment = SupportMapFragment
+//                                        .newInstance();
+//                            mCurrentFragment = mSupportMapFragment;
+//                            getSupportFragmentManager().beginTransaction()
+//                                    .replace(R.id.layout_container,
+//                                            mSupportMapFragment)
+//                                    .commit();
+//                            mSupportMapFragment.getMapAsync(MainActivity.this);
+//                        } else {
+//                            mineListFragment = MineListFragment.newInstance();
+//
+//                            mCurrentFragment = mineListFragment;
+//                            getSupportFragmentManager().beginTransaction()
+//                                    .replace(R.id.layout_container,
+//                                            mineListFragment).commit();
+//                        }
+//                    }
+//                });
 
 //        mMapView = (ImageView) findViewById(
 //                R.id.map_view);
@@ -203,47 +204,92 @@ public class MainActivity extends ActionBarActivity
         });
 
         search.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
-            @Override
-            public boolean onSuggestionSelect(int i) {
-                return false;
-            }
+                                           @Override
+                                           public boolean onSuggestionSelect(
+                                                   int i) {
+                                               return false;
+                                           }
 
-            @Override
-            public boolean onSuggestionClick(int i) {
-                hideKeyboard();
-                if (mCurrentFragment instanceof MineListFragment) {
-                    List<DummyContent.Mine> tempList
-                            = new ArrayList<DummyContent.Mine>();
-                        tempList.add(tempArrayList.get(i));
-                        mineListAdapter = new MineListAdapter(MainActivity.this,
-                                R.layout.layout_spinner_item_mines, tempList);
-                        mineListFragment.getListView().setAdapter(
-                                mineListAdapter);
-                        search.setQuery(tempArrayList.get(i).id, false);
-                    } else {
-                        String clickedMineId = tempArrayList.get(i).id;
-                        for (DummyContent.Mine mine : DummyContent.MINES) {
-                            if (clickedMineId.equals(mine.id)) {
-                                for (Marker marker : markerList) {
-                                    if (marker.getPosition()
-                                            .equals(new LatLng(mine.lat,
-                                                    mine.lng))) {
-                                        onMarkerClickListener
-                                                .onMarkerClick(marker);
-                                        break;
-                                    }
-                                }
-                            }
+                                           @Override
+                                           public boolean onSuggestionClick(
+                                                   int i) {
+                                               hideKeyboard();
+                                               if (mCurrentFragment instanceof MineListFragment) {
+                                                   List<DummyContent.Mine>
+                                                           tempList
+                                                           = new ArrayList<DummyContent.Mine>();
+                                                   tempList.add(tempArrayList
+                                                           .get(i));
+                                                   mineListAdapter
+                                                           = new MineListAdapter(
+                                                           MainActivity.this,
+                                                           R.layout.layout_spinner_item_mines,
+                                                           tempList);
+                                                   mineListFragment
+                                                           .getListView()
+                                                           .setAdapter(
+                                                                   mineListAdapter);
+                                                   search.setQuery(tempArrayList
+                                                           .get(i).id, false);
+                                               } else {
+                                                   String clickedMineId
+                                                           = tempArrayList
+                                                           .get(i).id;
+                                                   for (DummyContent.Mine mine : DummyContent.MINES) {
+                                                       if (clickedMineId
+                                                               .equals(mine.id)) {
+                                                           for (Marker marker : markerList) {
+                                                               if (marker
+                                                                       .getPosition()
+                                                                       .equals(new LatLng(
+                                                                               mine.lat,
+                                                                               mine.lng))) {
+                                                                   onMarkerClickListener
+                                                                           .onMarkerClick(
+                                                                                   marker);
+                                                                   break;
+                                                               }
+                                                           }
+                                                       }
+                                                   }
+                                               }
+                                               return true;
+                                           }
+                                       }
+
+        );
+
+        MenuItem switchItem = menu.findItem(R.id.myswitch);
+        switchItem.setActionView(R.layout.switch_layout);
+
+        ((SwitchCompat) switchItem.getActionView()
+                .findViewById(R.id.switch_view)).setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView,
+                            boolean isChecked) {
+                        if (!isChecked) {
+                            mSupportMapFragment = SupportMapFragment
+                                    .newInstance();
+                            mCurrentFragment = mSupportMapFragment;
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.layout_container,
+                                            mSupportMapFragment)
+                                    .commit();
+                            mSupportMapFragment.getMapAsync(MainActivity.this);
+                        } else {
+                            mineListFragment = MineListFragment.newInstance();
+
+                            mCurrentFragment = mineListFragment;
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.layout_container,
+                                            mineListFragment).commit();
                         }
                     }
-                    return true;
-                }
-            }
+                });
 
-            );
-
-            return super.onCreateOptionsMenu(menu);
-        }
+        return super.onCreateOptionsMenu(menu);
+    }
 
     private Cursor getCursor() {
 
@@ -268,7 +314,8 @@ public class MainActivity extends ActionBarActivity
         if (textLength > 0) {
             for (DummyContent.Mine mine : DummyContent.MINES) {
                 if (textLength <= mine.id.length()) {
-                    if ((mine.id.contains(query) || mine.name.toLowerCase().contains(query.toLowerCase())) && !tempArrayList
+                    if ((mine.id.contains(query) || mine.name.toLowerCase()
+                            .contains(query.toLowerCase())) && !tempArrayList
                             .contains(mine)) {
                         tempArrayList.add(mine);
                     }
@@ -357,7 +404,7 @@ public class MainActivity extends ActionBarActivity
                     for (DummyContent.Mine mine : DummyContent.MINES) {
                         if (currentMarker.getPosition()
                                 .equals(new LatLng(mine.lat, mine.lng))) {
-                            intent.putExtra("mine_info",mine.index);
+                            intent.putExtra("mine_info", mine.index);
                         }
                     }
 
@@ -375,7 +422,7 @@ public class MainActivity extends ActionBarActivity
                 MineMapActivity.class);
         for (DummyContent.Mine mine : DummyContent.MINES) {
             if (id.equalsIgnoreCase(mine.id)) {
-                intent.putExtra("mine_info",mine.index);
+                intent.putExtra("mine_info", mine.index);
             }
         }
         startActivity(intent);

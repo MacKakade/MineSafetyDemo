@@ -1,8 +1,11 @@
 package com.dmi.minesafety.demo.activity;
 
+import com.google.android.gms.maps.SupportMapFragment;
+
 import com.dmi.minesafety.demo.fragment.DocumentDetailFragment;
 import com.dmi.minesafety.demo.fragment.DocumentListFragment;
 import com.dmi.minesafety.demo.fragment.DocumentListParentFragment;
+import com.dmi.minesafety.demo.fragment.MineListFragment;
 import com.dmi.minesafety.demo.fragment.MineMapFragment;
 import com.dmi.minesafety.demo.R;
 import com.dmi.minesafety.demo.adaptor.SearchAdapter;
@@ -65,7 +68,7 @@ public class MineMapActivity extends ActionBarActivity
 //    private ImageView mMapView, mListView;
 
 
-    private SwitchCompat mSwitchView;
+//    private SwitchCompat mSwitchView;
 
     private int mCurrentSelection = 0;
 
@@ -107,30 +110,30 @@ public class MineMapActivity extends ActionBarActivity
         mSelectAll = (Button) findViewById(
                 R.id.button_select_all);
 
-        mSwitchView = (SwitchCompat) findViewById(
-                R.id.switch_view);
+//        mSwitchView = (SwitchCompat) findViewById(
+//                R.id.switch_view);
 
-        mSwitchView.setOnCheckedChangeListener(
-                new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView,
-                            boolean isChecked) {
-                        if (!isChecked) {
-                            Fragment fragment = new MineMapFragment();
-                            mCurrentFragment = fragment;
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.imageFrame, fragment)
-                                    .commit();
-                        } else {
-                            Fragment fragment
-                                    = new DocumentListParentFragment();
-                            mCurrentFragment = fragment;
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.imageFrame, fragment)
-                                    .commit();
-                        }
-                    }
-                });
+//        mSwitchView.setOnCheckedChangeListener(
+//                new CompoundButton.OnCheckedChangeListener() {
+//                    @Override
+//                    public void onCheckedChanged(CompoundButton buttonView,
+//                            boolean isChecked) {
+//                        if (!isChecked) {
+//                            Fragment fragment = new MineMapFragment();
+//                            mCurrentFragment = fragment;
+//                            getSupportFragmentManager().beginTransaction()
+//                                    .replace(R.id.imageFrame, fragment)
+//                                    .commit();
+//                        } else {
+//                            Fragment fragment
+//                                    = new DocumentListParentFragment();
+//                            mCurrentFragment = fragment;
+//                            getSupportFragmentManager().beginTransaction()
+//                                    .replace(R.id.imageFrame, fragment)
+//                                    .commit();
+//                        }
+//                    }
+//                });
 
         mSelectAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -321,6 +324,37 @@ public class MineMapActivity extends ActionBarActivity
             }
         });
 
+
+        MenuItem switchItem = menu.findItem(R.id.myswitch);
+        switchItem.setActionView(R.layout.switch_layout);
+
+        ((SwitchCompat) switchItem.getActionView()
+                .findViewById(R.id.switch_view)).setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView,
+                            boolean isChecked) {
+                        if (!isChecked) {
+                            Fragment fragment = new MineMapFragment();
+                            mCurrentFragment = fragment;
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.imageFrame, fragment)
+                                    .commit();
+                        } else {
+                            Fragment fragment
+                                    = new DocumentListParentFragment();
+                            mCurrentFragment = fragment;
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.imageFrame, fragment)
+                                    .commit();
+                        }
+
+                    }
+
+                });
+
+
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -340,7 +374,6 @@ public class MineMapActivity extends ActionBarActivity
             startActivity(intent);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

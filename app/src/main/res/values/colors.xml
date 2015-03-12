@@ -5,7 +5,7 @@
     <color name="white">#ffffffff</color>
     <color name="blue_link">#3A61AF</color>
     <color name="off_white">#99ffffff</color>
-    <color name="action_bar_bg">#9A0000</color>
+    <color name="action_bar_bg">#cf0202</color>
     <color name="action_bar_search_box">#E2E2EA</color>
     <color name="controls_bar_create_note">#0F112A</color>
     <color name="button_record_location">#3F67BF</color>
