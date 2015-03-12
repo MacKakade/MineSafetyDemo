@@ -11,22 +11,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <ImageView android:id="@+id/previous_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:clickable="false"
-                android:src="@drawable/ic_previous"
-                android:text="">
-        </ImageView>
-        <ImageView android:id="@+id/next_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:clickable="false"
-                android:src="@drawable/ic_next"
-                android:text="">
-        </ImageView>
+        <Button android:id="@+id/previous_button"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentLeft="true"
+                   android:background="?selectableItemBackground"
+                   android:clickable="false"
+                   android:drawableLeft="@drawable/ic_previous"
+                   android:text="">
+        </Button>
+        <Button android:id="@+id/next_button"
+                   android:background="?selectableItemBackground"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentRight="true"
+                   android:clickable="false"
+                   android:textColor="@color/blue_link"
+                   android:drawableRight="@drawable/ic_next"
+                   android:text="">
+        </Button>
         <TextView
                 android:id="@+id/step_number_text_view"
                 android:layout_width="wrap_content"
@@ -38,7 +41,7 @@
     </RelativeLayout>
 
 
-    <android.support.v4.view.ViewPager
+    <com.dmi.minesafety.demo.widget.NonSwipeableViewPager
             android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_width="match_parent"
