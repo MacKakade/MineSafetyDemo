@@ -12,19 +12,20 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass. Activities that contain this fragment
- * must implement the {@link com.dmi.minesafety.demo.fragment.VoilationDataFragment} interface to handle interaction
- * events. Use the {@link com.dmi.minesafety.demo.fragment.VoilationDataFragment#newInstance} factory method to create
+ * must implement the {@link ViolationDataFragment} interface to handle interaction
+ * events. Use the {@link ViolationDataFragment#newInstance} factory method to create
  * an instance of this fragment.
  */
-public class VoilationDataFragment extends Fragment {
+public class ViolationDataFragment extends Fragment {
 
+    View view;
 
-    public static VoilationDataFragment newInstance() {
-        VoilationDataFragment fragment = new VoilationDataFragment();
+    public static ViolationDataFragment newInstance() {
+        ViolationDataFragment fragment = new ViolationDataFragment();
         return fragment;
     }
 
-    public VoilationDataFragment() {
+    public ViolationDataFragment() {
         // Required empty public constructor
     }
 
@@ -36,8 +37,8 @@ public class VoilationDataFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.layout_citation_step_one, container, false);
+        view = inflater.inflate(R.layout.layout_citation_step_one, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

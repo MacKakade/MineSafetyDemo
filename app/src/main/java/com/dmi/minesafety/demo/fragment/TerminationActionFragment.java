@@ -19,6 +19,8 @@ import android.view.ViewGroup;
  */
 public class TerminationActionFragment extends Fragment {
 
+    View view;
+
     public static TerminationActionFragment newInstance() {
         TerminationActionFragment fragment = new TerminationActionFragment();
         return fragment;
@@ -36,9 +38,8 @@ public class TerminationActionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater
-                .inflate(R.layout.layout_citation_step_three, container, false);
+        view = inflater.inflate(R.layout.layout_citation_step_three, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

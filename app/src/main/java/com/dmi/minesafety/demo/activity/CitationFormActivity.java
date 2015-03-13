@@ -4,7 +4,7 @@ import com.dmi.minesafety.demo.R;
 import com.dmi.minesafety.demo.fragment.AutomatedDataFragment;
 import com.dmi.minesafety.demo.fragment.InspectorEvaluationFragment;
 import com.dmi.minesafety.demo.fragment.TerminationActionFragment;
-import com.dmi.minesafety.demo.fragment.VoilationDataFragment;
+import com.dmi.minesafety.demo.fragment.ViolationDataFragment;
 import com.dmi.minesafety.demo.widget.NonSwipeableViewPager;
 
 import android.content.Context;
@@ -19,12 +19,15 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class CitationFormActivity extends ActionBarActivity {
@@ -54,11 +57,17 @@ public class CitationFormActivity extends ActionBarActivity {
 
     private CitationPagerAdaptor mCitationPagerAdaptor;
 
+    ArrayList<ScrollView> mPdfViews = new ArrayList<>();
+
+    LinearLayout ll;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_citation);
+
+        ll = new LinearLayout(this);
 
         file = new File(Environment.getExternalStorageDirectory(), "new.pdf");
         document = new PdfDocument();
@@ -78,10 +87,14 @@ public class CitationFormActivity extends ActionBarActivity {
         mBtnPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (mPosition != 0) {
                     mPosition--;
+                    mPdfViews.remove(mPosition);
                     mViewPager.setCurrentItem(mPosition, true);
                     textViewStepNumber.setText(mArray[mPosition]);
+                } else {
+                    mPdfViews.clear();
                 }
             }
         });
@@ -90,19 +103,39 @@ public class CitationFormActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
+                FragmentStatePagerAdapter fragmentStatePagerAdapter
+                        = (FragmentStatePagerAdapter) mViewPager.getAdapter();
+
+                Fragment currentFragment = (Fragment) fragmentStatePagerAdapter
+                        .instantiateItem(mViewPager, mPosition);
+
                 if (mPosition != MAX_COUNT - 1) {
+
                     mPosition++;
+                    mPdfViews.add((ScrollView) currentFragment.getView()
+                            .findViewById(
+                                    R.id.scroll_container));
+//                    makeDocument(mViewPager.getChildAt(mPosition-1));
                     mViewPager.setCurrentItem(mPosition, true);
                     textViewStepNumber.setText(mArray[mPosition]);
+
                 } else {
-                   // makeDocument();
+
+                    // close the document
+                    mPdfViews.add((ScrollView) currentFragment.getView()
+                            .findViewById(
+                                    R.id.scroll_container));
+                    makeDocument();
+                    document.close();
                 }
+
+
             }
         });
 
         mViewPager.setAdapter(mCitationPagerAdaptor);
-        mViewPager
-                .setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mViewPager.setOnPageChangeListener(
+                new ViewPager.OnPageChangeListener() {
                     @Override
                     public void onPageScrolled(int position,
                             float positionOffset,
@@ -130,6 +163,7 @@ public class CitationFormActivity extends ActionBarActivity {
                                             R.drawable.ic_next), null);
                         }
 
+
                     }
 
                     @Override
@@ -147,15 +181,17 @@ public class CitationFormActivity extends ActionBarActivity {
             super(fragmentManager);
         }
 
+
         @Override
         public Fragment getItem(int position) {
             Fragment fragment = null;
             switch (position) {
                 case 0:
-                    fragment = VoilationDataFragment
+                    fragment = ViolationDataFragment
                             .newInstance();
                     break;
                 case 1:
+
                     fragment = InspectorEvaluationFragment
                             .newInstance();
                     break;
@@ -172,45 +208,52 @@ public class CitationFormActivity extends ActionBarActivity {
             return fragment;
         }
 
+
         @Override
         public int getCount() {
             return MAX_COUNT;
         }
+
+
     }
 
 
-    public void makeDocument(View view) {
+    public void makeDocument() {
 
-        // crate a page description
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(
-                getScreenWidth(this), getScreenHeight(this), pageNumberPDF).create();
+        for (ScrollView view : mPdfViews) {
+            // crate a page description
+            PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(
+                    view.getChildAt(0).getMeasuredWidth(), view.getChildAt(
+                    0).getMeasuredHeight(), pageNumberPDF)
+                    .create();
 
-        // start a page
-        PdfDocument.Page page = document.startPage(pageInfo);
+            // start a page
+            PdfDocument.Page page = document.startPage(pageInfo);
 
-        // draw something on the page
-        View content = view;
-        content.draw(page.getCanvas());
+            // draw something on the page
+            ScrollView content = view;
 
-        FileOutputStream os = null;
-        try {
-            os = new FileOutputStream(file);
-        } catch (FileNotFoundException e) {
-            System.err.println("Error while creating FileOutputStream");
+            content.draw(page.getCanvas());
+
+            FileOutputStream os = null;
+            try {
+                os = new FileOutputStream(file);
+            } catch (FileNotFoundException e) {
+                System.err.println("Error while creating FileOutputStream");
+            }
+            // finish the page
+            document.finishPage(page);
+
+            try {
+                document.writeTo(os);
+            } catch (IOException e2) {
+                e2.printStackTrace();
+            }
+
+            pageNumberPDF++;
         }
-        // finish the page
-        document.finishPage(page);
 
-        try {
-            document.writeTo(os);
-        } catch (IOException e2) {
-            e2.printStackTrace();
-        }
 
-        // close the document
-        document.close();
-
-        pageNumberPDF++;
     }
 
     public static int getScreenWidth(Context context) {
