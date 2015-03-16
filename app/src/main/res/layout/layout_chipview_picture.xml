@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/chips_edittext_bg"
+    android:shadowColor="#FFFFFF"
+    android:shadowDy="1"
+    android:shadowRadius="0.01">
+
+    <ImageView
+        android:id="@+id/imv_thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#80000000"
+        android:padding="3dp">
+
+        <ImageButton
+            android:id="@+id/btn_delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="4dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_cancel" />
+
+        <TextView
+            android:id="@+id/txv_file_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txv_file_size"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/btn_delete"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="File name"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txv_file_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/btn_delete"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/btn_delete"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="21.9 MB"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</RelativeLayout>
