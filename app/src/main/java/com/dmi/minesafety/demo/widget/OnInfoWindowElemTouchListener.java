@@ -27,7 +27,7 @@ public abstract class OnInfoWindowElemTouchListener implements OnTouchListener {
     private boolean pressed = false;
 
     //Marker window item co-ordinates
-    private final float correctionFactor = 47, markerItemHeight = 47;
+    private final float correctionFactor = -47, markerItemHeight = 47;
 
     private boolean itemClicked;
 

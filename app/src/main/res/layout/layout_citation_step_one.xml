@@ -214,32 +214,44 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:background="@color/white"
-                        android:minLines="5"
                         android:gravity="top"
-                        android:text="This is a test. This is a test. This is a test. This is a test. This is a test."
+                        android:minLines="5"
                         android:padding="4dp"
+                        android:text="@string/text_dummy_citation"
                         android:textSize="18sp" />
                 </LinearLayout>
             </TableRow>
 
             <TableRow>
 
-                <LinearLayout
-                    android:id="@+id/linear_attachment"
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_span="4"
-                    android:orientation="vertical">
+                    android:layout_span="2">
 
-                    <EditText
-                        android:id="@+id/edt_attachment"
-                        android:layout_width="400px"
+                    <LinearLayout
+                        android:id="@+id/linear_attachment"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableRight="@drawable/ic_menu_attachment"
-                        android:editable="false"
-                        android:hint="Attachment" />
-                </LinearLayout>
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginRight="15dp"
+                        android:layout_span="2"
+                        android:layout_toLeftOf="@+id/btn_attachment"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/btn_attachment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_menu_attachment" />
+                </RelativeLayout>
             </TableRow>
 
             <TableRow>
@@ -278,8 +290,8 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/txv_label_type"
                             android:layout_marginTop="8dp"
-                            android:text="Health"
                             android:checked="true"
+                            android:text="Health"
                             android:textSize="16sp" />
 
                         <CheckBox
@@ -319,8 +331,8 @@
                             android:layout_alignLeft="@+id/txv_label_section"
                             android:layout_below="@+id/txv_label_section"
                             android:layout_marginTop="8dp"
-                            android:text="2A"
-                            android:padding="4dp" />
+                            android:padding="4dp"
+                            android:text="2A" />
 
                         <TextView
                             android:id="@+id/txv_label_part"

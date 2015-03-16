@@ -2,6 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/file"
+        android:title="Attach a file"/>
+
+    <item
         android:id="@+id/picture"
         android:title="Attach picture"/>
 
@@ -13,7 +17,4 @@
         android:id="@+id/audio"
         android:title="Attach audio"/>
 
-    <item
-        android:id="@+id/file"
-        android:title="Attach file"/>
 </menu>
