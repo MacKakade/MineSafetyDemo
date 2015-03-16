@@ -47,7 +47,6 @@ public class InspectionOptionsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inspection_options);
 
-
         index = getIntent().getExtras().getInt("mine_info");
 
         mMineTitle = (TextView) findViewById(
@@ -59,7 +58,8 @@ public class InspectionOptionsActivity extends ActionBarActivity {
         DummyContent.Mine mine = DummyContent.MINES.get(index);
         mMineTitle.setText(mine.name);
         mOrgTitle.setText(
-                mine.operatorName + ", " + mine.city + ", " + mine.state + ", ID:"
+                mine.operatorName + ", " + mine.city + ", " + mine.state
+                        + ", ID:"
                         + mine.id);
 
 //        Button b = (Button) findViewById(R.id.btn_record_location);
@@ -123,30 +123,15 @@ public class InspectionOptionsActivity extends ActionBarActivity {
             }
         });
 
-        RelativeLayout btnAllForms = (RelativeLayout) findViewById(
+        RelativeLayout btnIssueCitations = (RelativeLayout) findViewById(
                 R.id.rel_all_forms);
 
-        btnAllForms.setOnClickListener(new View.OnClickListener() {
+        btnIssueCitations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(InspectionOptionsActivity.this,
+                        CitationFormActivity.class));
 
-                AlertDialog.Builder alert = new AlertDialog.Builder(
-                        InspectionOptionsActivity.this);
-
-                alertDialog = alert.create();
-
-                View view = getLayoutInflater()
-                        .inflate(R.layout.layout_all_forms, null, false);
-                view.findViewById(R.id.close)
-                        .setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                alertDialog.dismiss();
-                            }
-                        });
-
-                alertDialog.setView(view);
-                alertDialog.show();
             }
         });
 
@@ -186,6 +171,31 @@ public class InspectionOptionsActivity extends ActionBarActivity {
 
                 alertDialog.setView(view);
                 alertDialog.show();
+            }
+        });
+
+        Button buttonAllForms = (Button) findViewById(R.id.btn_all_forms);
+        buttonAllForms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(
+                        InspectionOptionsActivity.this);
+
+                alertDialog = alert.create();
+
+                View view = getLayoutInflater()
+                        .inflate(R.layout.layout_all_forms, null, false);
+                view.findViewById(R.id.close)
+                        .setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                alertDialog.dismiss();
+                            }
+                        });
+
+                alertDialog.setView(view);
+                alertDialog.show();
+
             }
         });
 

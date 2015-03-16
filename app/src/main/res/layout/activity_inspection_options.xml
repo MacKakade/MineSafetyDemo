@@ -1,360 +1,377 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/rel_controls"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="#dce6ef"
-        android:orientation="horizontal"
-        android:paddingBottom="6dp"
-        android:paddingTop="6dp">
+            android:id="@+id/rel_controls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#dce6ef"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp">
 
         <TextView
-            android:id="@+id/title_mine"
-            style="?android:textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/name_mine_organisation" />
+                android:id="@+id/title_mine"
+                style="?android:textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/name_mine_organisation"/>
 
         <TextView
-            android:id="@+id/title_org"
-            style="?android:textAppearanceSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title_mine"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="15dp"
-            android:text="@string/name_cave" />
+                android:id="@+id/title_org"
+                style="?android:textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_mine"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:text="@string/name_cave"/>
 
         <!--<Spinner-->
-            <!--android:id="@+id/spinner_location"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_marginRight="15dp"-->
-            <!--android:layout_toLeftOf="@+id/txv_geo_location" />-->
+        <!--android:id="@+id/spinner_location"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginRight="15dp"-->
+        <!--android:layout_toLeftOf="@+id/txv_geo_location" />-->
 
         <!--<Button-->
-            <!--android:id="@+id/btn_record_location"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_margin="12dp"-->
-            <!--android:layout_marginRight="15dp"-->
-            <!--android:background="@color/inspection_button_blue"-->
-            <!--android:padding="12dp"-->
-            <!--android:paddingLeft="15dp"-->
-            <!--android:paddingRight="15dp"-->
-            <!--android:text="@string/button_record_location"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:textSize="14sp" />-->
+        <!--android:id="@+id/btn_record_location"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_margin="12dp"-->
+        <!--android:layout_marginRight="15dp"-->
+        <!--android:background="@color/inspection_button_blue"-->
+        <!--android:padding="12dp"-->
+        <!--android:paddingLeft="15dp"-->
+        <!--android:paddingRight="15dp"-->
+        <!--android:text="@string/button_record_location"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="14sp" />-->
 
         <!--<TextView-->
-            <!--android:id="@+id/txv_geo_location"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_marginRight="8dp"-->
-            <!--android:layout_toLeftOf="@+id/btn_record_location"-->
-            <!--android:text="@string/text_geo_location"-->
-            <!--android:textColor="@android:color/black"-->
-            <!--android:textSize="14sp" />-->
+        <!--android:id="@+id/txv_geo_location"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginRight="8dp"-->
+        <!--android:layout_toLeftOf="@+id/btn_record_location"-->
+        <!--android:text="@string/text_geo_location"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:textSize="14sp" />-->
+
 
         <Button
-        android:id="@+id/btn_my_artifacts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="12dp"
-        android:layout_marginRight="20dp"
-        android:padding="6dp"
-        android:background="@drawable/bg_blackish_button_selector"
-        android:drawableLeft="@drawable/ic_artifacts"
-        android:drawablePadding="4dp"
-        android:text="My Inspection Artifacts"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+                android:id="@+id/btn_all_forms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/btn_my_artifacts"
+                android:layout_centerVertical="true"
+                android:layout_margin="12dp"
+                android:layout_marginRight="20dp"
+                android:padding="6dp"
+                android:background="@drawable/bg_blackish_button_selector"
+                android:drawableLeft="@drawable/ic_forms"
+                android:drawablePadding="4dp"
+                android:text="All Forms"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+        <Button
+                android:id="@+id/btn_my_artifacts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="12dp"
+                android:layout_marginRight="20dp"
+                android:padding="6dp"
+                android:background="@drawable/bg_blackish_button_selector"
+                android:drawableLeft="@drawable/ic_artifacts"
+                android:drawablePadding="4dp"
+                android:text="My Inspection Artifacts"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
 
     </RelativeLayout>
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/rel_controls"
-        android:fillViewport="true"
-        android:padding="10dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rel_controls"
+            android:fillViewport="true"
+            android:padding="10dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:padding="5dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
                 <RelativeLayout
-                    android:id="@+id/rel_scan_barcode"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
+                        android:id="@+id/rel_scan_barcode"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_blue_button_selector"
+                        android:padding="15dp">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_scan"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_barcode" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/txv_scan"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:src="@drawable/ic_barcode"/>
 
                     <TextView
-                        android:id="@+id/txv_scan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="Scan Barcode"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
+                            android:id="@+id/txv_scan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:text="Scan Barcode"
+                            android:textColor="@color/white"
+                            android:textSize="23sp"/>
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/rel_take_picture"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
+                        android:id="@+id/rel_take_picture"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_blue_button_selector"
+                        android:padding="15dp">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_picture"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_camera" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/txv_picture"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:src="@drawable/ic_camera"/>
 
                     <TextView
-                        android:id="@+id/txv_picture"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="Take Picture"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
+                            android:id="@+id/txv_picture"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:text="Take Picture"
+                            android:textColor="@color/white"
+                            android:textSize="23sp"/>
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/rel_take_notes"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
+                        android:id="@+id/rel_take_notes"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_blue_button_selector"
+                        android:padding="15dp">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_notes"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_notes" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/txv_notes"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:src="@drawable/ic_notes"/>
 
                     <TextView
-                        android:id="@+id/txv_notes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="Take Notes"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
+                            android:id="@+id/txv_notes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:text="Take Notes"
+                            android:textColor="@color/white"
+                            android:textSize="23sp"/>
                 </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:padding="5dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
                 <RelativeLayout
-                    android:id="@+id/rel_take_video"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
+                        android:id="@+id/rel_take_video"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_blue_button_selector"
+                        android:padding="15dp">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_video"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_video_record" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/txv_video"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:src="@drawable/ic_video_record"/>
 
                     <TextView
-                        android:id="@+id/txv_video"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="Take a Video"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
+                            android:id="@+id/txv_video"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:text="Take a Video"
+                            android:textColor="@color/white"
+                            android:textSize="23sp"/>
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/rel_record_audio"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
+                        android:id="@+id/rel_record_audio"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_blue_button_selector"
+                        android:padding="15dp">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_record_audio"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_audio_record" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/txv_record_audio"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:src="@drawable/ic_audio_record"/>
 
                     <TextView
-                        android:id="@+id/txv_record_audio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="Record Audio"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
+                            android:id="@+id/txv_record_audio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:text="Record Audio"
+                            android:textColor="@color/white"
+                            android:textSize="23sp"/>
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/ic_record_noise"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
+                        android:id="@+id/ic_record_noise"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_blue_button_selector"
+                        android:padding="15dp">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_record_noise"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_noise" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/txv_record_noise"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:src="@drawable/ic_noise"/>
 
                     <TextView
-                        android:id="@+id/txv_record_noise"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="Record Noise"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
+                            android:id="@+id/txv_record_noise"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:text="Record Noise"
+                            android:textColor="@color/white"
+                            android:textSize="23sp"/>
                 </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:padding="5dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
                 <Button
-                    android:id="@+id/button_take_video2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:background="@color/inspection_button_blue"
-                    android:drawableTop="@drawable/ic_video_record"
-                    android:text="Take Video"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:visibility="invisible" />
+                        android:id="@+id/button_take_video2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:background="@color/inspection_button_blue"
+                        android:drawableTop="@drawable/ic_video_record"
+                        android:text="Take Video"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:visibility="invisible"/>
 
 
                 <RelativeLayout
-                    android:id="@+id/rel_all_forms"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
+                        android:id="@+id/rel_all_forms"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_blue_button_selector"
+                        android:padding="15dp">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_all_forms"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_forms_white" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/txv_issue_citation"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:paddingLeft="25dp"
+                            android:paddingRight="25dp"
+                            android:src="@drawable/ic_citation"/>
 
                     <TextView
-                        android:id="@+id/txv_all_forms"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="All Forms"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
+                            android:id="@+id/txv_issue_citation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:text="Issue Citation"
+                            android:textColor="@color/white"
+                            android:textSize="23sp"/>
                 </RelativeLayout>
 
                 <Button
-                    android:id="@+id/button_record_audio2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:background="@color/inspection_button_blue"
-                    android:drawableTop="@drawable/ic_audio_record"
-                    android:text="My Artifacts"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:visibility="invisible" />
+                        android:id="@+id/button_record_audio2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:background="@color/inspection_button_blue"
+                        android:drawableTop="@drawable/ic_audio_record"
+                        android:text="My Artifacts"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:visibility="invisible"/>
 
             </LinearLayout>
         </LinearLayout>

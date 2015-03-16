@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <item
-        android:id="@+id/search"
-        android:title="Search"
-        app:actionViewClass="android.support.v7.widget.SearchView"
-        app:showAsAction="always|withText" />
-
-    <item
-        android:id="@+id/menut_start_inspection"
-        android:icon="@drawable/ic_inspector"
-        android:title="Start Inspection"
-        app:showAsAction="always|withText" />
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
             android:id="@+id/myswitch"
             android:title=""
             app:showAsAction="always"
-            app:actionLayout="@layout/switch_layout"
-            />
+            app:actionLayout="@layout/switch_layout"/>
+
+
+    <item
+            android:id="@+id/menut_start_inspection"
+            android:icon="@drawable/ic_inspector"
+            android:title="Start Inspection"
+            app:showAsAction="always|withText"/>
+
+    <item
+            android:id="@+id/search"
+            android:title="Search"
+            android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
+            app:showAsAction="always|withText|collapseActionView"
+            app:actionViewClass="android.support.v7.widget.SearchView"/>
 </menu>

@@ -52,6 +52,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/txv_label_a"
                             android:layout_marginTop="8dp"
+                            android:checked="true"
                             android:text="No Likelihood"
                             android:textSize="16sp" />
 
@@ -117,6 +118,7 @@
                             android:id="@+id/chb_lost_workdays"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:checked="true"
                             android:layout_alignBottom="@+id/chb_no_lost_workdays"
                             android:layout_marginLeft="15dp"
                             android:layout_toRightOf="@+id/chb_no_lost_workdays"
@@ -159,6 +161,7 @@
                             android:layout_below="@+id/txv_label_c"
                             android:layout_marginTop="8dp"
                             android:text="Yes"
+                            android:checked="true"
                             android:textSize="16sp" />
 
                         <CheckBox
@@ -213,6 +216,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_toRightOf="@+id/chb_none"
                             android:text="Low"
+                            android:checked="true"
                             android:textSize="16sp" />
 
                         <CheckBox
@@ -331,6 +335,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignBottom="@+id/chb_safeguard"
                             android:layout_marginLeft="15dp"
+                            android:checked="true"
                             android:layout_toRightOf="@+id/chb_safeguard"
                             android:text="Written Notice"
                             android:textSize="16sp" />
@@ -385,6 +390,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignBottom="@+id/chb_order_initial_action"
                             android:layout_marginLeft="15dp"
+                            android:checked="true"
                             android:layout_toRightOf="@+id/chb_order_initial_action"
                             android:text="Safeguard"
                             android:textSize="16sp" />
@@ -415,6 +421,7 @@
                             android:layout_below="@+id/txv_label_citation_order_no"
                             android:layout_marginTop="8dp"
                             android:padding="4dp"
+                            android:text="123212"
                             android:textSize="18sp" />
 
                         <TextView
@@ -424,7 +431,7 @@
                             android:layout_alignLeft="@+id/chb_safeguard_initial_action"
                             android:layout_below="@+id/chb_citation_initial_action"
                             android:layout_marginTop="20dp"
-                            android:text="Citation / Order No"
+                            android:text="Date"
                             android:textSize="18sp" />
 
                         <EditText
@@ -435,6 +442,7 @@
                             android:layout_below="@+id/txv_label_dated"
                             android:layout_marginTop="8dp"
                             android:padding="4dp"
+                            android:text="02/24/2015"
                             android:textSize="18sp" />
 
 
@@ -464,6 +472,7 @@
                         android:layout_marginTop="8dp"
                         android:background="@color/white"
                         android:minLines="4"
+                        android:gravity="top"
                         android:padding="4dp"
                         android:textSize="18sp" />
                 </LinearLayout>
@@ -506,6 +515,7 @@
                             android:layout_below="@+id/txv_label_date"
                             android:layout_marginTop="8dp"
                             android:padding="4dp"
+                            android:text="02/24/2015"
                             android:textSize="18sp" />
 
                         <TextView
@@ -525,6 +535,7 @@
                             android:layout_below="@+id/txv_label_time"
                             android:layout_marginTop="8dp"
                             android:padding="4dp"
+                            android:text="18:06"
                             android:textSize="18sp" />
 
                     </RelativeLayout>

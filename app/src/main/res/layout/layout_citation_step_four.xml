@@ -2,6 +2,7 @@
 
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/scroll_container">
@@ -40,6 +41,7 @@
                             android:layout_marginTop="8dp"
                             android:background="@color/white"
                             android:padding="4dp"
+                            android:text="E01"
                             android:textSize="18sp"/>
                 </LinearLayout>
 
@@ -63,6 +65,7 @@
                             android:layout_marginTop="8dp"
                             android:background="@color/white"
                             android:padding="4dp"
+                            android:text="2222234"
                             android:textSize="18sp"/>
                 </LinearLayout>
 
@@ -118,6 +121,7 @@
                             android:layout_marginTop="8dp"
                             android:background="@color/white"
                             android:padding="4dp"
+                            android:text="Harold Q. Jones"
                             android:textSize="18sp"/>
                 </LinearLayout>
 
@@ -141,6 +145,7 @@
                             android:layout_marginTop="8dp"
                             android:background="@color/white"
                             android:padding="4dp"
+                            android:text="29999"
                             android:textSize="18sp"/>
                 </LinearLayout>
 
@@ -157,6 +162,72 @@
                         android:layout_weight="1"></LinearLayout>
 
             </TableRow>
+
+            <TableRow>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Signature\n(Citation Assigned to)"
+                            android:textColor="@color/inspection_button_blue"
+                            android:textSize="18sp"/>
+
+                    <ImageView
+                            android:id="@+id/signature1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/white"
+                            android:padding="32dp"
+                            android:textSize="18sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Signature\n(Inspector)"
+                            android:textColor="@color/inspection_button_blue"
+                            android:textSize="18sp"/>
+
+                    <ImageView
+                            android:id="@+id/signature2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/white"
+                            android:padding="32dp"
+                            android:textSize="18sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"/>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"/>
+
+            </TableRow>
+
+
         </TableLayout>
 
     </RelativeLayout>

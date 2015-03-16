@@ -1,15 +1,12 @@
 package com.dmi.minesafety.demo.activity;
 
-import com.google.android.gms.maps.SupportMapFragment;
-
-import com.dmi.minesafety.demo.fragment.DocumentDetailFragment;
-import com.dmi.minesafety.demo.fragment.DocumentListFragment;
-import com.dmi.minesafety.demo.fragment.DocumentListParentFragment;
-import com.dmi.minesafety.demo.fragment.MineListFragment;
-import com.dmi.minesafety.demo.fragment.MineMapFragment;
 import com.dmi.minesafety.demo.R;
 import com.dmi.minesafety.demo.adaptor.SearchAdapter;
 import com.dmi.minesafety.demo.dummy.DummyContent;
+import com.dmi.minesafety.demo.fragment.DocumentDetailFragment;
+import com.dmi.minesafety.demo.fragment.DocumentListFragment;
+import com.dmi.minesafety.demo.fragment.DocumentListParentFragment;
+import com.dmi.minesafety.demo.fragment.MineMapFragment;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -17,8 +14,10 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.MatrixCursor;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -49,6 +48,8 @@ public class MineMapActivity extends ActionBarActivity
 
     private ListView mDrawerList;
 
+    private MenuItem switchMenu, inspectionMenu;
+
     private Spinner mDateSpinner;
 
     private ActionBarDrawerToggle mDrawerToggle;
@@ -66,7 +67,6 @@ public class MineMapActivity extends ActionBarActivity
     private ArrayList<Integer> mSelectedPositions = new ArrayList<Integer>();
 
 //    private ImageView mMapView, mListView;
-
 
 //    private SwitchCompat mSwitchView;
 
@@ -104,7 +104,8 @@ public class MineMapActivity extends ActionBarActivity
         DummyContent.Mine mine = DummyContent.MINES.get(index);
         mMineTitle.setText(mine.name);
         mOrgTitle.setText(
-                mine.operatorName + ", " + mine.city + ", " + mine.state + ", ID:"
+                mine.operatorName + ", " + mine.city + ", " + mine.state
+                        + ", ID:"
                         + mine.id);
 
         mSelectAll = (Button) findViewById(
@@ -285,6 +286,60 @@ public class MineMapActivity extends ActionBarActivity
         getMenuInflater().inflate(R.menu.menu_mine_map, menu);
 
         this.menu = menu;
+
+        switchMenu = menu.findItem(R.id.myswitch);
+        switchMenu.setActionView(R.layout.switch_layout);
+        inspectionMenu = menu.findItem(R.id.menut_start_inspection);
+
+
+        ((SwitchCompat) switchMenu.getActionView()
+                .findViewById(R.id.switch_view)).setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView,
+                            boolean isChecked) {
+                        if (!isChecked) {
+                            Fragment fragment = new MineMapFragment();
+                            mCurrentFragment = fragment;
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.imageFrame, fragment)
+                                    .commit();
+                        } else {
+                            Fragment fragment
+                                    = new DocumentListParentFragment();
+                            mCurrentFragment = fragment;
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.imageFrame, fragment)
+                                    .commit();
+                        }
+
+                    }
+
+                });
+
+        MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.search),
+                new MenuItemCompat.OnActionExpandListener() {
+                    @Override
+                    public boolean onMenuItemActionCollapse(MenuItem item) {
+                        switchMenu.setVisible(true);
+                        inspectionMenu.setVisible(true);
+                        getSupportActionBar().setBackgroundDrawable(
+                                new ColorDrawable(getResources()
+                                        .getColor(R.color.action_bar_bg)));
+                        return true;  // Return true to collapse action view
+                    }
+
+                    @Override
+                    public boolean onMenuItemActionExpand(MenuItem item) {
+                        switchMenu.setVisible(false);
+                        inspectionMenu.setVisible(false);
+                        getSupportActionBar().setBackgroundDrawable(
+                                new ColorDrawable(getResources().getColor(
+                                        R.color.artifacts_button_black)));
+                        return true;  // Return true to expand action view
+                    }
+                });
+
         SearchManager manager = (SearchManager) getSystemService(
                 Context.SEARCH_SERVICE);
 
@@ -323,37 +378,6 @@ public class MineMapActivity extends ActionBarActivity
                 return true;
             }
         });
-
-
-        MenuItem switchItem = menu.findItem(R.id.myswitch);
-        switchItem.setActionView(R.layout.switch_layout);
-
-        ((SwitchCompat) switchItem.getActionView()
-                .findViewById(R.id.switch_view)).setOnCheckedChangeListener(
-                new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView,
-                            boolean isChecked) {
-                        if (!isChecked) {
-                            Fragment fragment = new MineMapFragment();
-                            mCurrentFragment = fragment;
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.imageFrame, fragment)
-                                    .commit();
-                        } else {
-                            Fragment fragment
-                                    = new DocumentListParentFragment();
-                            mCurrentFragment = fragment;
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.imageFrame, fragment)
-                                    .commit();
-                        }
-
-                    }
-
-                });
-
-
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -484,7 +508,8 @@ public class MineMapActivity extends ActionBarActivity
         if (textLength > 0) {
             for (DummyContent.Mine mine : DummyContent.MINES) {
                 if (textLength <= mine.id.length()) {
-                    if ((mine.id.contains(query) || mine.name.toLowerCase().contains(query.toLowerCase())) && !tempArrayList
+                    if ((mine.id.contains(query) || mine.name.toLowerCase()
+                            .contains(query.toLowerCase())) && !tempArrayList
                             .contains(mine)) {
                         tempArrayList.add(mine);
                     }

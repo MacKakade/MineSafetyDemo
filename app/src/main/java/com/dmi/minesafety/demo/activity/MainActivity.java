@@ -31,6 +31,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SwitchCompat;
@@ -50,6 +51,8 @@ public class MainActivity extends ActionBarActivity
         OnMapReadyCallback {
 
     private Menu menu;
+
+    private MenuItem switchItem;
 
     MineListAdapter mineListAdapter;
 
@@ -177,89 +180,8 @@ public class MainActivity extends ActionBarActivity
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         this.menu = menu;
-        SearchManager manager = (SearchManager) getSystemService(
-                Context.SEARCH_SERVICE);
 
-        final SearchView search = (SearchView) menu.findItem(R.id.search)
-                .getActionView();
-
-        search.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
-        search.setQueryHint("Mine name, Mine id");
-
-        final Cursor cursor = getCursor();
-
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String query) {
-                loadMinesList(query, cursor);
-                return true;
-            }
-
-        });
-
-        search.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
-                                           @Override
-                                           public boolean onSuggestionSelect(
-                                                   int i) {
-                                               return false;
-                                           }
-
-                                           @Override
-                                           public boolean onSuggestionClick(
-                                                   int i) {
-                                               hideKeyboard();
-                                               if (mCurrentFragment instanceof MineListFragment) {
-                                                   List<DummyContent.Mine>
-                                                           tempList
-                                                           = new ArrayList<DummyContent.Mine>();
-                                                   tempList.add(tempArrayList
-                                                           .get(i));
-                                                   mineListAdapter
-                                                           = new MineListAdapter(
-                                                           MainActivity.this,
-                                                           R.layout.layout_spinner_item_mines,
-                                                           tempList);
-                                                   mineListFragment
-                                                           .getListView()
-                                                           .setAdapter(
-                                                                   mineListAdapter);
-                                                   search.setQuery(tempArrayList
-                                                           .get(i).id, false);
-                                               } else {
-                                                   String clickedMineId
-                                                           = tempArrayList
-                                                           .get(i).id;
-                                                   for (DummyContent.Mine mine : DummyContent.MINES) {
-                                                       if (clickedMineId
-                                                               .equals(mine.id)) {
-                                                           for (Marker marker : markerList) {
-                                                               if (marker
-                                                                       .getPosition()
-                                                                       .equals(new LatLng(
-                                                                               mine.lat,
-                                                                               mine.lng))) {
-                                                                   onMarkerClickListener
-                                                                           .onMarkerClick(
-                                                                                   marker);
-                                                                   break;
-                                                               }
-                                                           }
-                                                       }
-                                                   }
-                                               }
-                                               return true;
-                                           }
-                                       }
-
-        );
-
-        MenuItem switchItem = menu.findItem(R.id.myswitch);
+        switchItem = menu.findItem(R.id.myswitch);
         switchItem.setActionView(R.layout.switch_layout);
 
         ((SwitchCompat) switchItem.getActionView()
@@ -287,6 +209,110 @@ public class MainActivity extends ActionBarActivity
                         }
                     }
                 });
+
+        SearchManager manager = (SearchManager) getSystemService(
+                Context.SEARCH_SERVICE);
+
+        final SearchView search = (SearchView) menu.findItem(R.id.search)
+                .getActionView();
+
+        search.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
+        search.setQueryHint("Mine name, Mine id");
+
+        final Cursor cursor = getCursor();
+
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                loadMinesList(query, cursor);
+                return true;
+            }
+
+        });
+
+        MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.search),
+                new MenuItemCompat.OnActionExpandListener() {
+                    @Override
+                    public boolean onMenuItemActionCollapse(MenuItem item) {
+                        switchItem.setVisible(true);
+                        getSupportActionBar().setBackgroundDrawable(
+                                new ColorDrawable(getResources()
+                                        .getColor(R.color.action_bar_bg)));
+                        return true;  // Return true to collapse action view
+                    }
+
+                    @Override
+                    public boolean onMenuItemActionExpand(MenuItem item) {
+                        switchItem.setVisible(false);
+                        getSupportActionBar().setBackgroundDrawable(
+                                new ColorDrawable(getResources().getColor(
+                                        R.color.artifacts_button_black)));
+                        return true;  // Return true to expand action view
+                    }
+                });
+
+        search.setOnSuggestionListener(
+                new SearchView.OnSuggestionListener() {
+                    @Override
+                    public boolean onSuggestionSelect(
+                            int i) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onSuggestionClick(
+                            int i) {
+                        hideKeyboard();
+                        if (mCurrentFragment instanceof MineListFragment) {
+                            List<DummyContent.Mine>
+                                    tempList
+                                    = new ArrayList<DummyContent.Mine>();
+                            tempList.add(tempArrayList
+                                    .get(i));
+                            mineListAdapter
+                                    = new MineListAdapter(
+                                    MainActivity.this,
+                                    R.layout.layout_spinner_item_mines,
+                                    tempList);
+                            mineListFragment
+                                    .getListView()
+                                    .setAdapter(
+                                            mineListAdapter);
+                            search.setQuery(tempArrayList
+                                    .get(i).id, false);
+                        } else {
+                            String clickedMineId
+                                    = tempArrayList
+                                    .get(i).id;
+                            for (DummyContent.Mine mine : DummyContent.MINES) {
+                                if (clickedMineId
+                                        .equals(mine.id)) {
+                                    for (Marker marker : markerList) {
+                                        if (marker
+                                                .getPosition()
+                                                .equals(new LatLng(
+                                                        mine.lat,
+                                                        mine.lng))) {
+                                            onMarkerClickListener
+                                                    .onMarkerClick(
+                                                            marker);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        return true;
+                    }
+                }
+
+        );
 
         return super.onCreateOptionsMenu(menu);
     }

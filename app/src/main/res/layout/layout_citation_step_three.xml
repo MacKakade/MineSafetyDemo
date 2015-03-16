@@ -40,6 +40,7 @@
                             android:layout_marginTop="8dp"
                             android:background="@color/white"
                             android:minLines="4"
+                            android:gravity="top"
                             android:padding="4dp"
                             android:textSize="18sp"/>
                 </LinearLayout>
@@ -82,6 +83,7 @@
                                 android:layout_below="@+id/txv_label_date"
                                 android:layout_marginTop="8dp"
                                 android:padding="4dp"
+                                android:text="02/24/2015"
                                 android:textSize="18sp"/>
 
                         <TextView
@@ -101,6 +103,7 @@
                                 android:layout_below="@+id/txv_label_time"
                                 android:layout_marginTop="8dp"
                                 android:padding="4dp"
+                                android:text="19:34"
                                 android:textSize="18sp"/>
 
 
