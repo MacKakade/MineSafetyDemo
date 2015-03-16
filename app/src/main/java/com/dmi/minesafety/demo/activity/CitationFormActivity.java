@@ -1,14 +1,6 @@
 package com.dmi.minesafety.demo.activity;
 
-import com.dmi.minesafety.demo.R;
-import com.dmi.minesafety.demo.fragment.AutomatedDataFragment;
-import com.dmi.minesafety.demo.fragment.InspectorEvaluationFragment;
-import com.dmi.minesafety.demo.fragment.TerminationActionFragment;
-import com.dmi.minesafety.demo.fragment.ViolationDataFragment;
-import com.dmi.minesafety.demo.widget.NonSwipeableViewPager;
-
 import android.content.Context;
-import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -20,33 +12,36 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.dmi.minesafety.demo.R;
+import com.dmi.minesafety.demo.fragment.AutomatedDataFragment;
+import com.dmi.minesafety.demo.fragment.InspectorEvaluationFragment;
+import com.dmi.minesafety.demo.fragment.TerminationActionFragment;
+import com.dmi.minesafety.demo.fragment.ViolationDataFragment;
+import com.dmi.minesafety.demo.widget.NonSwipeableViewPager;
+
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class CitationFormActivity extends ActionBarActivity {
 
-    PdfDocument document;
+    private PdfDocument document;
 
-    NonSwipeableViewPager mViewPager;
+    private NonSwipeableViewPager mViewPager;
 
-    Button mBtnPrevious;
+    private Button mBtnPrevious, mBtnNext;
 
-    Button mBtnNext;
+    private TextView textViewStepNumber;
 
-    TextView textViewStepNumber;
+    private int mPosition = 0;
 
-    int mPosition = 0;
+    private final int MAX_COUNT = 4;
 
-    final int MAX_COUNT = 4;
-
-    File file;
+    private File file;
 
     public int pageNumberPDF = 1;
 
@@ -57,9 +52,10 @@ public class CitationFormActivity extends ActionBarActivity {
 
     private CitationPagerAdaptor mCitationPagerAdaptor;
 
-    ArrayList<ScrollView> mPdfViews = new ArrayList<>();
+    private ArrayList<ScrollView> mPdfViews = new ArrayList<>();
 
-    LinearLayout ll;
+    private LinearLayout ll;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -67,7 +63,9 @@ public class CitationFormActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_citation);
 
+
         ll = new LinearLayout(this);
+        putProgressBar();
 
         file = new File(Environment.getExternalStorageDirectory(), "new.pdf");
         document = new PdfDocument();
@@ -115,7 +113,7 @@ public class CitationFormActivity extends ActionBarActivity {
                     mPdfViews.add((ScrollView) currentFragment.getView()
                             .findViewById(
                                     R.id.scroll_container));
-//                    makeDocument(mViewPager.getChildAt(mPosition-1));
+                    makeDocument(mViewPager.getChildAt(mPosition - 1));
                     mViewPager.setCurrentItem(mPosition, true);
                     textViewStepNumber.setText(mArray[mPosition]);
 
@@ -138,8 +136,8 @@ public class CitationFormActivity extends ActionBarActivity {
                 new ViewPager.OnPageChangeListener() {
                     @Override
                     public void onPageScrolled(int position,
-                            float positionOffset,
-                            int positionOffsetPixels) {
+                                               float positionOffset,
+                                               int positionOffsetPixels) {
 
                     }
 
@@ -171,6 +169,45 @@ public class CitationFormActivity extends ActionBarActivity {
 
                     }
                 });
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position,
+                                       float positionOffset,
+                                       int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (mPosition == 0) {
+                    mBtnPrevious.setVisibility(View.GONE);
+                } else {
+                    mBtnPrevious.setVisibility(View.VISIBLE);
+                }
+
+                if (mPosition == MAX_COUNT - 1) {
+                    mBtnNext.setText("SUBMIT");
+                    mBtnNext.setCompoundDrawablesWithIntrinsicBounds(
+                            null, null, null, null);
+
+                } else {
+                    mBtnNext.setText("");
+                    mBtnNext.setCompoundDrawablesWithIntrinsicBounds(
+                            null, null, getResources().getDrawable(
+                                    R.drawable.ic_next), null);
+                }
+
+                int progress = (position + 1) * 25;
+                progressBar.setProgress(progress);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
     }
 
 
@@ -216,7 +253,6 @@ public class CitationFormActivity extends ActionBarActivity {
 
 
     }
-
 
     public void makeDocument() {
 
@@ -266,5 +302,11 @@ public class CitationFormActivity extends ActionBarActivity {
         return metrics.heightPixels;
     }
 
+    private void putProgressBar() {
+        // create new ProgressBar and style it
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.progress_horizontal_holo_no_background_light));
+        progressBar.setProgress(25);
+    }
 
 }

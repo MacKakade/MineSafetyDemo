@@ -1,50 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_margin="10dp"
-              xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
 
     <RelativeLayout
-            android:id="@+id/navigator_panel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:id="@+id/navigator_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <Button android:id="@+id/previous_button"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_alignParentLeft="true"
-                   android:background="?selectableItemBackground"
-                   android:clickable="false"
-                   android:drawableLeft="@drawable/ic_previous"
-                   android:text="">
-        </Button>
-        <Button android:id="@+id/next_button"
-                   android:background="?selectableItemBackground"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_alignParentRight="true"
-                   android:clickable="false"
-                   android:textColor="@color/blue_link"
-                   android:drawableRight="@drawable/ic_next"
-                   android:text="">
-        </Button>
+        <Button
+            android:id="@+id/previous_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="?selectableItemBackground"
+            android:clickable="false"
+            android:drawableLeft="@drawable/ic_previous"
+            android:text=""></Button>
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="?selectableItemBackground"
+            android:clickable="false"
+            android:drawableRight="@drawable/ic_next"
+            android:text=""
+            android:textColor="@color/blue_link"></Button>
+
         <TextView
-                android:id="@+id/step_number_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/blue_link"
-                android:textStyle="bold"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_centerInParent="true"/>
+            android:id="@+id/step_number_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/blue_link"
+            android:textStyle="bold" />
     </RelativeLayout>
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@android:style/Widget.Holo.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp" />
 
     <com.dmi.minesafety.demo.widget.NonSwipeableViewPager
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:id="@+id/pager"/>
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>

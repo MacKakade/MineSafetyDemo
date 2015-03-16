@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/chips_edittext_bg"
+    android:shadowColor="#FFFFFF"
+    android:shadowDy="1"
+    android:shadowRadius="0.01">
+
+    <TextView
+        android:id="@+id/txv_chip_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/btn_delete"
+        android:padding="8dp"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/btn_delete"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="4dp"
+        android:background="@drawable/ic_suggestions_delete" />
+</RelativeLayout>
