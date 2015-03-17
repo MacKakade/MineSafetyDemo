@@ -4,6 +4,7 @@ import com.dmi.minesafety.demo.R;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -11,6 +12,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -75,6 +77,7 @@ public class AutomatedDataFragment extends Fragment {
                 currentSignatureView = signature1;
                 SignatureDialogFragment dFragment
                         = SignatureDialogFragment.newInstance();
+
 // Show DialogFragment
                 dFragment.show(getActivity().getSupportFragmentManager(),
                         "Dialog Fragment");
@@ -134,6 +137,8 @@ public class AutomatedDataFragment extends Fragment {
                     .inflate(R.layout.dialog_signature, container,
                             false);
 
+            getDialog().setTitle("Please place your Signature");
+
             mSignaturePad = (SignaturePad) rootView.findViewById(
                     R.id.signature_pad);
             mSignaturePad
@@ -185,6 +190,7 @@ public class AutomatedDataFragment extends Fragment {
 
             return rootView;
         }
+
     }
 
     public static File getAlbumStorageDir(String albumName) {

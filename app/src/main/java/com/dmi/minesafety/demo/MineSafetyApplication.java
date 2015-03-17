@@ -16,7 +16,7 @@ public class MineSafetyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Mint.initAndStartSession(this, "90254e95");
+        Mint.initAndStartSession(this, "6b85e3f9");
         setupDatabase();
 
     }
