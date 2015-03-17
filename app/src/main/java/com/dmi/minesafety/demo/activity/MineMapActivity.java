@@ -1,13 +1,5 @@
 package com.dmi.minesafety.demo.activity;
 
-import com.dmi.minesafety.demo.R;
-import com.dmi.minesafety.demo.adaptor.SearchAdapter;
-import com.dmi.minesafety.demo.dummy.DummyContent;
-import com.dmi.minesafety.demo.fragment.DocumentDetailFragment;
-import com.dmi.minesafety.demo.fragment.DocumentListFragment;
-import com.dmi.minesafety.demo.fragment.DocumentListParentFragment;
-import com.dmi.minesafety.demo.fragment.MineMapFragment;
-
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +28,14 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.dmi.minesafety.demo.R;
+import com.dmi.minesafety.demo.adaptor.SearchAdapter;
+import com.dmi.minesafety.demo.dummy.DummyContent;
+import com.dmi.minesafety.demo.fragment.DocumentDetailFragment;
+import com.dmi.minesafety.demo.fragment.DocumentListFragment;
+import com.dmi.minesafety.demo.fragment.DocumentListParentFragment;
+import com.dmi.minesafety.demo.fragment.MineMapFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +82,10 @@ public class MineMapActivity extends ActionBarActivity
 
     private int index = 38;
 
+    private SearchView search;
+
+    private String queryString;
+
     private int[] mDrawables = new int[]{R.drawable.red, R.drawable.lighgreen,
             R.drawable.purple, R.drawable.red, R.drawable.orange,
             R.drawable.lightviolet, R.drawable.brown, R.drawable.lighgreen,
@@ -93,7 +97,7 @@ public class MineMapActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mine_map);
 
-        index = getIntent().getExtras().getInt("mine_info");
+        index = getIntent().getIntExtra("mine_info", -1);
 
         mMineTitle = (TextView) findViewById(
                 R.id.title_mine);
@@ -276,7 +280,7 @@ public class MineMapActivity extends ActionBarActivity
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
-                long id) {
+                                long id) {
             // selectItem(position);
         }
     }
@@ -297,7 +301,7 @@ public class MineMapActivity extends ActionBarActivity
                 new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView,
-                            boolean isChecked) {
+                                                 boolean isChecked) {
                         if (!isChecked) {
                             Fragment fragment = new MineMapFragment();
                             mCurrentFragment = fragment;
@@ -343,13 +347,11 @@ public class MineMapActivity extends ActionBarActivity
         SearchManager manager = (SearchManager) getSystemService(
                 Context.SEARCH_SERVICE);
 
-        final SearchView search = (SearchView) menu.findItem(R.id.search)
+        search = (SearchView) menu.findItem(R.id.search)
                 .getActionView();
 
         search.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
         search.setQueryHint("Mine name, Mine id");
-
-        final Cursor cursor = getCursor();
 
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
@@ -361,7 +363,8 @@ public class MineMapActivity extends ActionBarActivity
 
             @Override
             public boolean onQueryTextChange(String query) {
-                loadMinesList(query, cursor);
+                queryString = query;
+                loadMinesList(query);
                 return true;
             }
 
@@ -375,6 +378,11 @@ public class MineMapActivity extends ActionBarActivity
 
             @Override
             public boolean onSuggestionClick(int i) {
+                Intent intent = new Intent(MineMapActivity.this, MainActivity.class);
+                intent.putExtra(MainActivity.INDEX_SUGGESTION_CLICK, i);
+                intent.putExtra(MainActivity.QUERY_STRING, queryString);
+                setResult(RESULT_OK, intent);
+                finish();
                 return true;
             }
         });
@@ -427,7 +435,7 @@ public class MineMapActivity extends ActionBarActivity
 
         @Override
         public View getView(final int position, View convertView,
-                ViewGroup parent) {
+                            ViewGroup parent) {
 
             View v = getLayoutInflater()
                     .inflate(R.layout.layout_list_item_drawer, null, false);
@@ -500,8 +508,8 @@ public class MineMapActivity extends ActionBarActivity
         return cursor;
     }
 
-    private void loadMinesList(String query, Cursor cursor) {
-
+    private void loadMinesList(String query) {
+        final Cursor cursor = getCursor();
         int textLength = query.length();
         List<DummyContent.Mine> tempArrayList
                 = new ArrayList<DummyContent.Mine>();
@@ -516,9 +524,6 @@ public class MineMapActivity extends ActionBarActivity
                 }
             }
         }
-
-        final SearchView search = (SearchView) menu.findItem(R.id.search)
-                .getActionView();
 
         search.setSuggestionsAdapter(
                 new SearchAdapter(this, cursor, tempArrayList));

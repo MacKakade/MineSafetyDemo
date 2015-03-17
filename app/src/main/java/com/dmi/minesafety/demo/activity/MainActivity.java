@@ -1,27 +1,5 @@
 package com.dmi.minesafety.demo.activity;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-
-import com.dmi.minesafety.demo.R;
-import com.dmi.minesafety.demo.adaptor.MineListAdapter;
-import com.dmi.minesafety.demo.adaptor.SearchAdapter;
-import com.dmi.minesafety.demo.dummy.DummyContent;
-import com.dmi.minesafety.demo.fragment.MineListFragment;
-import com.dmi.minesafety.demo.widget.MapWrapperLayout;
-import com.dmi.minesafety.demo.widget.OnInfoWindowElemTouchListener;
-
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -42,6 +20,27 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+
+import com.dmi.minesafety.demo.R;
+import com.dmi.minesafety.demo.adaptor.MineListAdapter;
+import com.dmi.minesafety.demo.adaptor.SearchAdapter;
+import com.dmi.minesafety.demo.dummy.DummyContent;
+import com.dmi.minesafety.demo.fragment.MineListFragment;
+import com.dmi.minesafety.demo.widget.MapWrapperLayout;
+import com.dmi.minesafety.demo.widget.OnInfoWindowElemTouchListener;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,9 +81,19 @@ public class MainActivity extends ActionBarActivity
 
     private ArrayList<DummyContent.Mine> tempArrayList;
 
-    SupportMapFragment mSupportMapFragment;
+    private SupportMapFragment mSupportMapFragment;
 
-    MineListFragment mineListFragment;
+    private MineListFragment mineListFragment;
+
+    private SearchView search;
+
+    private SearchView.OnSuggestionListener onSuggestionListener;
+
+    public static String INDEX_SUGGESTION_CLICK = "index";
+
+    public static String QUERY_STRING = "query";
+
+    public static int REQUEST_CODE_MINE_MAP = 0;
 
     // Create a LatLngBounds that includes USA.
     final LatLngBounds USA = new LatLngBounds(
@@ -189,7 +198,7 @@ public class MainActivity extends ActionBarActivity
                 new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView,
-                            boolean isChecked) {
+                                                 boolean isChecked) {
                         if (!isChecked) {
                             mSupportMapFragment = SupportMapFragment
                                     .newInstance();
@@ -213,13 +222,11 @@ public class MainActivity extends ActionBarActivity
         SearchManager manager = (SearchManager) getSystemService(
                 Context.SEARCH_SERVICE);
 
-        final SearchView search = (SearchView) menu.findItem(R.id.search)
+        search = (SearchView) menu.findItem(R.id.search)
                 .getActionView();
 
         search.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
         search.setQueryHint("Mine name, Mine id");
-
-        final Cursor cursor = getCursor();
 
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
@@ -230,7 +237,7 @@ public class MainActivity extends ActionBarActivity
 
             @Override
             public boolean onQueryTextChange(String query) {
-                loadMinesList(query, cursor);
+                loadMinesList(query);
                 return true;
             }
 
@@ -257,62 +264,61 @@ public class MainActivity extends ActionBarActivity
                     }
                 });
 
-        search.setOnSuggestionListener(
-                new SearchView.OnSuggestionListener() {
-                    @Override
-                    public boolean onSuggestionSelect(
-                            int i) {
-                        return false;
-                    }
+        onSuggestionListener = new SearchView.OnSuggestionListener() {
+            @Override
+            public boolean onSuggestionSelect(
+                    int i) {
+                return false;
+            }
 
-                    @Override
-                    public boolean onSuggestionClick(
-                            int i) {
-                        hideKeyboard();
-                        if (mCurrentFragment instanceof MineListFragment) {
-                            List<DummyContent.Mine>
-                                    tempList
-                                    = new ArrayList<DummyContent.Mine>();
-                            tempList.add(tempArrayList
-                                    .get(i));
-                            mineListAdapter
-                                    = new MineListAdapter(
-                                    MainActivity.this,
-                                    R.layout.layout_spinner_item_mines,
-                                    tempList);
-                            mineListFragment
-                                    .getListView()
-                                    .setAdapter(
-                                            mineListAdapter);
-                            search.setQuery(tempArrayList
-                                    .get(i).id, false);
-                        } else {
-                            String clickedMineId
-                                    = tempArrayList
-                                    .get(i).id;
-                            for (DummyContent.Mine mine : DummyContent.MINES) {
-                                if (clickedMineId
-                                        .equals(mine.id)) {
-                                    for (Marker marker : markerList) {
-                                        if (marker
-                                                .getPosition()
-                                                .equals(new LatLng(
-                                                        mine.lat,
-                                                        mine.lng))) {
-                                            onMarkerClickListener
-                                                    .onMarkerClick(
-                                                            marker);
-                                            break;
-                                        }
-                                    }
+            @Override
+            public boolean onSuggestionClick(
+                    int i) {
+                hideKeyboard();
+                if (mCurrentFragment instanceof MineListFragment) {
+                    List<DummyContent.Mine>
+                            tempList
+                            = new ArrayList<DummyContent.Mine>();
+                    tempList.add(tempArrayList
+                            .get(i));
+                    mineListAdapter
+                            = new MineListAdapter(
+                            MainActivity.this,
+                            R.layout.layout_spinner_item_mines,
+                            tempList);
+                    mineListFragment
+                            .getListView()
+                            .setAdapter(
+                                    mineListAdapter);
+                    search.setQuery(tempArrayList
+                            .get(i).id, false);
+                } else {
+                    String clickedMineId
+                            = tempArrayList
+                            .get(i).id;
+                    for (DummyContent.Mine mine : DummyContent.MINES) {
+                        if (clickedMineId
+                                .equals(mine.id)) {
+                            for (Marker marker : markerList) {
+                                if (marker
+                                        .getPosition()
+                                        .equals(new LatLng(
+                                                mine.lat,
+                                                mine.lng))) {
+                                    onMarkerClickListener
+                                            .onMarkerClick(
+                                                    marker);
+                                    break;
                                 }
                             }
                         }
-                        return true;
                     }
                 }
+                return true;
+            }
+        };
 
-        );
+        search.setOnSuggestionListener(onSuggestionListener);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -333,8 +339,9 @@ public class MainActivity extends ActionBarActivity
         return cursor;
     }
 
-    private void loadMinesList(String query, Cursor cursor) {
+    private void loadMinesList(String query) {
 
+        final Cursor cursor = getCursor();
         int textLength = query.length();
         tempArrayList = new ArrayList<DummyContent.Mine>();
         if (textLength > 0) {
@@ -348,9 +355,6 @@ public class MainActivity extends ActionBarActivity
                 }
             }
         }
-
-        final SearchView search = (SearchView) menu.findItem(R.id.search)
-                .getActionView();
 
         search.setSuggestionsAdapter(
                 new SearchAdapter(this, cursor, tempArrayList));
@@ -377,6 +381,20 @@ public class MainActivity extends ActionBarActivity
             GooglePlayServicesUtil
                     .getErrorDialog(resultCode, this, RQS_GooglePlayServices)
                     .show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_OK && requestCode == REQUEST_CODE_MINE_MAP) {
+            int index = data.getIntExtra(INDEX_SUGGESTION_CLICK, -1);
+            String query = data.getStringExtra(QUERY_STRING);
+
+            if (index != -1) {
+                loadMinesList(query);
+                onSuggestionListener.onSuggestionClick(index);
+            }
         }
     }
 
@@ -434,7 +452,7 @@ public class MainActivity extends ActionBarActivity
                         }
                     }
 
-                    startActivity(intent);
+                    startActivityForResult(intent, REQUEST_CODE_MINE_MAP);
                 }
 
             }
@@ -490,9 +508,13 @@ public class MainActivity extends ActionBarActivity
     }
 
     private void hideKeyboard() {
-        InputMethodManager inputManager = (InputMethodManager) getSystemService(
-                Context.INPUT_METHOD_SERVICE);
-        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                InputMethodManager.HIDE_NOT_ALWAYS);
+        try {
+            InputMethodManager inputManager = (InputMethodManager) getSystemService(
+                    Context.INPUT_METHOD_SERVICE);
+            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS);
+        } catch (Exception e) {
+
+        }
     }
 }
