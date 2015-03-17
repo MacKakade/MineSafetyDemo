@@ -1,6 +1,7 @@
 package com.dmi.minesafety.demo.activity;
 
 import com.dmi.minesafety.demo.R;
+import com.dmi.minesafety.demo.fragment.AttachmentsFragment;
 import com.dmi.minesafety.demo.fragment.AutomatedDataFragment;
 import com.dmi.minesafety.demo.fragment.InspectorEvaluation2Fragment;
 import com.dmi.minesafety.demo.fragment.InspectorEvaluationFragment;
@@ -46,7 +47,7 @@ public class CitationFormActivity extends ActionBarActivity {
 
     private int mPosition = 0;
 
-    private final int MAX_COUNT = 5;
+    private final int MAX_COUNT = 6;
 
     private File file;
 
@@ -55,7 +56,7 @@ public class CitationFormActivity extends ActionBarActivity {
     public String[] mArray = new String[]{"Section I - Violation Data",
             "Section II - Inspector's Evaluation","Section II - Inspector's Evaluation (Contd)",
             "Section III- Termination Action",
-            "Section IV - Automated System Data"};
+            "Section IV - Automated System Data","Section V - Attachment"};
 
     private CitationPagerAdaptor mCitationPagerAdaptor;
 
@@ -256,6 +257,10 @@ public class CitationFormActivity extends ActionBarActivity {
                     break;
                 case 4:
                     fragment = AutomatedDataFragment
+                            .newInstance();
+                    break;
+                case 5:
+                    fragment = AttachmentsFragment
                             .newInstance();
                     break;
             }
