@@ -1,6 +1,10 @@
 package com.dmi.minesafety.demo.fragment;
 
+import com.dmi.minesafety.demo.R;
+
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -18,30 +22,48 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.dmi.minesafety.demo.R;
+import android.widget.TimePicker;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
- * A simple {@link android.support.v4.app.Fragment} subclass. Activities that contain this fragment
- * must implement the {@link ViolationDataFragment} interface to handle interaction
- * events. Use the {@link ViolationDataFragment#newInstance} factory method to create
- * an instance of this fragment.
+ * A simple {@link android.support.v4.app.Fragment} subclass. Activities that
+ * contain this fragment must implement the {@link ViolationDataFragment}
+ * interface to handle interaction events. Use the {@link
+ * ViolationDataFragment#newInstance} factory method to create an instance of
+ * this fragment.
  */
-public class ViolationDataFragment extends Fragment {
+public class ViolationDataFragment extends Fragment
+        implements DatePickerDialog.OnDateSetListener,
+        TimePickerDialog.OnTimeSetListener {
 
     private final int LOAD_FILE_RESULTS = 1;
+
     private final int LOAD_IMAGE_RESULTS = 2;
+
     private final int LOAD_VIDEO_RESULTS = 3;
+
     private final int LOAD_AUDIO_RESULTS = 4;
+
     private LinearLayout attachmentsContainer;
+
+    private TextView mDateButton, mTimeButton;
+
+    int year, monthOfYear;
+
+    int dayOfMonth;
+
+    int hourOfDay, minute;
 
     public static ViolationDataFragment newInstance() {
         ViolationDataFragment fragment = new ViolationDataFragment();
@@ -59,52 +81,102 @@ public class ViolationDataFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.layout_citation_step_one, container, false);
-        attachmentsContainer = (LinearLayout) view.findViewById(R.id.linear_attachment);
+            Bundle savedInstanceState) {
+        View view = inflater
+                .inflate(R.layout.layout_citation_step_one, container, false);
+        attachmentsContainer = (LinearLayout) view
+                .findViewById(R.id.linear_attachment);
         checkIfHintViewRemoved();
 
-        final ImageButton btnAttachFile = (ImageButton) view.findViewById(R.id.btn_attachment);
+        final Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date(
+                calendar.getTimeInMillis()));
+        year = calendar.get(Calendar.YEAR);
+        monthOfYear = calendar.get(calendar.MONTH);
+        dayOfMonth = calendar.get(calendar.DAY_OF_MONTH);
+        hourOfDay = calendar.get(calendar.HOUR_OF_DAY);
+        minute = calendar.get(calendar.MINUTE);
+
+        mDateButton = (TextView) view.findViewById(R.id.btn_date);
+        mTimeButton = (TextView) view.findViewById(R.id.btn_time);
+
+        mDateButton.setText(new SimpleDateFormat("MM/dd/yyyy").format(new Date(
+                calendar.getTimeInMillis())));
+
+        mTimeButton.setText(new SimpleDateFormat("HH:mm").format(new Date(
+                calendar.getTimeInMillis())));
+
+        mDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        getActivity(), ViolationDataFragment.this,
+                        year,
+                        monthOfYear,
+                        dayOfMonth);
+                datePickerDialog.show();
+            }
+        });
+
+        mTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        getActivity(), ViolationDataFragment.this,
+                        hourOfDay,
+                        minute, true);
+                timePickerDialog.show();
+            }
+        });
+
+        final ImageButton btnAttachFile = (ImageButton) view
+                .findViewById(R.id.btn_attachment);
         btnAttachFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 PopupMenu popup = new PopupMenu(getActivity(), btnAttachFile);
-                popup.getMenuInflater().inflate(R.menu.menu_popup, popup.getMenu());
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
+                popup.getMenuInflater()
+                        .inflate(R.menu.menu_popup, popup.getMenu());
+                popup.setOnMenuItemClickListener(
+                        new PopupMenu.OnMenuItemClickListener() {
+                            public boolean onMenuItemClick(MenuItem item) {
 
-                        Intent intent;
-                        switch (item.getItemId()) {
+                                Intent intent;
+                                switch (item.getItemId()) {
 
-                            case R.id.file:
+                                    case R.id.file:
 //                                intent = new Intent(Intent.ACTION_PICK);
 //                                intent.setType("file/*");
 //                                startActivityForResult(intent, LOAD_FILE_RESULTS);
-                                break;
+                                        break;
 
-                            case R.id.picture:
-                                intent = new Intent(Intent.ACTION_PICK);
-                                intent.setType("image/*");
-                                startActivityForResult(intent, LOAD_IMAGE_RESULTS);
-                                break;
+                                    case R.id.picture:
+                                        intent = new Intent(Intent.ACTION_PICK);
+                                        intent.setType("image/*");
+                                        startActivityForResult(intent,
+                                                LOAD_IMAGE_RESULTS);
+                                        break;
 
-                            case R.id.video:
-                                intent = new Intent(Intent.ACTION_PICK);
-                                intent.setType("video/*");
-                                startActivityForResult(intent, LOAD_VIDEO_RESULTS);
-                                break;
+                                    case R.id.video:
+                                        intent = new Intent(Intent.ACTION_PICK);
+                                        intent.setType("video/*");
+                                        startActivityForResult(intent,
+                                                LOAD_VIDEO_RESULTS);
+                                        break;
 
-                            case R.id.audio:
-                                intent = new Intent(Intent.ACTION_PICK);
-                                intent.setData(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
-                                startActivityForResult(intent, LOAD_AUDIO_RESULTS);
-                                break;
-                        }
+                                    case R.id.audio:
+                                        intent = new Intent(Intent.ACTION_PICK);
+                                        intent.setData(
+                                                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
+                                        startActivityForResult(intent,
+                                                LOAD_AUDIO_RESULTS);
+                                        break;
+                                }
 
-                        return true;
-                    }
-                });
+                                return true;
+                            }
+                        });
 
                 popup.show();//showing popup menu
 
@@ -115,9 +187,11 @@ public class ViolationDataFragment extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent resultIntent) {
+    public void onActivityResult(int requestCode, int resultCode,
+            Intent resultIntent) {
 
-        LayoutInflater lf = (LayoutInflater) getActivity().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater lf = (LayoutInflater) getActivity()
+                .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         final RelativeLayout chipView;
         TextView fileName;
         FileMetaData fileMetaData;
@@ -132,14 +206,20 @@ public class ViolationDataFragment extends Fragment {
             switch (requestCode) {
 
                 case LOAD_FILE_RESULTS:
-                    chipView = (RelativeLayout) lf.inflate(R.layout.layout_chipview, null);
-                    layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    chipView = (RelativeLayout) lf
+                            .inflate(R.layout.layout_chipview, null);
+                    layoutParams = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.MATCH_PARENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT);
                     layoutParams.setMargins(10, 10, 10, 10);
                     chipView.setLayoutParams(layoutParams);
-                    fileName = (TextView) chipView.findViewById(R.id.txv_file_name);
-                    fileMetaData = getFileMetaData(resultIntent.getData(), false);
+                    fileName = (TextView) chipView
+                            .findViewById(R.id.txv_file_name);
+                    fileMetaData = getFileMetaData(resultIntent.getData(),
+                            false);
                     fileName.setText(fileMetaData.getName());
-                    delete = (ImageButton) chipView.findViewById(R.id.btn_delete);
+                    delete = (ImageButton) chipView
+                            .findViewById(R.id.btn_delete);
                     delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -151,16 +231,24 @@ public class ViolationDataFragment extends Fragment {
                     break;
 
                 case LOAD_AUDIO_RESULTS:
-                    chipView = (RelativeLayout) lf.inflate(R.layout.layout_chipview, null);
-                    layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    chipView = (RelativeLayout) lf
+                            .inflate(R.layout.layout_chipview, null);
+                    layoutParams = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.MATCH_PARENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT);
                     layoutParams.setMargins(10, 10, 10, 10);
                     chipView.setLayoutParams(layoutParams);
-                    fileName = (TextView) chipView.findViewById(R.id.txv_file_name);
-                    fileMetaData = getFileMetaData(resultIntent.getData(), false);
+                    fileName = (TextView) chipView
+                            .findViewById(R.id.txv_file_name);
+                    fileMetaData = getFileMetaData(resultIntent.getData(),
+                            false);
                     fileName.setText(fileMetaData.getName());
-                    fileType = (ImageView) chipView.findViewById(R.id.imv_file_type);
-                    fileType.setImageDrawable(getResources().getDrawable(R.drawable.ic_audio_popup));
-                    delete = (ImageButton) chipView.findViewById(R.id.btn_delete);
+                    fileType = (ImageView) chipView
+                            .findViewById(R.id.imv_file_type);
+                    fileType.setImageDrawable(getResources()
+                            .getDrawable(R.drawable.ic_audio_popup));
+                    delete = (ImageButton) chipView
+                            .findViewById(R.id.btn_delete);
                     delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -172,20 +260,26 @@ public class ViolationDataFragment extends Fragment {
                     break;
 
                 case LOAD_IMAGE_RESULTS:
-                    chipView = (RelativeLayout) lf.inflate(R.layout.layout_chipview_picture, null);
+                    chipView = (RelativeLayout) lf
+                            .inflate(R.layout.layout_chipview_picture, null);
                     layoutParams = new RelativeLayout.LayoutParams(300, 300);
                     layoutParams.setMargins(10, 10, 10, 10);
                     chipView.setLayoutParams(layoutParams);
-                    fileName = (TextView) chipView.findViewById(R.id.txv_file_name);
-                    TextView fileSize = (TextView) chipView.findViewById(R.id.txv_file_size);
-                    ImageView thumbnail = (ImageView) chipView.findViewById(R.id.imv_thumbnail);
-                    fileMetaData = getFileMetaData(resultIntent.getData(), true);
+                    fileName = (TextView) chipView
+                            .findViewById(R.id.txv_file_name);
+                    TextView fileSize = (TextView) chipView
+                            .findViewById(R.id.txv_file_size);
+                    ImageView thumbnail = (ImageView) chipView
+                            .findViewById(R.id.imv_thumbnail);
+                    fileMetaData = getFileMetaData(resultIntent.getData(),
+                            true);
                     fileName.setText(fileMetaData.getName());
                     fileSize.setText(fileMetaData.getSize() + " MB");
                     thumbnail.setImageBitmap(fileMetaData.getThumbnail());
                     thumbnail.setScaleType(ImageView.ScaleType.FIT_XY);
 
-                    delete = (ImageButton) chipView.findViewById(R.id.btn_delete);
+                    delete = (ImageButton) chipView
+                            .findViewById(R.id.btn_delete);
                     delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -197,16 +291,24 @@ public class ViolationDataFragment extends Fragment {
                     break;
 
                 case LOAD_VIDEO_RESULTS:
-                    chipView = (RelativeLayout) lf.inflate(R.layout.layout_chipview, null);
-                    layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    chipView = (RelativeLayout) lf
+                            .inflate(R.layout.layout_chipview, null);
+                    layoutParams = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.MATCH_PARENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT);
                     layoutParams.setMargins(10, 10, 10, 10);
                     chipView.setLayoutParams(layoutParams);
-                    fileName = (TextView) chipView.findViewById(R.id.txv_file_name);
-                    fileMetaData = getFileMetaData(resultIntent.getData(), false);
+                    fileName = (TextView) chipView
+                            .findViewById(R.id.txv_file_name);
+                    fileMetaData = getFileMetaData(resultIntent.getData(),
+                            false);
                     fileName.setText(fileMetaData.getName());
-                    fileType = (ImageView) chipView.findViewById(R.id.imv_file_type);
-                    fileType.setImageDrawable(getResources().getDrawable(R.drawable.ic_video_popup));
-                    delete = (ImageButton) chipView.findViewById(R.id.btn_delete);
+                    fileType = (ImageView) chipView
+                            .findViewById(R.id.imv_file_type);
+                    fileType.setImageDrawable(getResources()
+                            .getDrawable(R.drawable.ic_video_popup));
+                    delete = (ImageButton) chipView
+                            .findViewById(R.id.btn_delete);
                     delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -244,7 +346,8 @@ public class ViolationDataFragment extends Fragment {
         // The query, since it only applies to a single document, will only return
         // one row. There's no need to filter, sort, or select fields, since we want
         // all fields for one document.
-        Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null, null);
+        Cursor cursor = getActivity().getContentResolver()
+                .query(uri, null, null, null, null, null);
         FileMetaData fileMetaData = null;
         Bitmap bitmap = null;
 
@@ -278,7 +381,8 @@ public class ViolationDataFragment extends Fragment {
                 if (!cursor.isNull(sizeIndex)) {
                     // Technically the column stores an int, but cursor.getString()
                     // will do the conversion automatically.
-                    float sizeLong = bytesToMeg(Float.parseFloat(cursor.getString(sizeIndex)));
+                    float sizeLong = bytesToMeg(
+                            Float.parseFloat(cursor.getString(sizeIndex)));
                     size = String.valueOf(sizeLong);
                 } else {
                     size = "Unknown";
@@ -298,7 +402,8 @@ public class ViolationDataFragment extends Fragment {
     private Bitmap getBitmapFromUri(Uri uri) throws IOException {
         ParcelFileDescriptor parcelFileDescriptor =
                 getActivity().getContentResolver().openFileDescriptor(uri, "r");
-        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+        FileDescriptor fileDescriptor = parcelFileDescriptor
+                .getFileDescriptor();
         Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
         parcelFileDescriptor.close();
         return image;
@@ -310,10 +415,35 @@ public class ViolationDataFragment extends Fragment {
         return bytes / MEGABYTE;
     }
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear,
+            int dayOfMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, monthOfYear, dayOfMonth);
+        this.year = year;
+        this.monthOfYear = monthOfYear;
+        this.dayOfMonth = dayOfMonth;
+        mDateButton.setText(new SimpleDateFormat("MM/dd/yyyy").format(new Date(
+                calendar.getTimeInMillis())));
+    }
+
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        this.hourOfDay = hourOfDay;
+        this.minute = minute;
+        if (minute >= 0 && minute <= 9) {
+            mTimeButton.setText(hourOfDay + ":0" + minute);
+        } else {
+            mTimeButton.setText(hourOfDay + ":" + minute);
+        }
+    }
+
     private class FileMetaData {
 
         String name;
+
         String size;
+
         Bitmap thumbnail;
 
         private FileMetaData(String name, String size, Bitmap thumbnail) {
@@ -339,7 +469,10 @@ public class ViolationDataFragment extends Fragment {
 
         if (attachmentsContainer.getChildCount() == 0) {
             TextView textView = new TextView(getActivity());
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams layoutParams
+                    = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(5, 5, 5, 5);
             textView.setLayoutParams(layoutParams);
             textView.setHint("Attach a file..");

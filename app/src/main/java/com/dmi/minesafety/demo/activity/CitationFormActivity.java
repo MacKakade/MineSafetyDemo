@@ -2,6 +2,7 @@ package com.dmi.minesafety.demo.activity;
 
 import com.dmi.minesafety.demo.R;
 import com.dmi.minesafety.demo.fragment.AutomatedDataFragment;
+import com.dmi.minesafety.demo.fragment.InspectorEvaluation2Fragment;
 import com.dmi.minesafety.demo.fragment.InspectorEvaluationFragment;
 import com.dmi.minesafety.demo.fragment.TerminationActionFragment;
 import com.dmi.minesafety.demo.fragment.ViolationDataFragment;
@@ -45,14 +46,14 @@ public class CitationFormActivity extends ActionBarActivity {
 
     private int mPosition = 0;
 
-    private final int MAX_COUNT = 4;
+    private final int MAX_COUNT = 5;
 
     private File file;
 
     public int pageNumberPDF = 1;
 
     public String[] mArray = new String[]{"Section I - Violation Data",
-            "Section II - Inspector's Evaluation",
+            "Section II - Inspector's Evaluation","Section II - Inspector's Evaluation (Contd)",
             "Section III- Termination Action",
             "Section IV - Automated System Data"};
 
@@ -209,7 +210,7 @@ public class CitationFormActivity extends ActionBarActivity {
                                             R.drawable.ic_next), null);
                         }
 
-                        int progress = (position + 1) * 25;
+                        int progress = (position + 1) * (100 / MAX_COUNT);
                         progressBar.setProgress(progress);
 
                     }
@@ -245,10 +246,15 @@ public class CitationFormActivity extends ActionBarActivity {
                             .newInstance();
                     break;
                 case 2:
-                    fragment = TerminationActionFragment
+
+                    fragment = InspectorEvaluation2Fragment
                             .newInstance();
                     break;
                 case 3:
+                    fragment = TerminationActionFragment
+                            .newInstance();
+                    break;
+                case 4:
                     fragment = AutomatedDataFragment
                             .newInstance();
                     break;
@@ -319,7 +325,7 @@ public class CitationFormActivity extends ActionBarActivity {
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         progressBar.setProgressDrawable(getResources().getDrawable(
                 R.drawable.progress_horizontal_holo_no_background_light));
-        progressBar.setProgress(25);
+        progressBar.setProgress(100 / MAX_COUNT);
     }
 
 }

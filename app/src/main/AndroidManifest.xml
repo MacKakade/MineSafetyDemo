@@ -37,9 +37,9 @@
                 android:screenOrientation="landscape"
                 android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN"/>
 
-            <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
@@ -110,15 +110,17 @@
 
         <activity
                 android:name=".activity.DocumentListActivity"
-                android:label="@string/title_document_list"></activity>
+                android:label="@string/title_document_list"/>
+        <activity
+                android:name=".activity.SimpleScannerActivity"/>
         <activity
                 android:name=".activity.CitationFormActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:windowSoftInputMode="stateAlwaysHidden">
             <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
+            <!--<action android:name="android.intent.action.MAIN"/>-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
             <!--</intent-filter>-->
         </activity>
 

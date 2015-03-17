@@ -89,7 +89,7 @@ public class InspectionOptionsActivity extends ActionBarActivity {
                 } catch (Exception e) {
                     Toast.makeText(InspectionOptionsActivity.this,
                             "Unable to take picture..Please check your camera settings.",
-                            Toast.LENGTH_LONG);
+                            Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -102,11 +102,13 @@ public class InspectionOptionsActivity extends ActionBarActivity {
             public void onClick(View v) {
 
                 try {
-                    takePicture();
+                    startActivity(new Intent(InspectionOptionsActivity.this,
+                            SimpleScannerActivity.class));
+                    //  takePicture();
                 } catch (Exception e) {
                     Toast.makeText(InspectionOptionsActivity.this,
                             "Unable to take picture..Please check your camera settings.",
-                            Toast.LENGTH_LONG);
+                            Toast.LENGTH_LONG).show();;
                 }
 
             }

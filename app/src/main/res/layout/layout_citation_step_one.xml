@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:background="@color/citation_form_bg"
-            android:padding="25dp"
+            android:padding="18dp"
             android:stretchColumns="*">
 
             <TableRow>
@@ -217,7 +217,7 @@
                         android:gravity="top"
                         android:minLines="5"
                         android:padding="4dp"
-                        android:text="@string/text_dummy_citation"
+                        android:text=""
                         android:textSize="18sp" />
                 </LinearLayout>
             </TableRow>

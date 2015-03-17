@@ -16,7 +16,7 @@
                 android:layout_alignParentTop="true"
                 android:id="@+id/table"
                 android:background="@color/citation_form_bg"
-                android:padding="25dp"
+                android:padding="18dp"
                 android:stretchColumns="*">
 
             <TableRow>
