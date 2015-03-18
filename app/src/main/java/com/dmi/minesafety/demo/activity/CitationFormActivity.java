@@ -10,7 +10,9 @@ import com.dmi.minesafety.demo.fragment.ViolationDataFragment;
 import com.dmi.minesafety.demo.widget.NonSwipeableViewPager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -54,9 +56,10 @@ public class CitationFormActivity extends ActionBarActivity {
     public int pageNumberPDF = 1;
 
     public String[] mArray = new String[]{"Section I - Violation Data",
-            "Section II - Inspector's Evaluation","Section II - Inspector's Evaluation (Contd)",
+            "Section II - Inspector's Evaluation",
+            "Section II - Inspector's Evaluation (Contd)",
             "Section III- Termination Action",
-            "Section IV - Automated System Data","Section V - Attachment"};
+            "Section IV - Automated System Data", "Section V - Attachment"};
 
     private CitationPagerAdaptor mCitationPagerAdaptor;
 
@@ -136,6 +139,12 @@ public class CitationFormActivity extends ActionBarActivity {
 
                     Toast.makeText(CitationFormActivity.this,
                             "Citation PDF Saved", Toast.LENGTH_LONG).show();
+
+                    Uri uri = Uri.fromFile(file);
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(uri, "application/pdf");
+                    startActivity(intent);
+
                     finish();
 
                 }

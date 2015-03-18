@@ -206,6 +206,8 @@ public class MineMapActivity extends ActionBarActivity
 //            }
 //        });
 
+
+
         mTitle = mDrawerTitle = getTitle();
         mDotsTitles = getResources().getStringArray(R.array.dots_array);
         mDatesTitles = getResources().getStringArray(R.array.spinner_array);
@@ -253,6 +255,9 @@ public class MineMapActivity extends ActionBarActivity
         for (int i = 0; i < 2; i++) {
             mDrawerList.setItemChecked(i, true);
         }
+
+        mSelectedPositions.add(0);
+        mSelectedPositions.add(1);
 
     }
 

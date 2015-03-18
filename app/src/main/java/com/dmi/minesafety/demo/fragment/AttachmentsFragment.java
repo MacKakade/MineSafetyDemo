@@ -1,13 +1,15 @@
 package com.dmi.minesafety.demo.fragment;
 
+import com.dmi.minesafety.demo.R;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.ParcelFileDescriptor;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.v4.app.Fragment;
@@ -24,20 +26,18 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.dmi.minesafety.demo.R;
-
-import java.io.FileDescriptor;
 import java.io.IOException;
 
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass. Activities that
  * contain this fragment must implement the {@link AttachmentsFragment}
  * interface to handle interaction events. Use the {@link
- * AttachmentsFragment#newInstance} factory method to create an instance
- * of this fragment.
+ * AttachmentsFragment#newInstance} factory method to create an instance of this
+ * fragment.
  */
 
 public class AttachmentsFragment extends Fragment {
+
     View view;
 
     private final int LOAD_FILE_RESULTS = 1;
@@ -68,8 +68,9 @@ public class AttachmentsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.layout_citation_step_five, container, false);
+            Bundle savedInstanceState) {
+        view = inflater
+                .inflate(R.layout.layout_citation_step_five, container, false);
         attachmentsContainer = (LinearLayout) view
                 .findViewById(R.id.linear_attachment);
         checkIfHintViewRemoved();
@@ -133,7 +134,7 @@ public class AttachmentsFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode,
-                                 Intent resultIntent) {
+            Intent resultIntent) {
 
         LayoutInflater lf = (LayoutInflater) getActivity()
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -142,7 +143,7 @@ public class AttachmentsFragment extends Fragment {
         FileMetaData fileMetaData;
         ImageButton delete;
         ImageView fileType;
-        RelativeLayout.LayoutParams layoutParams;
+        LinearLayout.LayoutParams layoutParams;
 
         if (resultCode == Activity.RESULT_OK) {
 
@@ -153,9 +154,9 @@ public class AttachmentsFragment extends Fragment {
                 case LOAD_FILE_RESULTS:
                     chipView = (RelativeLayout) lf
                             .inflate(R.layout.layout_chipview, null);
-                    layoutParams = new RelativeLayout.LayoutParams(
-                            RelativeLayout.LayoutParams.MATCH_PARENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    layoutParams = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT);
                     layoutParams.setMargins(10, 10, 10, 10);
                     chipView.setLayoutParams(layoutParams);
                     fileName = (TextView) chipView
@@ -178,9 +179,9 @@ public class AttachmentsFragment extends Fragment {
                 case LOAD_AUDIO_RESULTS:
                     chipView = (RelativeLayout) lf
                             .inflate(R.layout.layout_chipview, null);
-                    layoutParams = new RelativeLayout.LayoutParams(
-                            RelativeLayout.LayoutParams.MATCH_PARENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    layoutParams = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT);
                     layoutParams.setMargins(10, 10, 10, 10);
                     chipView.setLayoutParams(layoutParams);
                     fileName = (TextView) chipView
@@ -207,7 +208,7 @@ public class AttachmentsFragment extends Fragment {
                 case LOAD_IMAGE_RESULTS:
                     chipView = (RelativeLayout) lf
                             .inflate(R.layout.layout_chipview_picture, null);
-                    layoutParams = new RelativeLayout.LayoutParams(300, 300);
+                    layoutParams = new LinearLayout.LayoutParams(300, 300);
                     layoutParams.setMargins(10, 10, 10, 10);
                     chipView.setLayoutParams(layoutParams);
                     fileName = (TextView) chipView
@@ -238,9 +239,9 @@ public class AttachmentsFragment extends Fragment {
                 case LOAD_VIDEO_RESULTS:
                     chipView = (RelativeLayout) lf
                             .inflate(R.layout.layout_chipview, null);
-                    layoutParams = new RelativeLayout.LayoutParams(
-                            RelativeLayout.LayoutParams.MATCH_PARENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    layoutParams = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT);
                     layoutParams.setMargins(10, 10, 10, 10);
                     chipView.setLayoutParams(layoutParams);
                     fileName = (TextView) chipView
@@ -345,13 +346,23 @@ public class AttachmentsFragment extends Fragment {
     }
 
     private Bitmap getBitmapFromUri(Uri uri) throws IOException {
-        ParcelFileDescriptor parcelFileDescriptor =
-                getActivity().getContentResolver().openFileDescriptor(uri, "r");
-        FileDescriptor fileDescriptor = parcelFileDescriptor
-                .getFileDescriptor();
-        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
-        parcelFileDescriptor.close();
-        return image;
+        Bitmap actuallyUsableBitmap = null;
+        try {
+
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 4;
+
+            AssetFileDescriptor fileDescriptor = null;
+            fileDescriptor = getActivity().getContentResolver()
+                    .openAssetFileDescriptor(uri, "r");
+
+            actuallyUsableBitmap
+                    = BitmapFactory.decodeFileDescriptor(
+                    fileDescriptor.getFileDescriptor(), null, options);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return actuallyUsableBitmap;
     }
 
 

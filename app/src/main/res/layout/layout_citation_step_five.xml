@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="30dp"
-    android:layout_marginLeft="20dp">
 
-    <ImageButton
-        android:id="@+id/btn_attachment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:background="?android:attr/selectableItemBackground"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_menu_attachment" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scroll_container">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:layout_marginLeft="20dp">
 
-    <LinearLayout
-        android:id="@+id/linear_attachment"
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/btn_attachment"
-        android:background="@color/white"
-        android:orientation="vertical">
+        <ImageButton
+                android:id="@+id/btn_attachment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_menu_attachment"/>
 
-    </LinearLayout>
+        <LinearLayout
+                android:id="@+id/linear_attachment"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/btn_attachment"
+                android:background="@color/white"
+                android:orientation="vertical">
 
-
-</RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

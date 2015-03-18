@@ -40,7 +40,7 @@ public class InspectionOptionsActivity extends ActionBarActivity {
 
     private TextView mOrgTitle;
 
-    private int index = 38;
+    private int index = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

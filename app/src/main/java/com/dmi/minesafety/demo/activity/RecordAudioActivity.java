@@ -11,7 +11,6 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -53,7 +52,7 @@ public class RecordAudioActivity extends ActionBarActivity {
         }
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         mRecorder.setOutputFile(file.getPath());
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
@@ -61,7 +60,10 @@ public class RecordAudioActivity extends ActionBarActivity {
             mRecorder.prepare();
             mRecorder.start();
         } catch (IOException e) {
-            Log.e(LOG_TAG, "prepare() failed");
+            Toast.makeText(this,
+                    "Couldn't prepare recorder. Please check your settings",
+                    Toast.LENGTH_LONG).show();
+            finish();
         }
 
 
