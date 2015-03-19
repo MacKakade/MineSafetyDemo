@@ -1,5 +1,13 @@
 package com.dmi.minesafety.demo.activity;
 
+import com.dmi.minesafety.demo.R;
+import com.dmi.minesafety.demo.adaptor.SearchAdapter;
+import com.dmi.minesafety.demo.dummy.DummyContent;
+import com.dmi.minesafety.demo.fragment.DocumentDetailFragment;
+import com.dmi.minesafety.demo.fragment.DocumentListFragment;
+import com.dmi.minesafety.demo.fragment.DocumentListParentFragment;
+import com.dmi.minesafety.demo.fragment.MineMapFragment;
+
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -28,14 +36,6 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.dmi.minesafety.demo.R;
-import com.dmi.minesafety.demo.adaptor.SearchAdapter;
-import com.dmi.minesafety.demo.dummy.DummyContent;
-import com.dmi.minesafety.demo.fragment.DocumentDetailFragment;
-import com.dmi.minesafety.demo.fragment.DocumentListFragment;
-import com.dmi.minesafety.demo.fragment.DocumentListParentFragment;
-import com.dmi.minesafety.demo.fragment.MineMapFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +74,8 @@ public class MineMapActivity extends ActionBarActivity
 
     private Fragment mCurrentFragment;
 
+    private MineAdapter mineAdapter;
+
     private Menu menu;
 
     private TextView mMineTitle;
@@ -86,8 +88,10 @@ public class MineMapActivity extends ActionBarActivity
 
     private String queryString;
 
+    Fragment fragment;
+
     private int[] mDrawables = new int[]{R.drawable.red, R.drawable.lighgreen,
-            R.drawable.purple, R.drawable.red, R.drawable.orange,
+            R.drawable.purple, R.drawable.blue, R.drawable.orange,
             R.drawable.lightviolet, R.drawable.brown, R.drawable.lighgreen,
             R.drawable.brown, R.drawable.green, R.drawable.brown,
             R.drawable.blue};
@@ -147,6 +151,7 @@ public class MineMapActivity extends ActionBarActivity
                         .equalsIgnoreCase("DESELECT ALL")) {
                     for (int i = 0; i < mDotsTitles.length; i++) {
                         mDrawerList.setItemChecked(i, true);
+                        mSelectedPositions.add(i);
                     }
                     if (mCurrentFragment instanceof MineMapFragment) {
                         ((MineMapFragment) mCurrentFragment)
@@ -159,6 +164,7 @@ public class MineMapActivity extends ActionBarActivity
                     for (int i = 0; i < mDotsTitles.length; i++) {
                         mDrawerList.setItemChecked(i, false);
                     }
+                    mSelectedPositions.clear();
                     if (mCurrentFragment instanceof MineMapFragment) {
                         ((MineMapFragment) mCurrentFragment)
                                 .reInitializeImage(
@@ -206,8 +212,6 @@ public class MineMapActivity extends ActionBarActivity
 //            }
 //        });
 
-
-
         mTitle = mDrawerTitle = getTitle();
         mDotsTitles = getResources().getStringArray(R.array.dots_array);
         mDatesTitles = getResources().getStringArray(R.array.spinner_array);
@@ -218,7 +222,7 @@ public class MineMapActivity extends ActionBarActivity
 
         mDateSpinner = (Spinner) findViewById(R.id.spinner_date);
 
-        mDateSpinner.setAdapter(new ArrayAdapter<String>(this,
+        mDateSpinner.setAdapter(new ArrayAdapter<>(this,
                 R.layout.layout_spinner_item_drawer, mDatesTitles));
 
         // set a custom shadow that overlays the main content when the drawer
@@ -226,9 +230,14 @@ public class MineMapActivity extends ActionBarActivity
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,
                 Gravity.START);
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(
-                new MineAdapter(this, R.layout.layout_list_item_drawer,
-                        mDotsTitles));
+
+        mSelectedPositions.add(0);
+        mSelectedPositions.add(1);
+
+        mineAdapter = new MineAdapter(this, R.layout.layout_list_item_drawer,
+                mDotsTitles);
+
+        mDrawerList.setAdapter(mineAdapter);
 
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
@@ -237,27 +246,25 @@ public class MineMapActivity extends ActionBarActivity
                 R.string.drawer_open, R.string.drawer_close) {
             public void onDrawerClosed(View view) {
                 getSupportActionBar().setTitle(mTitle);
-                invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
                 getSupportActionBar().setTitle(mDrawerTitle);
-                invalidateOptionsMenu();
+
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        Fragment fragment = new MineMapFragment();
+        if (fragment == null) {
+            fragment = new MineMapFragment();
+        }
         mCurrentFragment = fragment;
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.imageFrame, fragment).commit();
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < mSelectedPositions.size(); i++) {
             mDrawerList.setItemChecked(i, true);
         }
-
-        mSelectedPositions.add(0);
-        mSelectedPositions.add(1);
 
     }
 
@@ -285,7 +292,7 @@ public class MineMapActivity extends ActionBarActivity
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
+                long id) {
             // selectItem(position);
         }
     }
@@ -300,13 +307,12 @@ public class MineMapActivity extends ActionBarActivity
         switchMenu.setActionView(R.layout.switch_layout);
         inspectionMenu = menu.findItem(R.id.menut_start_inspection);
 
-
         ((SwitchCompat) switchMenu.getActionView()
                 .findViewById(R.id.switch_view)).setOnCheckedChangeListener(
                 new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView,
-                                                 boolean isChecked) {
+                            boolean isChecked) {
                         if (!isChecked) {
                             Fragment fragment = new MineMapFragment();
                             mCurrentFragment = fragment;
@@ -383,7 +389,8 @@ public class MineMapActivity extends ActionBarActivity
 
             @Override
             public boolean onSuggestionClick(int i) {
-                Intent intent = new Intent(MineMapActivity.this, MainActivity.class);
+                Intent intent = new Intent(MineMapActivity.this,
+                        MainActivity.class);
                 intent.putExtra(MainActivity.INDEX_SUGGESTION_CLICK, i);
                 intent.putExtra(MainActivity.QUERY_STRING, queryString);
                 setResult(RESULT_OK, intent);
@@ -440,12 +447,12 @@ public class MineMapActivity extends ActionBarActivity
 
         @Override
         public View getView(final int position, View convertView,
-                            ViewGroup parent) {
+                ViewGroup parent) {
 
             View v = getLayoutInflater()
                     .inflate(R.layout.layout_list_item_drawer, null, false);
 
-            final CheckedTextView textView;
+            CheckedTextView textView;
             textView = (CheckedTextView) v
                     .findViewById(R.id.text_item_drawer);
             textView.setText(mDotsTitles[position]);
@@ -457,13 +464,15 @@ public class MineMapActivity extends ActionBarActivity
                 @Override
                 public void onClick(View v) {
 
-                    if (textView.isChecked()) {
-                        textView.setChecked(false);
+                    if (((CheckedTextView) v).isChecked()) {
+                        mDrawerList.setItemChecked(position, false);
+                        ((CheckedTextView) v).setChecked(false);
                     } else {
-                        textView.setChecked(true);
+                        mDrawerList.setItemChecked(position, true);
+                        ((CheckedTextView) v).setChecked(true);
                     }
 
-                    if (textView.isChecked()) {
+                    if (((CheckedTextView) v).isChecked()) {
                         mSelectedPositions.add(position);
                     } else {
                         mSelectedPositions.remove((Integer) position);

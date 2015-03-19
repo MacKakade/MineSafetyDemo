@@ -28,8 +28,8 @@
     <string name="hello_world">Hello world!</string>
 
     <string-array name="dots_array">
-        <item>Past Events</item>
         <item>Past Citations</item>
+        <item>Past Events</item>
         <item>Fire and Explosion</item>
         <item>Past Samples</item>
         <item>Past Accidents</item>

@@ -129,7 +129,7 @@ public class CitationFormActivity extends ActionBarActivity {
                     textViewStepNumber.setText(mArray[mPosition]);
 
                 } else {
-
+                    mBtnNext.setEnabled(false);
                     // close the document
                     mPdfViews.add((ScrollView) currentFragment.getView()
                             .findViewById(

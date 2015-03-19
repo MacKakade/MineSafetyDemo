@@ -24,6 +24,7 @@ public class CitationDao extends AbstractDao<Citation, Long> {
     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property CitationUri = new Property(1, String.class, "CitationUri", false, "CITATION_URI");
     };
 
 
@@ -39,7 +40,8 @@ public class CitationDao extends AbstractDao<Citation, Long> {
     public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'Citations' (" + //
-                "'_id' INTEGER PRIMARY KEY );"); // 0: id
+                "'_id' INTEGER PRIMARY KEY ," + // 0: id
+                "'CITATION_URI' TEXT);"); // 1: CitationUri
     }
 
     /** Drops the underlying database table. */
@@ -57,6 +59,11 @@ public class CitationDao extends AbstractDao<Citation, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
+ 
+        String CitationUri = entity.getCitationUri();
+        if (CitationUri != null) {
+            stmt.bindString(2, CitationUri);
+        }
     }
 
     /** @inheritdoc */
@@ -69,7 +76,8 @@ public class CitationDao extends AbstractDao<Citation, Long> {
     @Override
     public Citation readEntity(Cursor cursor, int offset) {
         Citation entity = new Citation( //
-            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0) // id
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // CitationUri
         );
         return entity;
     }
@@ -78,6 +86,7 @@ public class CitationDao extends AbstractDao<Citation, Long> {
     @Override
     public void readEntity(Cursor cursor, Citation entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
+        entity.setCitationUri(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
      }
     
     /** @inheritdoc */

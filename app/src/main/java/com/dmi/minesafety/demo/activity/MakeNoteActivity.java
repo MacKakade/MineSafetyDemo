@@ -17,7 +17,6 @@ public class MakeNoteActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_note);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ImageView btnSave = (ImageView) findViewById(R.id.btn_save);
         ImageView btnCancel = (ImageView) findViewById(R.id.btn_cancel);
 

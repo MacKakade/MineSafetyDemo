@@ -1,6 +1,8 @@
 package com.dmi.minesafety.demo.activity;
 
 import com.dmi.minesafety.demo.R;
+import com.dmi.minesafety.demo.greendao.Citation;
+import com.dmi.minesafety.demo.repository.CitationRepository;
 
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
@@ -27,10 +29,12 @@ public class CapturePhotoActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_capture_photo);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Uri uri = getIntent().getExtras().getParcelable("img_uri");
+        final Uri uri = getIntent().getExtras().getParcelable("img_uri");
         ImageView photo = (ImageView) findViewById(R.id.imv_camera_capture);
-        String[] mLocationsTitles = getResources().getStringArray(R.array.spinner_data);
-        Spinner mLocationSpinner = (Spinner) findViewById(R.id.spinner_location);
+        String[] mLocationsTitles = getResources()
+                .getStringArray(R.array.spinner_data);
+        Spinner mLocationSpinner = (Spinner) findViewById(
+                R.id.spinner_location);
         mLocationSpinner.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.layout_spinner_item_drawer_black, mLocationsTitles));
 
@@ -39,8 +43,9 @@ public class CapturePhotoActivity extends ActionBarActivity {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = 4;
 
-            AssetFileDescriptor fileDescriptor =null;
-            fileDescriptor = getContentResolver().openAssetFileDescriptor(uri, "r");
+            AssetFileDescriptor fileDescriptor = null;
+            fileDescriptor = getContentResolver()
+                    .openAssetFileDescriptor(uri, "r");
 
             Bitmap actuallyUsableBitmap
                     = BitmapFactory.decodeFileDescriptor(
@@ -50,13 +55,18 @@ public class CapturePhotoActivity extends ActionBarActivity {
             e.printStackTrace();
         }
 
-
         ImageView btnSave = (ImageView) findViewById(R.id.btn_save);
         ImageView btnCancel = (ImageView) findViewById(R.id.btn_cancel);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int count = CitationRepository
+                        .getAllCitations(CapturePhotoActivity.this).size();
+                count++;
+                Citation citation = new Citation((long) count, uri.toString());
+                CitationRepository
+                        .insertOrUpdate(CapturePhotoActivity.this, citation);
                 Toast.makeText(CapturePhotoActivity.this,
                         "   Photo is saved!   ", Toast.LENGTH_LONG).show();
                 finish();

@@ -2,6 +2,8 @@ package com.dmi.minesafety.demo.activity;
 
 import com.dmi.minesafety.demo.R;
 import com.dmi.minesafety.demo.dummy.DummyContent;
+import com.dmi.minesafety.demo.greendao.Citation;
+import com.dmi.minesafety.demo.repository.CitationRepository;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
@@ -108,7 +110,8 @@ public class InspectionOptionsActivity extends ActionBarActivity {
                 } catch (Exception e) {
                     Toast.makeText(InspectionOptionsActivity.this,
                             "Unable to take picture..Please check your camera settings.",
-                            Toast.LENGTH_LONG).show();;
+                            Toast.LENGTH_LONG).show();
+                    ;
                 }
 
             }
@@ -173,6 +176,14 @@ public class InspectionOptionsActivity extends ActionBarActivity {
 
                 alertDialog.setView(view);
                 alertDialog.show();
+
+//                for (Citation citation : CitationRepository
+//                        .getAllCitations(InspectionOptionsActivity.this)) {
+//                    Toast.makeText(InspectionOptionsActivity.this,
+//                            citation.getCitationUri(), Toast.LENGTH_LONG)
+//                            .show();
+//                }
+
             }
         });
 

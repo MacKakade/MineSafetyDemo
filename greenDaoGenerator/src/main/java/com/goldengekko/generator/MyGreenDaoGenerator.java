@@ -27,7 +27,7 @@ public class MyGreenDaoGenerator {
         citations = schema.addEntity("Citation");
         citations.setTableName("Citations");
         citations.addIdProperty();
-
+        citations.addStringProperty("CitationUri");
     }
 
     private static void createEvents(Schema schema) {

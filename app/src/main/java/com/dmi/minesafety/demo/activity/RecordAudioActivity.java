@@ -43,7 +43,7 @@ public class RecordAudioActivity extends ActionBarActivity {
     }
 
     private void startRecording() {
-        file = new File(Environment.getExternalStorageDirectory() + "/Audio/",
+        file = new File(Environment.getExternalStorageDirectory(),
                 new Date() + "_audio.amr");
         try {
             file.createNewFile();

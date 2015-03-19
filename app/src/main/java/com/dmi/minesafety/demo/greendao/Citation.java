@@ -7,6 +7,7 @@ package com.dmi.minesafety.demo.greendao;
 public class Citation {
 
     private Long id;
+    private String CitationUri;
 
     public Citation() {
     }
@@ -15,12 +16,25 @@ public class Citation {
         this.id = id;
     }
 
+    public Citation(Long id, String CitationUri) {
+        this.id = id;
+        this.CitationUri = CitationUri;
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCitationUri() {
+        return CitationUri;
+    }
+
+    public void setCitationUri(String CitationUri) {
+        this.CitationUri = CitationUri;
     }
 
 }
