@@ -1,7 +1,5 @@
 package com.dmi.minesafety.demo.fragment;
 
-import com.dmi.minesafety.demo.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
@@ -20,13 +18,18 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.dmi.minesafety.demo.R;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass. Activities that
@@ -38,8 +41,6 @@ import java.io.IOException;
 
 public class AttachmentsFragment extends Fragment {
 
-    View view;
-
     private final int LOAD_FILE_RESULTS = 1;
 
     private final int LOAD_IMAGE_RESULTS = 2;
@@ -49,6 +50,10 @@ public class AttachmentsFragment extends Fragment {
     private final int LOAD_AUDIO_RESULTS = 4;
 
     private LinearLayout attachmentsContainer;
+
+    private List<LinearLayout> pictureContainers = new ArrayList<>();
+
+    private int maxPicturesCount;
 
     public static AttachmentsFragment newInstance() {
         AttachmentsFragment fragment
@@ -68,12 +73,14 @@ public class AttachmentsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        view = inflater
+                             Bundle savedInstanceState) {
+        View view = inflater
                 .inflate(R.layout.layout_citation_step_five, container, false);
         attachmentsContainer = (LinearLayout) view
                 .findViewById(R.id.linear_attachment);
         checkIfHintViewRemoved();
+
+        setCountMaxPictures();
 
         final ImageButton btnAttachFile = (ImageButton) view
                 .findViewById(R.id.btn_attachment);
@@ -91,11 +98,11 @@ public class AttachmentsFragment extends Fragment {
                                 Intent intent;
                                 switch (item.getItemId()) {
 
-                                    case R.id.file:
+//                                    case R.id.file:
 //                                intent = new Intent(Intent.ACTION_PICK);
 //                                intent.setType("file/*");
 //                                startActivityForResult(intent, LOAD_FILE_RESULTS);
-                                        break;
+//                                        break;
 
                                     case R.id.picture:
                                         intent = new Intent(Intent.ACTION_PICK);
@@ -134,7 +141,7 @@ public class AttachmentsFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode,
-            Intent resultIntent) {
+                                 Intent resultIntent) {
 
         LayoutInflater lf = (LayoutInflater) getActivity()
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -211,6 +218,7 @@ public class AttachmentsFragment extends Fragment {
                     layoutParams = new LinearLayout.LayoutParams(300, 300);
                     layoutParams.setMargins(10, 10, 10, 10);
                     chipView.setLayoutParams(layoutParams);
+
                     fileName = (TextView) chipView
                             .findViewById(R.id.txv_file_name);
                     TextView fileSize = (TextView) chipView
@@ -229,11 +237,58 @@ public class AttachmentsFragment extends Fragment {
                     delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            attachmentsContainer.removeView(chipView);
+
+                            for (int i = 0; i < pictureContainers.size(); i++) {
+
+                                LinearLayout linearLayout = pictureContainers.get(i);
+                                if (chipView.getParent() == linearLayout) {
+                                    linearLayout.removeView(chipView);
+                                    if (i < pictureContainers.size() - 1) {
+                                        LinearLayout linearLayout1 = pictureContainers.get(i + 1);
+                                        View child = linearLayout1.getChildAt(0);
+                                        linearLayout1.removeViewAt(0);
+                                        linearLayout.addView(child);
+                                        if (linearLayout1.getChildCount() == 0) {
+                                            pictureContainers.remove(linearLayout1);
+                                        }
+                                    }
+                                }
+                            }
                             checkIfHintViewRemoved();
                         }
                     });
-                    attachmentsContainer.addView(chipView);
+
+                    LinearLayout linearLayout = null;
+                    if (pictureContainers.size() > 0) {
+                        linearLayout = pictureContainers.get(pictureContainers.size() - 1);
+
+                        if (linearLayout.getChildCount() < maxPicturesCount) {
+                            linearLayout.addView(chipView);
+                        } else {
+                            linearLayout = new LinearLayout(getActivity());
+                            layoutParams = new LinearLayout.LayoutParams(
+                                    LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT);
+                            linearLayout.setLayoutParams(layoutParams);
+                            linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+                            linearLayout.addView(chipView);
+
+                            attachmentsContainer.addView(linearLayout, pictureContainers.size());
+                            pictureContainers.add(linearLayout);
+                        }
+
+                    } else {
+                        linearLayout = new LinearLayout(getActivity());
+                        layoutParams = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT);
+                        linearLayout.setLayoutParams(layoutParams);
+                        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+                        linearLayout.addView(chipView);
+
+                        attachmentsContainer.addView(linearLayout);
+                        pictureContainers.add(linearLayout);
+                    }
                     break;
 
                 case LOAD_VIDEO_RESULTS:
@@ -408,7 +463,8 @@ public class AttachmentsFragment extends Fragment {
                     LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(5, 5, 5, 5);
             textView.setLayoutParams(layoutParams);
-            textView.setHint("Attach a file..");
+            textView.setPadding(5, 5, 5, 5);
+            textView.setHint("Attachments..");
             textView.setTag("hint");
             textView.setTextSize(18);
             textView.setGravity(Gravity.CENTER_VERTICAL);
@@ -416,5 +472,21 @@ public class AttachmentsFragment extends Fragment {
         } else if (attachmentsContainer.findViewWithTag("hint") != null) {
             attachmentsContainer.removeViewAt(0);
         }
+    }
+
+    private void setCountMaxPictures() {
+
+        ViewTreeObserver vto = attachmentsContainer.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                attachmentsContainer.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                int width = attachmentsContainer.getMeasuredWidth();
+                maxPicturesCount = width / 320;
+                Log.i("width", "" + width);
+                Log.i("count", "" + maxPicturesCount);
+            }
+        });
+
     }
 }
