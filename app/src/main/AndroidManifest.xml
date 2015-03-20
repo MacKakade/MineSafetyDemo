@@ -109,11 +109,14 @@
                 android:windowSoftInputMode="stateAlwaysHidden"/>
 
         <activity
+                android:screenOrientation="landscape"
                 android:name=".activity.DocumentListActivity"
                 android:label="@string/title_document_list"/>
         <activity
+                android:screenOrientation="landscape"
                 android:name=".activity.SimpleScannerActivity"/>
         <activity
+                android:screenOrientation="landscape"
                 android:name=".activity.CitationFormActivity"
                 android:configChanges="orientation|keyboardHidden"
                 android:windowSoftInputMode="stateAlwaysHidden">
@@ -126,6 +129,7 @@
 
 
         <activity
+                android:screenOrientation="landscape"
                 android:name=".activity.DocumentDetailActivity"
                 android:label="@string/title_document_detail"
                 android:parentActivityName=".activity.DocumentListActivity">

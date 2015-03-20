@@ -171,8 +171,9 @@
                             android:text="Date"
                             android:textSize="18sp" />
 
-                        <EditText
-                            android:id="@+id/edt_dated"
+                        <TextView
+                            android:id="@+id/btn_date"
+                            android:background="@drawable/abc_tab_indicator_mtrl_alpha"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:layout_alignLeft="@+id/chb_safeguard_initial_action"
@@ -242,8 +243,9 @@
                                 android:text="Date"
                                 android:textSize="18sp" />
 
-                        <EditText
-                                android:id="@+id/edt_date"
+                        <TextView
+                                android:id="@+id/btn_date2"
+                                android:background="@drawable/abc_tab_indicator_mtrl_alpha"
                                 android:layout_width="160dp"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/txv_label_date"
@@ -257,12 +259,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="50dp"
-                                android:layout_toRightOf="@+id/edt_date"
+                                android:layout_toRightOf="@+id/btn_date2"
                                 android:text="Time (24 Hr. Clock)"
                                 android:textSize="18sp" />
 
-                        <EditText
-                                android:id="@+id/edt_time"
+                        <TextView
+                                android:id="@+id/btn_time"
+                                android:background="@drawable/abc_tab_indicator_mtrl_alpha"
                                 android:layout_width="160dp"
                                 android:layout_height="wrap_content"
                                 android:layout_alignLeft="@+id/txv_label_time"

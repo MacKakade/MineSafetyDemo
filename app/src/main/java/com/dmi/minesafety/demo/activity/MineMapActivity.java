@@ -45,7 +45,7 @@ public class MineMapActivity extends ActionBarActivity
         implements DocumentListFragment.Callbacks {
 
     private DrawerLayout mDrawerLayout;
-
+  
     private ListView mDrawerList;
 
     private MenuItem switchMenu, inspectionMenu;
