@@ -243,7 +243,11 @@ public class AttachmentsFragment extends Fragment {
                                 LinearLayout linearLayout = pictureContainers.get(i);
                                 if (chipView.getParent() == linearLayout) {
                                     linearLayout.removeView(chipView);
-                                    if (i < pictureContainers.size() - 1) {
+                                    if(linearLayout.getChildCount() == 0) {
+                                        pictureContainers.remove(linearLayout);
+                                    }
+
+                                    if(i+1 < pictureContainers.size()) {
                                         LinearLayout linearLayout1 = pictureContainers.get(i + 1);
                                         View child = linearLayout1.getChildAt(0);
                                         linearLayout1.removeViewAt(0);
@@ -273,7 +277,8 @@ public class AttachmentsFragment extends Fragment {
                             linearLayout.setOrientation(LinearLayout.HORIZONTAL);
                             linearLayout.addView(chipView);
 
-                            attachmentsContainer.addView(linearLayout, pictureContainers.size());
+                            int index = attachmentsContainer.indexOfChild(pictureContainers.get(pictureContainers.size()-1));
+                            attachmentsContainer.addView(linearLayout, index+1);
                             pictureContainers.add(linearLayout);
                         }
 

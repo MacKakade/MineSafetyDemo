@@ -414,6 +414,35 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onMapLoaded() {
+
+        onMarkerClickListener = new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                if (currentMarker != null) {
+                    currentMarker.setIcon(BitmapDescriptorFactory
+                            .fromResource(R.drawable.marker_red));
+                }
+                marker.setIcon(BitmapDescriptorFactory
+                        .fromResource(R.drawable.marker_green));
+                currentMarker = marker;
+
+                TextView txvMineName = (TextView) infoWindow
+                        .findViewById(R.id.mine_name);
+                for (DummyContent.Mine mine : DummyContent.MINES) {
+                    if (marker.getPosition()
+                            .equals(new LatLng(mine.lat, mine.lng))) {
+                        txvMineName.setText(mine.name);
+                    }
+                }
+                marker.showInfoWindow();
+                googleMap.animateCamera(
+                        CameraUpdateFactory.newLatLng(marker.getPosition()));
+                return true;
+            }
+        };
+
+        googleMap.setOnMarkerClickListener(onMarkerClickListener);
+
         googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(USA, 0));
         googleMap.setInfoWindowAdapter(new InfoWindowAdapter() {
             @Override
@@ -458,6 +487,7 @@ public class MainActivity extends ActionBarActivity
             }
         };
         infoWindow.setOnTouchListener(infoButtonListener);
+        setMarkers();
     }
 
     @Override
@@ -475,36 +505,7 @@ public class MainActivity extends ActionBarActivity
     @Override
     public void onMapReady(final GoogleMap googleMap) {
         this.googleMap = googleMap;
-
-        onMarkerClickListener = new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                if (currentMarker != null) {
-                    currentMarker.setIcon(BitmapDescriptorFactory
-                            .fromResource(R.drawable.marker_red));
-                }
-                marker.setIcon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.marker_green));
-                currentMarker = marker;
-
-                TextView txvMineName = (TextView) infoWindow
-                        .findViewById(R.id.mine_name);
-                for (DummyContent.Mine mine : DummyContent.MINES) {
-                    if (marker.getPosition()
-                            .equals(new LatLng(mine.lat, mine.lng))) {
-                        txvMineName.setText(mine.name);
-                    }
-                }
-                marker.showInfoWindow();
-                googleMap.animateCamera(
-                        CameraUpdateFactory.newLatLng(marker.getPosition()));
-                return true;
-            }
-        };
-
-        googleMap.setOnMarkerClickListener(onMarkerClickListener);
         googleMap.setOnMapLoadedCallback(MainActivity.this);
-        setMarkers();
     }
 
     private void hideKeyboard() {
