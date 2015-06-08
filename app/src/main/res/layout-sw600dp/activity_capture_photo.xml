@@ -15,7 +15,7 @@
 
         <TextView
             android:id="@+id/title_org"
-            style="?android:textAppearanceMedium"
+            style="?android:textAppearanceLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -24,7 +24,7 @@
 
         <TextView
             android:id="@+id/title_mine"
-            style="?android:textAppearanceSmall"
+            style="?android:textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title_org"
@@ -32,39 +32,39 @@
             android:layout_marginLeft="15dp"
             android:text="@string/name_cave" />
 
-        <!--<Spinner-->
-        <!--android:id="@+id/spinner_location"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignTop="@+id/btn_record_location"-->
-        <!--android:layout_marginRight="15dp"-->
-        <!--android:layout_toLeftOf="@+id/txv_geo_location" />-->
+        <Spinner
+            android:id="@+id/spinner_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btn_record_location"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/txv_geo_location" />
 
-        <!--<Button-->
-        <!--android:id="@+id/btn_record_location"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_below="@+id/title_mine"-->
-        <!--android:layout_margin="12dp"-->
-        <!--android:layout_marginRight="15dp"-->
-        <!--android:background="@color/inspection_button_blue"-->
-        <!--android:paddingLeft="12dp"-->
-        <!--android:paddingRight="12dp"-->
-        <!--android:text="@string/button_record_location"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:textSize="16sp" />-->
+        <Button
+            android:layout_below="@+id/title_mine"
+            android:id="@+id/btn_record_location"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="12dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/inspection_button_blue"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="@string/button_record_location"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
-        <!--<TextView-->
-        <!--android:id="@+id/txv_geo_location"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignTop="@+id/btn_record_location"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:layout_toLeftOf="@+id/btn_record_location"-->
-        <!--android:text="@string/text_geo_location"-->
-        <!--android:textColor="@android:color/black"-->
-        <!--android:textSize="16sp" />-->
+        <TextView
+            android:id="@+id/txv_geo_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/btn_record_location"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/btn_record_location"
+            android:text="@string/text_geo_location"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
     </RelativeLayout>
 
 
@@ -73,25 +73,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rel_controls"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="130dp"
-        android:layout_marginRight="130dp"
-        android:layout_marginTop="5dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginRight="200dp"
+        android:layout_marginTop="40dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY" />
 
     <EditText
         android:id="@+id/edt_note"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:layout_alignBottom="@+id/imv_camera_capture"
         android:layout_alignLeft="@+id/imv_camera_capture"
         android:layout_alignRight="@+id/imv_camera_capture"
-        android:layout_margin="4dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:background="#8CFFFFFF"
         android:gravity="start"
         android:hint="@string/text_hint_capture_note"
-        android:lines="4"
         android:padding="10dp" />
 
     <ImageView
@@ -100,8 +102,8 @@
         android:layout_height="40dp"
         android:layout_alignTop="@+id/btn_cancel"
         android:layout_marginRight="20dp"
-        android:layout_toLeftOf="@+id/btn_cancel"
         android:background="?selectableItemBackground"
+        android:layout_toLeftOf="@+id/btn_cancel"
         android:src="@drawable/ic_save" />
 
     <ImageView
@@ -119,20 +121,20 @@
         android:id="@+id/btn_scribble"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:background="?selectableItemBackground"
         android:layout_alignRight="@+id/imv_camera_capture"
         android:layout_alignTop="@+id/imv_camera_capture"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:background="?selectableItemBackground"
         android:src="@drawable/ic_scribble" />
 
     <ImageView
         android:id="@+id/btn_edit"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:background="?selectableItemBackground"
         android:layout_alignTop="@+id/btn_scribble"
         android:layout_marginRight="20dp"
         android:layout_toLeftOf="@+id/btn_scribble"
-        android:background="?selectableItemBackground"
         android:src="@drawable/ic_edit" />
 </RelativeLayout>

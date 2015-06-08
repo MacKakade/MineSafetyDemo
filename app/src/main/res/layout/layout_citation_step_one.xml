@@ -89,6 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:background="@color/white"
+                        android:imeOptions="actionDone"
                         android:padding="4dp"
                         android:text="7777777"
                         android:textSize="18sp" />
@@ -111,6 +112,7 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
                         android:layout_marginTop="8dp"
                         android:background="@color/white"
                         android:padding="4dp"
@@ -139,6 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:background="@color/white"
+                        android:imeOptions="actionDone"
                         android:padding="4dp"
                         android:text="BLACKSVILLE NO 2"
                         android:textSize="18sp" />
@@ -161,6 +164,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:imeOptions="actionDone"
                         android:background="@color/white"
                         android:padding="4dp"
                         android:text="46-01968"
@@ -186,6 +190,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:background="@color/white"
+                        android:imeOptions="actionDone"
                         android:padding="4dp"
                         android:text="CONSOLIDATION COAL COMPANY"
                         android:textSize="18sp" />
@@ -216,6 +221,7 @@
                         android:background="@color/white"
                         android:gravity="top"
                         android:minLines="5"
+                        android:imeOptions="actionDone"
                         android:padding="4dp"
                         android:text=""
                         android:textSize="18sp" />

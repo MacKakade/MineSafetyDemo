@@ -5,11 +5,19 @@
     tools:context="com.dmi.minesafety.demo.activity.SplashScreenActivity">
 
     <ImageView
-        android:src="@drawable/splashscreen"
-        android:scaleType="fitXY"
         android:id="@+id/splash_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ImageView>
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/splashscreen" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:text="version: 1.0"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/scroll_container"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -60,7 +60,7 @@
                             android:id="@+id/chb_unlikely"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBottom="@+id/chb_no_likelihood"
+                            android:layout_alignTop="@+id/chb_no_likelihood"
                             android:layout_marginLeft="15dp"
                             android:layout_toRightOf="@+id/chb_no_likelihood"
                             android:text="Unlikely"
@@ -70,7 +70,7 @@
                             android:id="@+id/chb_reasonably_likely"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBottom="@+id/chb_unlikely"
+                            android:layout_alignTop="@+id/chb_unlikely"
                             android:layout_marginLeft="15dp"
                             android:layout_toRightOf="@+id/chb_unlikely"
                             android:text="Reasonably Likely"
@@ -80,9 +80,8 @@
                             android:id="@+id/chb_highly_likely"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBottom="@+id/chb_reasonably_likely"
-                            android:layout_marginLeft="15dp"
-                            android:layout_toRightOf="@+id/chb_reasonably_likely"
+                            android:layout_below="@+id/chb_no_likelihood"
+                            android:layout_marginTop="8dp"
                             android:text="Highly Likely"
                             android:textSize="16sp" />
 
@@ -90,8 +89,8 @@
                             android:id="@+id/chb_occurred"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBottom="@+id/chb_highly_likely"
-                            android:layout_marginLeft="15dp"
+                            android:layout_alignLeft="@+id/chb_unlikely"
+                            android:layout_alignTop="@+id/chb_highly_likely"
                             android:layout_toRightOf="@+id/chb_highly_likely"
                             android:text="Occurred"
                             android:textSize="16sp" />
@@ -100,7 +99,7 @@
                             android:id="@+id/txv_label_b"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/chb_no_likelihood"
+                            android:layout_below="@+id/chb_highly_likely"
                             android:layout_marginTop="20dp"
                             android:text="B. Injury or illness could reasonably be expected to be"
                             android:textSize="16sp" />
@@ -118,10 +117,11 @@
                             android:id="@+id/chb_lost_workdays"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true"
-                            android:layout_alignBottom="@+id/chb_no_lost_workdays"
-                            android:layout_marginLeft="15dp"
+                            android:layout_alignLeft="@+id/chb_fatal"
+                            android:layout_alignTop="@+id/chb_no_lost_workdays"
                             android:layout_toRightOf="@+id/chb_no_lost_workdays"
+                            android:checked="true"
+                            android:gravity="top"
                             android:text="Lost Workdays Or Restricted Duty"
                             android:textSize="16sp" />
 
@@ -129,9 +129,8 @@
                             android:id="@+id/chb_permanently_disabling"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBottom="@+id/chb_lost_workdays"
-                            android:layout_marginLeft="15dp"
-                            android:layout_toRightOf="@+id/chb_lost_workdays"
+                            android:layout_below="@+id/chb_no_lost_workdays"
+                            android:layout_marginTop="8dp"
                             android:text="Permanently Disabling"
                             android:textSize="16sp" />
 
@@ -139,7 +138,7 @@
                             android:id="@+id/chb_fatal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBottom="@+id/chb_permanently_disabling"
+                            android:layout_alignTop="@+id/chb_permanently_disabling"
                             android:layout_marginLeft="15dp"
                             android:layout_toRightOf="@+id/chb_permanently_disabling"
                             android:text="Fatal"
@@ -149,7 +148,7 @@
                             android:id="@+id/txv_label_c"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/chb_no_lost_workdays"
+                            android:layout_below="@+id/chb_permanently_disabling"
                             android:layout_marginTop="20dp"
                             android:text="C. Significant and Substantial"
                             android:textSize="16sp" />
@@ -160,8 +159,8 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/txv_label_c"
                             android:layout_marginTop="8dp"
-                            android:text="Yes"
                             android:checked="true"
+                            android:text="Yes"
                             android:textSize="16sp" />
 
                         <CheckBox
@@ -215,8 +214,8 @@
                             android:layout_alignBottom="@+id/chb_none"
                             android:layout_marginLeft="15dp"
                             android:layout_toRightOf="@+id/chb_none"
-                            android:text="Low"
                             android:checked="true"
+                            android:text="Low"
                             android:textSize="16sp" />
 
                         <CheckBox
@@ -243,9 +242,8 @@
                             android:id="@+id/chb_reckless_disregard"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBottom="@+id/chb_high"
-                            android:layout_marginLeft="15dp"
-                            android:layout_toRightOf="@+id/chb_high"
+                            android:layout_below="@+id/chb_none"
+                            android:layout_marginTop="8dp"
                             android:text="Reckless Disregard"
                             android:textSize="16sp" />
 

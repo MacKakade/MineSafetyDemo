@@ -2,10 +2,15 @@ package com.dmi.minesafety.demo.activity;
 
 import com.dmi.minesafety.demo.R;
 import com.dmi.minesafety.demo.dummy.DummyContent;
+import com.dmi.minesafety.demo.utils.ImageOperations;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 
 
 public class SplashScreenActivity extends ActionBarActivity {
@@ -94,11 +99,31 @@ public class SplashScreenActivity extends ActionBarActivity {
             -81.677337
     };
 
+    private ImageView img;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        img = (ImageView) findViewById(R.id.splash_image);
+
+        boolean isTablet = getResources().getBoolean(R.bool.isTablet);
+        if (isTablet) {
+            // do something
+        } else {
+            ViewTreeObserver vto = img.getViewTreeObserver();
+            vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+                public boolean onPreDraw() {
+                    img.getViewTreeObserver().removeOnPreDrawListener(this);
+                    double finalHeight = img.getMeasuredHeight() * 0.4;
+                    double finalWidth = img.getMeasuredWidth() * 0.4;
+                    Log.i("size", "Height: " + finalHeight + " Width: " + finalWidth);
+                    Bitmap bitmap = ImageOperations.decodeSampledBitmapFromResource(getResources(), R.drawable.splashscreen, finalWidth, finalHeight);
+                    img.setImageBitmap(bitmap);
+                    return true;
+                }
+            });
+        }
         String[] mineID = getResources().getStringArray(R.array.mine_id);
         String[] mineName = getResources().getStringArray(R.array.mine_name);
         String[] mineOperator = getResources()

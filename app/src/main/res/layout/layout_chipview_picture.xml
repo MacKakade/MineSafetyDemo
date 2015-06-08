@@ -27,7 +27,7 @@
             android:layout_margin="4dp"
             android:background="?android:attr/selectableItemBackground"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_cancel" />
+            android:src="@drawable/close_icon" />
 
         <TextView
             android:id="@+id/txv_file_name"

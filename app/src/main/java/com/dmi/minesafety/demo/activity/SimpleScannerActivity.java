@@ -3,6 +3,7 @@ package com.dmi.minesafety.demo.activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import me.dm7.barcodescanner.zbar.Result;
@@ -23,6 +24,18 @@ public class SimpleScannerActivity extends ActionBarActivity
                 this);    // Programmatically initialize the scanner view
         setContentView(
                 mScannerView);                // Set the scanner view as the content view
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

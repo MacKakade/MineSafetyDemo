@@ -30,5 +30,5 @@
         android:layout_margin="4dp"
         android:background="?android:attr/selectableItemBackground"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_cancel" />
+        android:src="@drawable/close_icon" />
 </RelativeLayout>

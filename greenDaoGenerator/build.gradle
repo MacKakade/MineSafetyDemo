@@ -19,8 +19,8 @@ dependencies {
     repositories {
         mavenCentral()
     }
-    compile('de.greenrobot:DaoGenerator:1.3.0')
-
+    compile 'de.greenrobot:DaoGenerator:1.3.0'
+    compile 'com.github.chrisbanes.photoview:library:1.2.3'
 }
 task createDocs {
     def docs = file(outputDir)

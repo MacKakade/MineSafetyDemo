@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@color/action_bar_bg"
+    android:background="@color/color_primary"
     android:orientation="horizontal">
 
     <ImageView
@@ -27,7 +27,7 @@
             android:id="@+id/txv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/action_bar_title"
+            android:text="@string/action_bar_title_mine_app"
             android:textColor="@color/white"
             android:textSize="14sp" />
 

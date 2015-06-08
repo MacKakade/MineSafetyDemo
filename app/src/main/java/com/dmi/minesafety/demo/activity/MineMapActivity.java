@@ -340,7 +340,7 @@ public class MineMapActivity extends ActionBarActivity
                         inspectionMenu.setVisible(true);
                         getSupportActionBar().setBackgroundDrawable(
                                 new ColorDrawable(getResources()
-                                        .getColor(R.color.action_bar_bg)));
+                                        .getColor(R.color.color_primary)));
                         return true;  // Return true to collapse action view
                     }
 

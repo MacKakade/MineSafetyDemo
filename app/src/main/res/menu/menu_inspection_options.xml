@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--<item-->
-            <!--android:id="@+id/menu_go_to_map"-->
-            <!--app:showAsAction="always|withText"-->
-            <!--android:icon="@drawable/icon_mapview"-->
-            <!--android:title="Go to Map">-->
-    <!--</item>-->
+    <item
+        android:id="@+id/menu_all_forms"
+        android:icon="@drawable/ic_forms"
+        android:title="All Forms"
+        app:showAsAction="never" />
 
-    <!--<item-->
-            <!--android:id="@+id/search"-->
-            <!--android:title="Search"-->
-            <!--app:showAsAction="always|withText"-->
-            <!--app:actionViewClass="android.support.v7.widget.SearchView"/>-->
+    <item
+        android:id="@+id/menu_my_artifacts"
+        android:icon="@drawable/ic_artifacts"
+        android:title="My Inspection Artifacts"
+        app:showAsAction="never" />
 
 </menu>

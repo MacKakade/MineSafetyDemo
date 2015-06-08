@@ -31,12 +31,12 @@ public class CapturePhotoActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Uri uri = getIntent().getExtras().getParcelable("img_uri");
         ImageView photo = (ImageView) findViewById(R.id.imv_camera_capture);
-        String[] mLocationsTitles = getResources()
-                .getStringArray(R.array.spinner_data);
-        Spinner mLocationSpinner = (Spinner) findViewById(
-                R.id.spinner_location);
-        mLocationSpinner.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.layout_spinner_item_drawer_black, mLocationsTitles));
+//        String[] mLocationsTitles = getResources()
+//                .getStringArray(R.array.spinner_data);
+//        Spinner mLocationSpinner = (Spinner) findViewById(
+//                R.id.spinner_location);
+//        mLocationSpinner.setAdapter(new ArrayAdapter<String>(this,
+//                R.layout.layout_spinner_item_drawer_black, mLocationsTitles));
 
         try {
 
@@ -84,7 +84,7 @@ public class CapturePhotoActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_inspection_options, menu);
+        inflater.inflate(R.menu.make_no_items, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -92,13 +92,11 @@ public class CapturePhotoActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-//        if (item.getItemId() == R.id.menu_go_to_map) {
-//            startActivity(new Intent(CapturePhotoActivity.this,
-//                    MainActivity.class));
-//            finish();
-//            return true;
-//        }
-
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

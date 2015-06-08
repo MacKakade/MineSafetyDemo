@@ -2,8 +2,13 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/menu_view_as"
+        android:title="Map View"
+        app:showAsAction="always"/>
+
+    <item
             android:id="@+id/myswitch"
-            android:title=""
+            android:title="View as"
             app:showAsAction="always"
             app:actionLayout="@layout/switch_layout"/>
 

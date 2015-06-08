@@ -1,60 +1,67 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:padding="12dp"
-                android:background="#FFFFFF"
-                android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/text_mine_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/text_mine_id"
+        android:layout_alignTop="@+id/text_mine_id"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/text_mine_state"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="City"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/text_mine_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/text_mine_city"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="ID"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="City"
-            android:layout_alignTop="@+id/text_mine_id"
-            android:layout_alignBottom="@+id/text_mine_id"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="120dp"
-            android:layout_toRightOf="@+id/text_mine_id"
-            android:id="@+id/text_mine_city"/>
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="ID"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:id="@+id/text_mine_id"/>
+        android:id="@+id/text_mine_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/text_mine_id"
+        android:text="Mine Name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#375883" />
 
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Mine Name"
-            android:textColor="#375883"
-            android:id="@+id/text_mine_name"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
-
+        android:id="@+id/text_mine_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="State"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="State"
-            android:id="@+id/text_mine_state"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/text_mine_operator"
-            android:layout_below="@+id/text_mine_name"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+        android:id="@+id/text_mine_operator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/text_mine_name"
+        android:layout_below="@+id/text_mine_name"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 </RelativeLayout>

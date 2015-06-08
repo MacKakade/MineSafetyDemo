@@ -30,10 +30,6 @@ public class InspectionOptionsActivity extends ActionBarActivity {
 
     private Uri mVideoUri;
 
-//    private Spinner mLocationSpinner;
-//
-//    private String[] mLocationsTitles;
-
     AlertDialog alertDialog;
 
     public static final int REQUEST_VIDEO_CAPTURE = 2;
@@ -48,6 +44,7 @@ public class InspectionOptionsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inspection_options);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         index = getIntent().getExtras().getInt("mine_info");
 
@@ -63,23 +60,6 @@ public class InspectionOptionsActivity extends ActionBarActivity {
                 mine.operatorName + ", " + mine.city + ", " + mine.state
                         + ", ID:"
                         + mine.id);
-
-//        Button b = (Button) findViewById(R.id.btn_record_location);
-//        b.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(InspectionOptionsActivity.this,
-//                        MineMapActivity.class));
-//                finish();
-//            }
-//        });
-
-//        mLocationsTitles = getResources().getStringArray(R.array.spinner_data);
-//
-//        mLocationSpinner = (Spinner) findViewById(R.id.spinner_location);
-//
-//        mLocationSpinner.setAdapter(new ArrayAdapter<String>(this,
-//                R.layout.layout_spinner_item_drawer_black, mLocationsTitles));
 
         RelativeLayout btnPicture = (RelativeLayout) findViewById(
                 R.id.rel_take_picture);
@@ -153,17 +133,48 @@ public class InspectionOptionsActivity extends ActionBarActivity {
             }
         });
 
-        Button buttonArtifacts = (Button) findViewById(R.id.btn_my_artifacts);
-        buttonArtifacts.setOnClickListener(new View.OnClickListener() {
+
+        RelativeLayout buttonRecordVideo = (RelativeLayout) findViewById(
+                R.id.rel_take_video);
+        buttonRecordVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                takeVideo();
+            }
+        });
 
-                AlertDialog.Builder alert = new AlertDialog.Builder(
-                        InspectionOptionsActivity.this);
 
-                alertDialog = alert.create();
+    }
 
-                View view = getLayoutInflater()
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(InspectionOptionsActivity.this);
+        alertDialog = alert.create();
+        View view;
+
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+
+            case R.id.menu_all_forms:
+
+                view = getLayoutInflater()
+                        .inflate(R.layout.layout_all_forms, null, false);
+                view.findViewById(R.id.close)
+                        .setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                alertDialog.dismiss();
+                            }
+                        });
+
+                alertDialog.setView(view);
+                alertDialog.show();
+
+            case R.id.menu_my_artifacts:
+
+                view = getLayoutInflater()
                         .inflate(R.layout.layout_inspection_artifacts, null,
                                 false);
                 view.findViewById(R.id.close)
@@ -177,51 +188,10 @@ public class InspectionOptionsActivity extends ActionBarActivity {
                 alertDialog.setView(view);
                 alertDialog.show();
 
-//                for (Citation citation : CitationRepository
-//                        .getAllCitations(InspectionOptionsActivity.this)) {
-//                    Toast.makeText(InspectionOptionsActivity.this,
-//                            citation.getCitationUri(), Toast.LENGTH_LONG)
-//                            .show();
-//                }
 
-            }
-        });
-
-        Button buttonAllForms = (Button) findViewById(R.id.btn_all_forms);
-        buttonAllForms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(
-                        InspectionOptionsActivity.this);
-
-                alertDialog = alert.create();
-
-                View view = getLayoutInflater()
-                        .inflate(R.layout.layout_all_forms, null, false);
-                view.findViewById(R.id.close)
-                        .setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                alertDialog.dismiss();
-                            }
-                        });
-
-                alertDialog.setView(view);
-                alertDialog.show();
-
-            }
-        });
-
-        RelativeLayout buttonRecordVideo = (RelativeLayout) findViewById(
-                R.id.rel_take_video);
-        buttonRecordVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                takeVideo();
-            }
-        });
-
-
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void takePicture() {
@@ -290,18 +260,5 @@ public class InspectionOptionsActivity extends ActionBarActivity {
         inflater.inflate(R.menu.menu_inspection_options, menu);
 
         return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-//        if (item.getItemId() == R.id.menu_go_to_map) {
-//            startActivity(new Intent(InspectionOptionsActivity.this,
-//                    MainActivity.class));
-//            finish();
-//            return true;
-//        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

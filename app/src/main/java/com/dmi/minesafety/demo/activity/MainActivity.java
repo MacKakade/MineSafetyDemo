@@ -49,8 +49,6 @@ public class MainActivity extends ActionBarActivity
         implements GoogleMap.OnMapLoadedCallback, MineListFragment.Callbacks,
         OnMapReadyCallback {
 
-    private Menu menu;
-
     private MenuItem switchItem;
 
     MineListAdapter mineListAdapter;
@@ -98,6 +96,10 @@ public class MainActivity extends ActionBarActivity
     // Create a LatLngBounds that includes USA.
     final LatLngBounds USA = new LatLngBounds(
             new LatLng(29, -126), new LatLng(47, -68.67));
+
+    private static final String MAP_VIEW = "Map View";
+
+    private static final String LIST_VIEW = "List View";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,7 +190,7 @@ public class MainActivity extends ActionBarActivity
 
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
-        this.menu = menu;
+        final MenuItem viewAs = menu.findItem(R.id.menu_view_as);
 
         switchItem = menu.findItem(R.id.myswitch);
         switchItem.setActionView(R.layout.switch_layout);
@@ -200,6 +202,7 @@ public class MainActivity extends ActionBarActivity
                     public void onCheckedChanged(CompoundButton buttonView,
                                                  boolean isChecked) {
                         if (!isChecked) {
+                            viewAs.setTitle(MAP_VIEW);
                             mSupportMapFragment = SupportMapFragment
                                     .newInstance();
                             mCurrentFragment = mSupportMapFragment;
@@ -209,6 +212,7 @@ public class MainActivity extends ActionBarActivity
                                     .commit();
                             mSupportMapFragment.getMapAsync(MainActivity.this);
                         } else {
+                            viewAs.setTitle(LIST_VIEW);
                             mineListFragment = MineListFragment.newInstance();
 
                             mCurrentFragment = mineListFragment;
@@ -250,7 +254,7 @@ public class MainActivity extends ActionBarActivity
                         switchItem.setVisible(true);
                         getSupportActionBar().setBackgroundDrawable(
                                 new ColorDrawable(getResources()
-                                        .getColor(R.color.action_bar_bg)));
+                                        .getColor(R.color.color_primary)));
                         return true;  // Return true to collapse action view
                     }
 
