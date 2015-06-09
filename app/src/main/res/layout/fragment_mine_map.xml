@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.dmi.minesafety.demo.widget.TouchImageView
+    <com.dmi.mobile.inspection.widget.TouchImageView
         android:id="@+id/imageViewMine"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

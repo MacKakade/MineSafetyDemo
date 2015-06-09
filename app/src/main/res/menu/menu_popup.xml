@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--<item-->
-        <!--android:id="@+id/file"-->
-        <!--android:title="Attach a file"/>-->
+    <!--android:id="@+id/file"-->
+    <!--android:title="Attach a file"/>-->
 
     <item
         android:id="@+id/picture"
-        android:title="Attach picture"/>
+        android:title="Attach picture" />
 
     <item
         android:id="@+id/video"
-        android:title="Attach video"/>
+        android:title="Attach video" />
 
     <item
         android:id="@+id/audio"
-        android:title="Attach audio"/>
+        android:title="Attach audio" />
 
 </menu>

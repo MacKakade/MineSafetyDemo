@@ -6,7 +6,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context="com.dmi.minesafety.demo.activity.DocumentListActivity">
+    tools:context="com.dmi.mobile.inspection.activity.DocumentListActivity">
 
     <!--
     This layout is a two-pane layout for the Documents
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/document_list"
-        android:name="com.dmi.minesafety.demo.fragment.DocumentListFragment"
+        android:name="com.dmi.mobile.inspection.fragment.DocumentListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

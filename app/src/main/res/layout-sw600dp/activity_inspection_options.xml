@@ -101,279 +101,233 @@
 
     </RelativeLayout>
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rel_controls"
-        android:fillViewport="true"
-        android:padding="10dp">
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/rel_scan_barcode"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:orientation="horizontal"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_blue_button_selector"
+                android:gravity="center"
                 android:padding="5dp">
 
-                <RelativeLayout
-                    android:id="@+id/rel_scan_barcode"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
+                <ImageView
+                    android:id="@+id/imv_scan"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_barcode" />
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_scan"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_barcode" />
-
-                    <TextView
-                        android:id="@+id/txv_scan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="Scan Barcode"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rel_take_picture"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_picture"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_camera" />
-
-                    <TextView
-                        android:id="@+id/txv_picture"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="Take Picture"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rel_take_notes"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_notes"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_notes" />
-
-                    <TextView
-                        android:id="@+id/txv_notes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="Take Notes"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <RelativeLayout
-                    android:id="@+id/rel_take_video"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_video"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_video_record" />
-
-                    <TextView
-                        android:id="@+id/txv_video"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="Take a Video"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/rel_record_audio"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_record_audio"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_audio_record" />
-
-                    <TextView
-                        android:id="@+id/txv_record_audio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="Record Audio"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/ic_record_noise"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_record_noise"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_noise" />
-
-                    <TextView
-                        android:id="@+id/txv_record_noise"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="Record Noise"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <Button
-                    android:id="@+id/button_take_video2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:background="@color/inspection_button_blue"
-                    android:drawableTop="@drawable/ic_video_record"
-                    android:text="Take Video"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imv_scan"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="5dp"
+                    android:text="Scan Barcode"
                     android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:visibility="invisible" />
+                    android:textSize="30sp" />
+            </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/rel_take_picture"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_blue_button_selector"
+                android:gravity="center"
+                android:padding="5dp">
 
-                <RelativeLayout
-                    android:id="@+id/rel_all_forms"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_blue_button_selector"
-                    android:padding="15dp">
+                <ImageView
+                    android:id="@+id/imv_picture"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_camera" />
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@+id/txv_issue_citation"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="25dp"
-                        android:src="@drawable/ic_citation" />
-
-                    <TextView
-                        android:id="@+id/txv_issue_citation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:text="Issue Citation"
-                        android:textColor="@color/white"
-                        android:textSize="23sp" />
-                </RelativeLayout>
-
-                <Button
-                    android:id="@+id/button_record_audio2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:background="@color/inspection_button_blue"
-                    android:drawableTop="@drawable/ic_audio_record"
-                    android:text="My Artifacts"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imv_picture"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="5dp"
+                    android:text="Take Picture"
                     android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:visibility="invisible" />
+                    android:textSize="30sp" />
+            </RelativeLayout>
 
-            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/rel_take_notes"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_blue_button_selector"
+                android:gravity="center"
+                android:padding="5dp">
 
+                <ImageView
+                    android:id="@+id/imv_notes"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_notes" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imv_notes"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="5dp"
+                    android:text="Take Notes"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+            </RelativeLayout>
         </LinearLayout>
-    </ScrollView>
+
+        <RelativeLayout
+            android:id="@+id/rel_all_forms"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_blue_button_selector"
+            android:gravity="center"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/imv_issue_citation"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_citation" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imv_issue_citation"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="5dp"
+                android:text="Issue Citation"
+                android:textColor="@color/white"
+                android:textSize="40sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <RelativeLayout
+                android:id="@+id/rel_take_video"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_blue_button_selector"
+                android:gravity="center"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/imv_video"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_video_record" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imv_video"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="5dp"
+                    android:text="Take a Video"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_record_audio"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_blue_button_selector"
+                android:gravity="center"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/imv_record_audio"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_audio_record" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imv_record_audio"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="5dp"
+                    android:text="Record Audio"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ic_record_noise"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_blue_button_selector"
+                android:gravity="center"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/imv_record_noise"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_noise" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imv_record_noise"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="5dp"
+                    android:text="Record Noise"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 </RelativeLayout>

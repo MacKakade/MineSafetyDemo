@@ -41,11 +41,11 @@
             android:layout_toLeftOf="@+id/txv_geo_location" />
 
         <Button
-            android:layout_below="@+id/title_mine"
             android:id="@+id/btn_record_location"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
+            android:layout_below="@+id/title_mine"
             android:layout_margin="12dp"
             android:layout_marginRight="15dp"
             android:background="@color/inspection_button_blue"
@@ -102,8 +102,8 @@
         android:layout_height="40dp"
         android:layout_alignTop="@+id/btn_cancel"
         android:layout_marginRight="20dp"
-        android:background="?selectableItemBackground"
         android:layout_toLeftOf="@+id/btn_cancel"
+        android:background="?selectableItemBackground"
         android:src="@drawable/ic_save" />
 
     <ImageView
@@ -121,20 +121,20 @@
         android:id="@+id/btn_scribble"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="?selectableItemBackground"
         android:layout_alignRight="@+id/imv_camera_capture"
         android:layout_alignTop="@+id/imv_camera_capture"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
+        android:background="?selectableItemBackground"
         android:src="@drawable/ic_scribble" />
 
     <ImageView
         android:id="@+id/btn_edit"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="?selectableItemBackground"
         android:layout_alignTop="@+id/btn_scribble"
         android:layout_marginRight="20dp"
         android:layout_toLeftOf="@+id/btn_scribble"
+        android:background="?selectableItemBackground"
         android:src="@drawable/ic_edit" />
 </RelativeLayout>

@@ -1,70 +1,67 @@
-<android.support.v4.widget.DrawerLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/drawer_layout"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <RelativeLayout
+        <include
+            android:id="@+id/layout_top_panel"
+            layout="@layout/top_panel"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content" />
 
-        <include android:id="@+id/layout_top_panel"
-                 layout="@layout/top_panel"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"/>
         <View
-                android:id="@+id/view_border"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/layout_top_panel"
-                android:background="#000000"/>
+            android:id="@+id/view_border"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/layout_top_panel"
+            android:background="#000000" />
 
         <FrameLayout
-                android:id="@+id/imageFrame"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/view_border">
-
-
+            android:id="@+id/imageFrame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_border">
 
         </FrameLayout>
     </RelativeLayout>
 
     <RelativeLayout
-            android:id="@+id/left_layout"
-            android:layout_width="360dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="#f8f8f8">
+        android:id="@+id/left_layout"
+        android:layout_width="340dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#f8f8f8">
 
         <Spinner
-                android:id="@+id/spinner_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"/>
+            android:id="@+id/spinner_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
 
         <Button
-                android:id="@+id/button_select_all"
-                android:text="SELECT ALL"
-                android:textSize="14sp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:layout_margin="4dp"
-                android:textColor="@color/white"
-                android:background="@drawable/bg_blue_button_selector"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/spinner_date"
-                android:layout_alignParentRight="true"/>
+            android:id="@+id/button_select_all"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/spinner_date"
+            android:layout_margin="4dp"
+            android:background="@drawable/bg_blue_button_selector"
+            android:padding="5dp"
+            android:text="SELECT ALL"
+            android:textColor="@color/white" />
 
         <ListView
-                android:id="@+id/left_drawer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/button_select_all"
-                android:choiceMode="multipleChoice"
-                android:divider="@android:color/black"
-                android:dividerHeight="0.5dp"/>
+            android:id="@+id/left_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/button_select_all"
+            android:choiceMode="multipleChoice"
+            android:divider="@android:color/black"
+            android:dividerHeight="0.5dp" />
     </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>

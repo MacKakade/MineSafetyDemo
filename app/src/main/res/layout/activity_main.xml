@@ -1,10 +1,10 @@
-<com.dmi.minesafety.demo.widget.MapWrapperLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.dmi.mobile.inspection.widget.MapWrapperLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:id="@+id/map_relative_layout"
     android:layout_height="match_parent"
-    tools:context="com.dmi.miningsafety.demo.MainActivity">
+    tools:context="com.dmi.mobile.inspection">
 
     <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -55,4 +55,4 @@
                  android:layout_height="wrap_content"/>
 
 
-</com.dmi.minesafety.demo.widget.MapWrapperLayout>
+</com.dmi.mobile.inspection.widget.MapWrapperLayout>

@@ -1,22 +1,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/menu_view_as"
         android:title="Map View"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
 
     <item
-            android:id="@+id/myswitch"
-            android:title="View as"
-            app:showAsAction="always"
-            app:actionLayout="@layout/switch_layout"/>
+        android:id="@+id/myswitch"
+        android:title="View as"
+        app:actionLayout="@layout/switch_layout"
+        app:showAsAction="always" />
 
     <item
-            android:id="@+id/search"
-            android:title="Search"
-            android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
-            app:showAsAction="always|withText|collapseActionView"
-            app:actionViewClass="android.support.v7.widget.SearchView"/>
+        android:id="@+id/search"
+        android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
+        android:title="Search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|withText|collapseActionView" />
 
 </menu>
